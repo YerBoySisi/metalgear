@@ -1,4 +1,4 @@
-package explorer;
+package caveExplorer;
 
 public class Door {
 	private boolean locked;

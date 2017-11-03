@@ -1,4 +1,4 @@
-package explorer;
+package caveExplorer;
 
 /**
  * NPC means Non-Playable Character

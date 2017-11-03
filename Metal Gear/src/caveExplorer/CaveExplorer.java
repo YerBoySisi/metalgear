@@ -1,4 +1,4 @@
-package explorer;
+package caveExplorer;
 
 import java.util.Scanner;
 

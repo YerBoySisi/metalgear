@@ -1,6 +1,6 @@
 package metalGear;
 
-import explorer.CaveRoom;
+import caveExplorer.CaveRoom;
 
 public class SavageRoom extends CaveRoom{
 	

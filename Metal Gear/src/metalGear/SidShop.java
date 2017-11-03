@@ -6,6 +6,7 @@ public class SidShop extends caveExplorer.CaveRoom {
 		super(description);
 		String message = "Hi I'm out of stuff right now whoops pls come back later.";
 		setDescription(message);
+		//aaaa
 	}
 
 }

@@ -36,6 +36,11 @@ public class NPC {
 	 * public NPC(String description, String inactiveDescription)
 	 *
 	 */
+	
+	
+	public void setActiveDesc(String s) {
+		this.activeDescription = s;
+	}
 
 	public boolean isActive() {
 		return active;

@@ -3,11 +3,26 @@ package caveExplorer;
 public class Inventory {
 
 	private String map;
+	public static int cupsCoffee;
 	
 	public Inventory() {
 		updateMap();
+		cupsCoffee = 0;
 	}
 
+	public void addCoffee() {
+		cupsCoffee++;
+	}
+	
+	public void subCoffee() {
+		if(cupsCoffee < 1) {
+			System.out.println("You have no coffee to drink");
+		}else {
+			cupsCoffee --;
+			System.out.println("You drank the coffee");
+		}
+	}
+	
 	public void updateMap() {
 		map = " ";
 		//create line across top:
@@ -49,7 +64,7 @@ public class Inventory {
 	}
 
 	public String getDescription() {
-		return map;
+		return map + cupsCoffee;
 //		return "You have nothing in your inventory.";
 	}
 

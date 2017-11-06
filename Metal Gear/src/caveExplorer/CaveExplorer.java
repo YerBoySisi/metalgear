@@ -11,6 +11,7 @@ public class CaveExplorer {
 	public static boolean playing = true;
 	public static NPC[] npcs;
 	
+	
 	public static void main(String[] args) {
 		in = new Scanner(System.in);
 		CaveRoom.setUpCaves();

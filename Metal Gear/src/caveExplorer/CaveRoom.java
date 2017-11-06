@@ -102,12 +102,12 @@ public class CaveRoom {
 	}
 
 	public void interpretInput(String input) {
-		System.err.println("interpretting input "+input);
+		System.out.println("interpretting input "+input);
 		while(!isValid(input)) {
 			printAllowedEntry();
 			input = CaveExplorer.in.nextLine();
 		}
-		System.err.println("marked as valid: "+input);
+		System.out.println("marked as valid: "+input);
 		//task: convert user input into a direction
 		//DO NOT USE AN IF STATEMENT
 		//(or, if you must, don't use more than 1)
@@ -169,7 +169,7 @@ public class CaveRoom {
 	public static void setUpCaves() {
 		//ALL OF THIS CODE CAN BE CHANGED
 		//1. Decide how big your caves should be
-		CaveExplorer.caves = new NPCRoom[5][5];
+		CaveExplorer.caves = new CaveRoom[5][5];
 		//2. Populate with caves and a defualt description: hint: when starting, use coordinates (helps debugging)
 		for(int row = 0; row < CaveExplorer.caves.length; row++) {
 			//PLEASE PAY ATTENTION TO THE DIFFERENCE:
@@ -181,16 +181,38 @@ public class CaveRoom {
 		}
 		//3. Replace default rooms with custom rooms
 		//--- WE WILL DO LATER
+		
+		
+		
 		CaveExplorer.npcs = new NPC[1];
 		CaveExplorer.npcs[0] = new NPC();
 		CaveExplorer.npcs[0].setposition(1, 1);
-
+		
+		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
 		CaveExplorer.currentRoom.enter();
-		//5. Set up dooors
+		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+		
+		c[1][1].setConnection(EAST, c[1][2], new Door());
+		
+		
+		
+		// = new metalGear.BensCafe("Temop");
+		
+		CaveRoom cafe = new metalGear.BensCafe("");//metalGear.BensCafe("temp");
+		
+		//System.out.print(cafe instanceof CaveRoom);
+		
+		c[0][2] = cafe;
+		
+		
+		
+		
+		c[0][1].setConnection(EAST, c[0][2], new Door());
+		
 		/**
 		 * Special requests:
 		 * moving objects in caves

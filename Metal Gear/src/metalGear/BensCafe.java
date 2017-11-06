@@ -5,7 +5,7 @@ import caveExplorer.CaveExplorer;
 
 public class BensCafe extends caveExplorer.CaveRoom{
 
-	private String msg = "Welcome to Bens Cafe";
+	private String msg = "Welcome to Bens Cafe. Would you like some coffee?";
 	private String profit;
 	
 	public BensCafe(String description) {
@@ -19,7 +19,7 @@ public class BensCafe extends caveExplorer.CaveRoom{
 	}
 	
 	public String validKeys() {
-		return "wdsae";
+		return "wdsaec";
 	}
 	
 	public void printAllowedEntry() {
@@ -27,6 +27,15 @@ public class BensCafe extends caveExplorer.CaveRoom{
 	}
 	
 	public void performAction(int direction) {
-		System.out.println("The Barista Gives you a cup of Joe");
+		if(direction == 4) {
+			System.out.println("The Barista Gives you a cup of Joe");
+			CaveExplorer.inventory.addCoffee();
+		}else if(direction == 5) {
+			//System.out.println("The Barista Gives you a cup of Joe");
+			CaveExplorer.inventory.subCoffee();
+		}else {
+			System.out.println("invalid input");
+		}
+		
 	}
 }

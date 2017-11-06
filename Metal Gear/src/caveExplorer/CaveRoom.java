@@ -120,7 +120,7 @@ public class CaveRoom {
 	 * @return
 	 */
 	public String validKeys() {
-		return "wdsa";
+		return "wdsae";
 	}
 
 	/**
@@ -158,7 +158,12 @@ public class CaveRoom {
 	 * @param direction
 	 */
 	public void performAction(int direction) {
-		System.out.println("That key does nothing.");
+		
+		//5 represents "C" <- addded to valid keys
+		if(direction == 5)
+			CaveExplorer.inventory.subCoffee();
+		else
+			System.out.println("That key does nothing.");
 	}
 
 

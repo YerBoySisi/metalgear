@@ -64,7 +64,7 @@ public class Inventory {
 	}
 
 	public String getDescription() {
-		return map + cupsCoffee;
+		return map + "You have "+cupsCoffee+ " cups of coffee";
 //		return "You have nothing in your inventory.";
 	}
 

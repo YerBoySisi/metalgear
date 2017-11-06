@@ -61,14 +61,13 @@ public class NPC {
 	}
 	
 	public void interact() {
-		CaveExplorer.print("Hi! I'm an NPC!"
-				+ " I say nothing at all until you say 'bye'.");
+		CaveExplorer.print("Hello there traveller, I am an NPC. I don't have much to say, so go away.");
 		String s = CaveExplorer.in.nextLine();
 		while(!s.equalsIgnoreCase("bye")){
 			CaveExplorer.print("...");
 			s = CaveExplorer.in.nextLine();
 		}
-		CaveExplorer.print("Well, that was fun. Later!");
+		CaveExplorer.print("Okay, bye.");
 		active = false;
 	}
 

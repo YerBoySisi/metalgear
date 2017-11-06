@@ -1,5 +1,8 @@
 package caveExplorer;
 
+import metalGear.SisiSavage;
+import metalGear.SisiSavageRoom;
+
 public class CaveRoom {
 
 	private String description;//tells what the room looks like
@@ -164,6 +167,7 @@ public class CaveRoom {
 			CaveExplorer.inventory.subCoffee();
 		else
 			System.out.println("That key does nothing.");
+
 	}
 
 
@@ -185,21 +189,34 @@ public class CaveRoom {
 			}
 		}
 		//3. Replace default rooms with custom rooms
+
 		//--- WE WILL DO LATER
 		
 		
 		
 		CaveExplorer.npcs = new NPC[1];
+
+		CaveExplorer.caves[4][3] = new SisiSavageRoom("What up, it's yer boy Sisi. Talk to the guy for a challenge. Oh yeah, and we're in (4, 3).");
+		CaveExplorer.caves[0][4].setDescription("Teleportation. Pretty cool huh??? You're in (0, 4). By the way, you might be stuck...");
+		CaveExplorer.caves[1][4].setDescription("You're in (1, 4). By the way, you might be stuck...");
+		CaveExplorer.caves[2][4].setDescription("You're in (2, 4). By the way, you might be stuck...");
+		
+		CaveExplorer.npcs = new NPC[2];
+
 		CaveExplorer.npcs[0] = new NPC();
 		CaveExplorer.npcs[0].setposition(1, 1);
-		
-		
+
+		CaveExplorer.npcs[1] = new SisiSavage();
+		CaveExplorer.npcs[1].setposition(4, 3);
+
+
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
 		CaveExplorer.currentRoom.enter();
 		//5. Set up doors
 		CaveRoom[][] c = CaveExplorer.caves;
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+
 		
 		c[1][1].setConnection(EAST, c[1][2], new Door());
 		
@@ -218,6 +235,16 @@ public class CaveRoom {
 		
 		c[0][1].setConnection(EAST, c[0][2], new Door());
 		
+
+		c[1][1].setConnection(SOUTH, c[2][1], new Door());
+		c[2][1].setConnection(EAST, c[2][2], new Door());
+		c[2][2].setConnection(SOUTH, c[3][2], new Door());
+		c[3][2].setConnection(SOUTH, c[4][2], new Door());
+		c[4][2].setConnection(EAST, c[4][3], new Door());
+		
+		c[0][4].setConnection(SOUTH, c[1][4], new Door());
+		c[1][4].setConnection(SOUTH, c[2][4], new Door());
+
 		/**
 		 * Special requests:
 		 * moving objects in caves

@@ -3,11 +3,30 @@ package caveExplorer;
 public class Inventory {
 
 	private String map;
+
 	public static int cupsCoffee;
+
+	private int money;
+	
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+	public void addMoney(int money) {
+		this.money = this.money+money;
+	}
+
 	
 	public Inventory() {
 		updateMap();
 		cupsCoffee = 0;
+
+		money = 0;
+
 	}
 
 	public void addCoffee() {

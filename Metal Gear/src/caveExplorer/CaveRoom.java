@@ -245,6 +245,14 @@ public class CaveRoom {
 		c[0][4].setConnection(SOUTH, c[1][4], new Door());
 		c[1][4].setConnection(SOUTH, c[2][4], new Door());
 
+		CaveRoom sidCasino = new metalGear.SidCasino("Asdasd"); 
+		
+		c[0][0] = sidCasino;
+		
+		c[0][0].setConnection(EAST, c[0][1], new Door());
+		
+		
+		
 		/**
 		 * Special requests:
 		 * moving objects in caves

@@ -3,9 +3,23 @@ package caveExplorer;
 public class Inventory {
 
 	private String map;
+	private int money;
+	
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+	public void addMoney(int money) {
+		this.money = this.money+money;
+	}
 	
 	public Inventory() {
 		updateMap();
+		money = 0;
 	}
 
 	public void updateMap() {

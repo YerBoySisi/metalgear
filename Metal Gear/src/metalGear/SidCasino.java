@@ -28,7 +28,7 @@ public class SidCasino extends caveExplorer.CaveRoom {
 	public void performAction(int direction) {
 		if (direction==4) {
 			profit = rollDice()*10;
-			System.out.println("Looks like you've just made "+profit+"! Nice going!");
+			System.out.println("Looks like you've just made "+profit+"! Nice going! You now have  $"+CaveExplorer.inventory.getMoney()+"!");
 			CaveExplorer.inventory.addMoney(profit);
 		}
 		else {

@@ -1,4 +1,7 @@
-package caveExplorer;
+package caves;
+
+import entity.NPC;
+import explorer.ExplorerMain;
 
 public class NPCRoom extends CaveRoom {
 
@@ -43,7 +46,7 @@ public class NPCRoom extends CaveRoom {
 	}
 	
 	public void printAllowedEntry() {
-		CaveExplorer.print("You can only enter 'w', 'a', 's' or 'd' to move or"
+		ExplorerMain.print("You can only enter 'w', 'a', 's' or 'd' to move or"
 				+ " you can type 'e' to interact.");
 	}
 	
@@ -53,10 +56,10 @@ public class NPCRoom extends CaveRoom {
 			if(containsNPC() && getPresentNPC().isActive()) {
 				getPresentNPC().interact();
 			}else {
-				CaveExplorer.print("There is nothing to interact with.");
+				ExplorerMain.print("There is nothing to interact with.");
 			}
 		}else {
-			CaveExplorer.print("That key does nothing.");
+			ExplorerMain.print("That key does nothing.");
 		}
 	}
 	

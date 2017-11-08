@@ -1,7 +1,9 @@
-package caveExplorer;
+package caves;
 
-import metalGear.SisiSavage;
-import metalGear.SisiSavageRoom;
+import caves.customcaves.SisiSavage;
+import caves.customcaves.SisiSavageRoom;
+import entity.NPC;
+import explorer.ExplorerMain;
 
 public class CaveRoom {
 
@@ -108,7 +110,7 @@ public class CaveRoom {
 		System.out.println("interpretting input "+input);
 		while(!isValid(input)) {
 			printAllowedEntry();
-			input = CaveExplorer.in.nextLine();
+			input = ExplorerMain.in.nextLine();
 		}
 		System.out.println("marked as valid: "+input);
 		//task: convert user input into a direction
@@ -146,10 +148,10 @@ public class CaveRoom {
 		if(direction < 4) {
 			if(borderingRooms[direction] != null && 
 					doors[direction] != null) {
-				CaveExplorer.currentRoom.leave();
-				CaveExplorer.currentRoom = borderingRooms[direction];
-				CaveExplorer.currentRoom.enter();
-				CaveExplorer.inventory.updateMap();
+				ExplorerMain.currentRoom.leave();
+				ExplorerMain.currentRoom = borderingRooms[direction];
+				ExplorerMain.currentRoom.enter();
+				ExplorerMain.inventory.updateMap();
 			}
 		}else {
 			performAction(direction);
@@ -164,7 +166,7 @@ public class CaveRoom {
 		
 		//5 represents "C" <- addded to valid keys
 		if(direction == 5)
-			CaveExplorer.inventory.subCoffee();
+			ExplorerMain.inventory.subCoffee();
 		else
 			System.out.println("That key does nothing.");
 
@@ -178,13 +180,13 @@ public class CaveRoom {
 	public static void setUpCaves() {
 		//ALL OF THIS CODE CAN BE CHANGED
 		//1. Decide how big your caves should be
-		CaveExplorer.caves = new CaveRoom[5][5];
+		ExplorerMain.caves = new CaveRoom[5][5];
 		//2. Populate with caves and a defualt description: hint: when starting, use coordinates (helps debugging)
-		for(int row = 0; row < CaveExplorer.caves.length; row++) {
+		for(int row = 0; row < ExplorerMain.caves.length; row++) {
 			//PLEASE PAY ATTENTION TO THE DIFFERENCE:
-			for(int col = 0; col < CaveExplorer.caves[row].length; col++) {
+			for(int col = 0; col < ExplorerMain.caves[row].length; col++) {
 				//create a "default" cave
-				CaveExplorer.caves[row][col] = 
+				ExplorerMain.caves[row][col] = 
 						new NPCRoom("This cave has coords ("+row+","+col+")");
 			}
 		}
@@ -194,27 +196,27 @@ public class CaveRoom {
 		
 		
 		
-		CaveExplorer.npcs = new NPC[1];
+		ExplorerMain.npcs = new NPC[1];
 
-		CaveExplorer.caves[4][3] = new SisiSavageRoom("What up, it's yer boy Sisi. Talk to the guy for a challenge. Oh yeah, and we're in (4, 3).");
-		CaveExplorer.caves[0][4].setDescription("Teleportation. Pretty cool huh??? You're in (0, 4). By the way, you might be stuck...");
-		CaveExplorer.caves[1][4].setDescription("You're in (1, 4). By the way, you might be stuck...");
-		CaveExplorer.caves[2][4].setDescription("You're in (2, 4). By the way, you might be stuck...");
+		ExplorerMain.caves[4][3] = new SisiSavageRoom("What up, it's yer boy Sisi. Talk to the guy for a challenge. Oh yeah, and we're in (4, 3).");
+		ExplorerMain.caves[0][4].setDescription("Teleportation. Pretty cool huh??? You're in (0, 4). By the way, you might be stuck...");
+		ExplorerMain.caves[1][4].setDescription("You're in (1, 4). By the way, you might be stuck...");
+		ExplorerMain.caves[2][4].setDescription("You're in (2, 4). By the way, you might be stuck...");
 		
-		CaveExplorer.npcs = new NPC[2];
+		ExplorerMain.npcs = new NPC[2];
 
-		CaveExplorer.npcs[0] = new NPC();
-		CaveExplorer.npcs[0].setposition(1, 1);
+		ExplorerMain.npcs[0] = new NPC();
+		ExplorerMain.npcs[0].setposition(1, 1);
 
-		CaveExplorer.npcs[1] = new SisiSavage();
-		CaveExplorer.npcs[1].setposition(4, 3);
+		ExplorerMain.npcs[1] = new SisiSavage();
+		ExplorerMain.npcs[1].setposition(4, 3);
 
 
 		//4. Set your starting room:
-		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
-		CaveExplorer.currentRoom.enter();
+		ExplorerMain.currentRoom = ExplorerMain.caves[0][1];
+		ExplorerMain.currentRoom.enter();
 		//5. Set up doors
-		CaveRoom[][] c = CaveExplorer.caves;
+		CaveRoom[][] c = ExplorerMain.caves;
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
 
 		
@@ -224,7 +226,7 @@ public class CaveRoom {
 		
 		// = new metalGear.BensCafe("Temop");
 		
-		CaveRoom cafe = new metalGear.BensCafe("");//metalGear.BensCafe("temp");
+		CaveRoom cafe = new caves.customcaves.BensCafe("");//metalGear.BensCafe("temp");
 		
 		//System.out.print(cafe instanceof CaveRoom);
 		
@@ -245,7 +247,7 @@ public class CaveRoom {
 		c[0][4].setConnection(SOUTH, c[1][4], new Door());
 		c[1][4].setConnection(SOUTH, c[2][4], new Door());
 
-		CaveRoom sidCasino = new metalGear.SidCasino("Asdasd"); 
+		CaveRoom sidCasino = new caves.customcaves.SidCasino("Asdasd"); 
 		
 		c[0][0] = sidCasino;
 		

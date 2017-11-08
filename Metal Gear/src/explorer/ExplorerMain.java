@@ -1,8 +1,11 @@
-package caveExplorer;
+package explorer;
 
 import java.util.Scanner;
 
-public class CaveExplorer {
+import caves.CaveRoom;
+import entity.NPC;
+
+public class ExplorerMain {
 
 	public static CaveRoom[][] caves;//every room in the cave
 	public static Scanner in;//for user input

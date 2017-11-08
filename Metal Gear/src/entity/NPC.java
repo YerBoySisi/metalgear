@@ -1,4 +1,8 @@
-package caveExplorer;
+package entity;
+
+import caves.CaveRoom;
+import caves.NPCRoom;
+import explorer.ExplorerMain;
 
 /**
  * NPC means Non-Playable Character
@@ -21,7 +25,7 @@ public class NPC {
 
 	//default constructor
 	public NPC() {
-		this.floor = CaveExplorer.caves;
+		this.floor = ExplorerMain.caves;
 		this.activeDescription = "There is a person waiting to talk to you.";
 		this.inactiveDescription = "The person you spoke to earlier is standing here.";
 		//to indicate the NPC doesn't have a position yet, use coordinates -1,-1
@@ -61,13 +65,13 @@ public class NPC {
 	}
 	
 	public void interact() {
-		CaveExplorer.print("Hello there traveller, I am an NPC. I don't have much to say, so go away.");
-		String s = CaveExplorer.in.nextLine();
+		ExplorerMain.print("Hello there traveller, I am an NPC. I don't have much to say, so go away.");
+		String s = ExplorerMain.in.nextLine();
 		while(!s.equalsIgnoreCase("bye")){
-			CaveExplorer.print("...");
-			s = CaveExplorer.in.nextLine();
+			ExplorerMain.print("...");
+			s = ExplorerMain.in.nextLine();
 		}
-		CaveExplorer.print("Okay, bye.");
+		ExplorerMain.print("Okay, bye.");
 		active = false;
 	}
 
@@ -95,7 +99,7 @@ public class NPC {
 		moves[0] = possibleMoves[rand][0]+currentRow;
 		moves[1] = possibleMoves[rand][1]+currentCol;
 		while(currentRoom.getDoor(rand) == null ||
-				!(CaveExplorer.caves[moves[0]][moves[1]] instanceof NPCRoom)) {
+				!(ExplorerMain.caves[moves[0]][moves[1]] instanceof NPCRoom)) {
 			rand = (int)(Math.random()*possibleMoves.length);
 			moves[0] = possibleMoves[rand][0]+currentRow;
 			moves[1] = possibleMoves[rand][1]+currentCol;

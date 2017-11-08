@@ -1,4 +1,6 @@
-package caveExplorer;
+package explorer;
+
+import caves.CaveRoom;
 
 public class Inventory {
 
@@ -45,11 +47,11 @@ public class Inventory {
 	public void updateMap() {
 		map = " ";
 		//create line across top:
-		for(int i = 0; i < CaveExplorer.caves[0].length -1; i++) {
+		for(int i = 0; i < ExplorerMain.caves[0].length -1; i++) {
 			map += "____";//4 underscores
 		}
 		map+= "___\n";//3 underscores, makes the corner look symmetrical
-		for(CaveRoom[] row : CaveExplorer.caves) {
+		for(CaveRoom[] row : ExplorerMain.caves) {
 			//3 rows of text
 			for(int i = 0; i < 3; i++) {
 				String text = "";

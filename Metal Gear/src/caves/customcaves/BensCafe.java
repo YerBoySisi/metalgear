@@ -1,9 +1,8 @@
-package metalGear;
+package caves.customcaves;
 
-import caveExplorer.CaveExplorer;
-//import caveExplorer.NPC;
+import explorer.ExplorerMain;
 
-public class BensCafe extends caveExplorer.CaveRoom{
+public class BensCafe extends caves.CaveRoom{
 
 	private String msg = "Welcome to Bens Cafe. Would you like some coffee?";
 	private String profit;
@@ -29,10 +28,10 @@ public class BensCafe extends caveExplorer.CaveRoom{
 	public void performAction(int direction) {
 		if(direction == 4) {
 			System.out.println("The Barista Gives you a cup of Joe");
-			CaveExplorer.inventory.addCoffee();
+			ExplorerMain.inventory.addCoffee();
 		}else if(direction == 5) {
 			//System.out.println("The Barista Gives you a cup of Joe");
-			CaveExplorer.inventory.subCoffee();
+			ExplorerMain.inventory.subCoffee();
 		}else {
 			System.out.println("invalid input");
 		}

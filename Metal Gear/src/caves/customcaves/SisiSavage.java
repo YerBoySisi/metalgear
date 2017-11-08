@@ -1,7 +1,7 @@
-package metalGear;
+package caves.customcaves;
 
-import caveExplorer.CaveExplorer;
-import caveExplorer.NPC;
+import entity.NPC;
+import explorer.ExplorerMain;
 
 public class SisiSavage extends NPC {
 	
@@ -18,24 +18,24 @@ public class SisiSavage extends NPC {
 	}
 	
 	public void interact() {
-		CaveExplorer.print("What do you want? A challenge? Well, I don't got nothin for you right now. I'll tell you what though, " 
+		ExplorerMain.print("What do you want? A challenge? Well, I don't got nothin for you right now. I'll tell you what though, " 
 								+ "for all your troubles, I'll show you a secret.");
-		String s = CaveExplorer.in.nextLine();
+		String s = ExplorerMain.in.nextLine();
 		while(!s.equalsIgnoreCase("show me") && !s.equalsIgnoreCase("bye")){
-			CaveExplorer.print("C'mon, I don't got all day. Either go away or say 'show me'.");
-			s = CaveExplorer.in.nextLine();
+			ExplorerMain.print("C'mon, I don't got all day. Either go away or say 'show me'.");
+			s = ExplorerMain.in.nextLine();
 		}
 		
 		if(s.equalsIgnoreCase("bye")) {
-			CaveExplorer.print("Peace.");
+			ExplorerMain.print("Peace.");
 		}
 		
 		if(s.equalsIgnoreCase("show me")) {
-			CaveExplorer.print("Say less, I gotcha.");
-			CaveExplorer.currentRoom.leave();
-			CaveExplorer.currentRoom = CaveExplorer.caves[0][4];
-			CaveExplorer.currentRoom.enter();
-			CaveExplorer.inventory.updateMap();
+			ExplorerMain.print("Say less, I gotcha.");
+			ExplorerMain.currentRoom.leave();
+			ExplorerMain.currentRoom = ExplorerMain.caves[0][4];
+			ExplorerMain.currentRoom.enter();
+			ExplorerMain.inventory.updateMap();
 			System.err.print("You've teleported to another room!");
 		}
 		

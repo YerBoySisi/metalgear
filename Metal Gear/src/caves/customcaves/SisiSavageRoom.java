@@ -1,6 +1,6 @@
-package metalGear;
+package caves.customcaves;
 
-import caveExplorer.NPCRoom;
+import caves.NPCRoom;
 
 public class SisiSavageRoom extends NPCRoom{
 	

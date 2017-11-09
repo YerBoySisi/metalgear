@@ -10,10 +10,11 @@ public class SisiSavage extends NPC {
 		private String activeDescription;
 		private String inactiveDescription;
 	
-	public SisiSavage() {
+	public SisiSavage(String name) {
 		
-		this.activeDescription = "There's a Savage in the room. He might have something cool!";
-		this.inactiveDescription = "It's the savage from earlier. Wait, how did you even get back here?";
+		super(name);
+		this.activeDescription = "There's a Savage in the room. It's "+name+"! He might have something cool!";
+		this.inactiveDescription = "It's "+name+" from earlier. Wait, how did you even get back here?";
 		
 	}
 	

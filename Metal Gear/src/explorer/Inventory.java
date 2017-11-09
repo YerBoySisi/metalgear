@@ -39,7 +39,7 @@ public class Inventory {
 		if(cupsCoffee < 1) {
 			System.out.println("You have no coffee to drink");
 		}else {
-			cupsCoffee --;
+			cupsCoffee--;
 			System.out.println("You drank the coffee");
 		}
 	}

@@ -74,7 +74,7 @@ public class CaveRoom {
 
 
 	public void enter() {
-		contents = "X";
+		contents = "P";
 	}
 
 	public void leave() {
@@ -177,10 +177,10 @@ public class CaveRoom {
 	 * This will be where your group sets up all the caves 
 	 * and all the connections
 	 */
-	public static void setUpCaves() {
+	public static void setUpCaves(int x, int y) {
 		//ALL OF THIS CODE CAN BE CHANGED
 		//1. Decide how big your caves should be
-		ExplorerMain.caves = new CaveRoom[5][5];
+		ExplorerMain.caves = new CaveRoom[x][y];
 		//2. Populate with caves and a defualt description: hint: when starting, use coordinates (helps debugging)
 		for(int row = 0; row < ExplorerMain.caves.length; row++) {
 			//PLEASE PAY ATTENTION TO THE DIFFERENCE:
@@ -205,11 +205,11 @@ public class CaveRoom {
 		
 		ExplorerMain.npcs = new NPC[2];
 
-		ExplorerMain.npcs[0] = new NPC();
-		ExplorerMain.npcs[0].setposition(1, 1);
+		ExplorerMain.npcs[0] = new NPC("Traveller");
+		ExplorerMain.npcs[0].setPosition(1, 1);
 
-		ExplorerMain.npcs[1] = new SisiSavage();
-		ExplorerMain.npcs[1].setposition(4, 3);
+		ExplorerMain.npcs[1] = new SisiSavage("Jimmy");
+		ExplorerMain.npcs[1].setPosition(4, 3);
 
 
 		//4. Set your starting room:

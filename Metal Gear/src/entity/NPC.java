@@ -9,10 +9,10 @@ import explorer.ExplorerMain;
  * @author Teacher
  *
  */
-public class NPC {
+public class NPC implements Person {
 	
 	//fields relating to navigation
-	private CaveRoom[][] floor;//where the NPC roams
+	private CaveRoom[][] floor;
 	private int currentRow;
 	private int currentCol;
 	private NPCRoom currentRoom;
@@ -21,18 +21,20 @@ public class NPC {
 	private boolean active;
 	private String activeDescription;
 	private String inactiveDescription;
+	private String name;
 	
 
 	//default constructor
-	public NPC() {
+	public NPC(String name) {
 		this.floor = ExplorerMain.caves;
-		this.activeDescription = "There is a person waiting to talk to you.";
-		this.inactiveDescription = "The person you spoke to earlier is standing here.";
+		this.activeDescription = "A " + name + " is here. Press 'E' to talk to them.";
+		this.inactiveDescription = "The "+name+" you spoke to earlier is standing here.";
 		//to indicate the NPC doesn't have a position yet, use coordinates -1,-1
 		this.currentCol = -1;
 		this.currentRow = -1;
 		this.currentRoom = null;
 		this.active = true;
+		this.name = name;
 	}
 	/**
 	 * Note: you can make custom constructors later that use different parameters
@@ -50,7 +52,7 @@ public class NPC {
 		return active;
 	}
 
-	public void setposition(int row, int col) {
+	public void setPosition(int row, int col) {
 		if(row >=0 && row < floor.length && col >= 0 &&
 				col < floor[row].length && floor[row][col] instanceof NPCRoom) {
 			//remove the npc from current room
@@ -87,7 +89,7 @@ public class NPC {
 			int[] move = calculateMovement();
 			int newRow = move[0];
 			int newCol = move[1];
-			setposition(newRow, newCol);
+			setPosition(newRow, newCol);
 		}
 	}
 	
@@ -105,6 +107,18 @@ public class NPC {
 			moves[1] = possibleMoves[rand][1]+currentCol;
 		}
 		return moves;
+	}
+	
+	public void setName(String name) {
+
+		this.name = name;
+		
+	}
+	
+	public String getName() {
+		
+		return name;
+		
 	}
 
 }

@@ -17,7 +17,7 @@ public class ExplorerMain {
 	
 	public static void main(String[] args) {
 		in = new Scanner(System.in);
-		CaveRoom.setUpCaves();
+		CaveRoom.setUpCaves(5, 5);
 		
 		inventory = new Inventory();
 		startExploring();

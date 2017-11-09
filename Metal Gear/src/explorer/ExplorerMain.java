@@ -1,8 +1,11 @@
-package caveExplorer;
+package explorer;
 
 import java.util.Scanner;
 
-public class CaveExplorer {
+import caves.CaveRoom;
+import entity.NPC;
+
+public class ExplorerMain {
 
 	public static CaveRoom[][] caves;//every room in the cave
 	public static Scanner in;//for user input
@@ -11,9 +14,10 @@ public class CaveExplorer {
 	public static boolean playing = true;
 	public static NPC[] npcs;
 	
+	
 	public static void main(String[] args) {
 		in = new Scanner(System.in);
-		CaveRoom.setUpCaves();
+		CaveRoom.setUpCaves(5, 5);
 		
 		inventory = new Inventory();
 		startExploring();

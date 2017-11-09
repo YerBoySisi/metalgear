@@ -1,8 +1,8 @@
-package metalGear;
+package caves.customcaves;
 
-import caveExplorer.CaveExplorer;
+import explorer.ExplorerMain;
 
-public class SidCasino extends caveExplorer.CaveRoom {
+public class SidCasino extends caves.CaveRoom {
 	int profit;
 
 	public SidCasino(String description) {
@@ -28,8 +28,8 @@ public class SidCasino extends caveExplorer.CaveRoom {
 	public void performAction(int direction) {
 		if (direction==4) {
 			profit = rollDice()*10;
-			System.out.println("Looks like you've just made "+profit+"! Nice going!");
-			CaveExplorer.inventory.addMoney(profit);
+			System.out.println("Looks like you've just made "+profit+"! Nice going! You now have  $"+ExplorerMain.inventory.getMoney()+"!");
+			ExplorerMain.inventory.addMoney(profit);
 		}
 		else {
 			System.err.println("Invalid input.");

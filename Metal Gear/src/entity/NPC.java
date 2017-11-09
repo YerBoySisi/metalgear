@@ -85,12 +85,14 @@ public class NPC implements Person {
 		return activeDescription;
 	}
 	public void act() {
+		
 		if(active) {
 			int[] move = calculateMovement();
 			int newRow = move[0];
 			int newCol = move[1];
 			setPosition(newRow, newCol);
 		}
+		
 	}
 	
 	

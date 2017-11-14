@@ -1,18 +1,37 @@
 package explorer;
 
 public class tempMain {
+	private static boolean playing;
+	
 	private static int[][] lvl;
 	private static Thing[][] olvl;
-	private int px;
-	private int py;
+
+	private entity.Player p;
 	
 	public static void main(String[] args) {
+		playing = true;
+		
 		
 		lvl = setLevel1();
 		convertLevel();
 		displayOLevel();
 	}
 
+	public getInput() {
+		while(playing) {
+			String input = System.in.nextLine();
+			
+			while("wasd".indexOf(input) == -1) {
+				input = CaveExplorer.in.nextLine();
+			}
+			
+			olvl[p.getR()][p.getC()].interact();
+			//intereact with thing at direction ____
+		}
+	}
+	
+	
+	
 	public static int[][] setLevel1() {
 		
 		//blank = 0 

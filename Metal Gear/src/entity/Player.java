@@ -5,8 +5,8 @@ public class Player {
 	private String name;
 	private boolean pickedUpguard;
 	private boolean objectiveReached;
-	private int currentRow;
-	private int currentCol;
+	private int r;
+	private int c;
 	
 	public Player(String name) {
 		setName(name);
@@ -22,8 +22,8 @@ public class Player {
 	}
 
 	public void setPosition(int row, int col) {
-		this.currentCol = col;
-		this.currentRow = row;
+		this.setC(col);
+		this.setR(row);
 		
 	}
 
@@ -46,6 +46,22 @@ public class Player {
 
 	public void setObjectiveReached(boolean objectiveReached) {
 		this.objectiveReached = objectiveReached;
+	}
+
+	public int getR() {
+		return r;
+	}
+
+	public void setR(int r) {
+		this.r = r;
+	}
+
+	public int getC() {
+		return c;
+	}
+
+	public void setC(int c) {
+		this.c = c;
 	}
 
 }

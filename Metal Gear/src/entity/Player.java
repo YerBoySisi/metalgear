@@ -1,6 +1,6 @@
 package entity;
 
-public class Player implements Person {
+public class Player {
 
 	private String name;
 	private boolean pickedUpguard;
@@ -17,19 +17,16 @@ public class Player implements Person {
 		
 	}
 
-	@Override
 	public String getName() {
 		return name;
 	}
 
-	@Override
 	public void setPosition(int row, int col) {
 		this.currentCol = col;
 		this.currentRow = row;
 		
 	}
 
-	@Override
 	public void act() {
 		
 		

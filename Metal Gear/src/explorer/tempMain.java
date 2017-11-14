@@ -1,8 +1,10 @@
 package explorer;
 
 public class tempMain {
-	static int[][] lvl;
-	static Thing[][] olvl;
+	private static int[][] lvl;
+	private static Thing[][] olvl;
+	private int px;
+	private int py;
 	
 	public static void main(String[] args) {
 		

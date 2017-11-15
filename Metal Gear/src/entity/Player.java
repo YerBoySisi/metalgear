@@ -10,6 +10,12 @@ public class Player extends explorer.Thing{
 	
 	public Player(int r, int c, String name) {
 		super(r,c);
+		
+		this.r = r;
+		this.c = c;
+		
+		
+		
 		setName(name);
 	}
 	

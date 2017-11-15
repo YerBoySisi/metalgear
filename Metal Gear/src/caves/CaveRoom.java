@@ -2,6 +2,7 @@ package caves;
 
 import caves.customcaves.SisiSavage;
 import caves.customcaves.SisiSavageRoom;
+import entity.Guard;
 import entity.NPC;
 import explorer.ExplorerMain;
 
@@ -132,7 +133,7 @@ public class CaveRoom {
 	 * override to print a custom string describing what keys do
 	 */
 	public void printAllowedEntry() {
-		System.out.println("You can only enter 'w', 'a', 's' or 'd'.");
+		System.out.println("You can only enter 'W', 'A', 'S' or 'D'.");
 	}
 
 
@@ -205,9 +206,8 @@ public class CaveRoom {
 		
 		ExplorerMain.npcs = new NPC[2];
 
-		ExplorerMain.npcs[0] = new NPC("Traveller");
-		ExplorerMain.npcs[0].setPosition(1, 1);
-
+		ExplorerMain.npcs[0] = new Guard("Lookout", new int[][] {{1, 0}, {1, 0}, {-1, 0}, {-1,0}});
+		
 		ExplorerMain.npcs[1] = new SisiSavage("Jimmy");
 		ExplorerMain.npcs[1].setPosition(4, 3);
 

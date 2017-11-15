@@ -17,7 +17,7 @@ public class tempMain {
 		displayOLevel();
 	}
 
-	public getInput() {
+	public void getInput() {
 		while(playing) {
 			String input = System.in.nextLine();
 			

@@ -206,7 +206,7 @@ public class CaveRoom {
 		
 		ExplorerMain.npcs = new NPC[2];
 
-		ExplorerMain.npcs[0] = new Guard("Lookout", new int[][] {{1, 0}, {1, 0}, {-1, 0}, {-1,0}});
+		ExplorerMain.npcs[0] = new Guard("Lookout", new int[][] {{1, 0}, {1, 0}, {-1, 0}, {-1, 0}}, 0, 1);
 		
 		ExplorerMain.npcs[1] = new SisiSavage("Jimmy");
 		ExplorerMain.npcs[1].setPosition(4, 3);
@@ -224,7 +224,7 @@ public class CaveRoom {
 		
 		
 		
-		// = new metalGear.BensCafe("Temop");
+		// = new metalGear.BensCafe("Temp");
 		
 		CaveRoom cafe = new caves.customcaves.BensCafe("");//metalGear.BensCafe("temp");
 		

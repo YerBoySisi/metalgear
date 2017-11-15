@@ -27,11 +27,6 @@ public class Player {
 		
 	}
 
-	public void act() {
-		
-		
-	}
-
 	public boolean isPickedUpguard() {
 		return pickedUpguard;
 	}

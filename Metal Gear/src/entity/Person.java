@@ -1,8 +1,5 @@
 package entity;
 
-import caves.CaveRoom;
-import caves.NPCRoom;
-
 public interface Person {
 	
 	//Sets the name of the Person

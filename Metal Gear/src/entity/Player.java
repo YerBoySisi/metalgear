@@ -19,6 +19,14 @@ public class Player extends explorer.Thing{
 		setName(name);
 	}
 	
+	public void playerMove(int r, int c) {
+		this.r = r;
+		this.c = c;
+		
+		explorer.tempMain.olvl[r][c] = this;
+	}
+	
+	
 	public void setName(String name) {
 		this.name = name;
 		

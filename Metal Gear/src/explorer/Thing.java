@@ -2,26 +2,29 @@ package explorer;
 
 public class Thing {
 	//public void interact;
-	private int x;
-	private int y;
+	private int c;
+	private int r;
 	
-	public Thing(int x, int y) {
-		this.x = x;
-		this.y = y;
+	public Thing(int r, int c) {
+		this.c = c;
+		this.r = r;
 	}
 	
 	//Thing by default is a blank space
 	public void interact() {
 		//default does nothing;
-		Main.p.setX(x);
-		Main.p.setY(y);
+		
+		//tempMain.p.setC(c);
+		//tempMain.p.setR(r);
+	
+		tempMain.p.playerMove(r, c);
 	}
 	
-	public int getX() {
-		return x;
+	public int getC() {
+		return c;
 	}
-	public int getY() {
-		return y;
+	public int getR() {
+		return r;
 	}
 
 }

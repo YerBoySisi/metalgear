@@ -10,6 +10,8 @@ public class Wall extends Thing{
 
 	public void interact() {
 		//interacting with a wall does nothing: leave blank
+		
+		
 	}
 
 }

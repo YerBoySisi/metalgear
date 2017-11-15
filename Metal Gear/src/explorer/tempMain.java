@@ -6,10 +6,10 @@ public class tempMain {
 	private static boolean playing;
 	
 	private static int[][] lvl;
-	private static Thing[][] olvl;
+	public static Thing[][] olvl;
 	private static Scanner in;
 
-	private static entity.Player p;
+	public static entity.Player p;
 	private static int[] startingPsn = {1,1};
 	
 	public static void main(String[] args) {
@@ -22,9 +22,11 @@ public class tempMain {
 		lvl = setLevel1();
 		convertLevel();
 		displayOLevel();
+		
+		getInput();
 	}
 
-	public void getInput() {
+	public static void getInput() {
 		int psn;
 		int[] convertedDir;
 		
@@ -39,10 +41,19 @@ public class tempMain {
 			
 			convertedDir = convertDir(psn);
 			
+			updateOlvlPlayer();
 			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
-			//intereact with thing at direction ____
+			
+			
+			
+			displayOLevel();
 		}
 	}
+	
+	public static void updateOlvlPlayer() {
+		olvl[p.getR()][p.getC()] = new Thing(p.getR(),p.getC());
+	}
+	
 	
 	public static int[] convertDir(int dir) {
 		int[][] temp = {{-1,0},{0,-1},{1,0},{0,1}};
@@ -55,6 +66,7 @@ public class tempMain {
 		
 		//blank = 0 
 		//wall = 1
+		//player = 2
 
 		int[][] temp= {
 				{1,1,1,1,1,1,1,1,1,1},
@@ -116,7 +128,7 @@ public class tempMain {
 	
 	
 	
-	public static void displayLevel() {
+	/*public static void displayLevel() {
 		int temp = 0;
 		
 		for(int i = 0; i < lvl.length; i++) {
@@ -133,7 +145,7 @@ public class tempMain {
 			System.out.print("\n");
 		}
 		
-	}
+	}*/
 	
 	
 

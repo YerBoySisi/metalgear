@@ -55,14 +55,6 @@ public class ExplorerMain {
 	
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	private static void startExploring() {
 		while(playing) {
 			npcActions();

@@ -22,11 +22,11 @@ public class tempMain {
 			String input = System.in.nextLine();
 			
 			while("wasd".indexOf(input) == -1) {
-				input = CaveExplorer.in.nextLine();
+				input = ExplorerMain.in.nextLine();
 			}
 			
 			olvl[p.getR()][p.getC()].interact();
-			//intereact with thing at direction ____
+			//interact with thing at direction ____
 		}
 	}
 	

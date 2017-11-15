@@ -1,33 +1,49 @@
 package explorer;
 
+import java.util.Scanner;
+
 public class tempMain {
 	private static boolean playing;
 	
 	private static int[][] lvl;
 	private static Thing[][] olvl;
+	private static Scanner in;
 
 	private entity.Player p;
 	
 	public static void main(String[] args) {
 		playing = true;
 		
+		in = new Scanner(System.in);
 		
 		lvl = setLevel1();
 		convertLevel();
 		displayOLevel();
 	}
 
-	public getInput() {
+	public void getInput() {
+		int psn;
+		int[] convertedDir;
+		
 		while(playing) {
-			String input = System.in.nextLine();
+			String input = in.nextLine();
 			
-			while("wasd".indexOf(input) == -1) {
-				input = CaveExplorer.in.nextLine();
+			psn = "wasd".indexOf(input);
+			while(psn == -1) {
+				psn = "wasd".indexOf(input);
+				input = in.nextLine();
 			}
 			
-			olvl[p.getR()][p.getC()].interact();
+			convertedDir = convertDir(psn);
+			
+			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
 			//intereact with thing at direction ____
 		}
+	}
+	
+	public static int[] convertDir(int dir) {
+		int[][] temp = {{-1,0},{0,-1},{1,0},{0,1}};
+		return temp[dir];
 	}
 	
 	

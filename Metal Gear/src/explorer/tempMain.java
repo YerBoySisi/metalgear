@@ -9,12 +9,15 @@ public class tempMain {
 	private static Thing[][] olvl;
 	private static Scanner in;
 
-	private entity.Player p;
+	private static entity.Player p;
+	private static int[] startingPsn = {1,1};
 	
 	public static void main(String[] args) {
 		playing = true;
 		
 		in = new Scanner(System.in);
+		
+		p = new entity.Player(startingPsn[0],startingPsn[1],"tempPlayerss");
 		
 		lvl = setLevel1();
 		convertLevel();
@@ -86,6 +89,8 @@ public class tempMain {
 			}
 		}
 		
+		olvl[p.getR()][p.getC()] = p;
+		
 	}
 	
 	public static void displayOLevel() {
@@ -95,7 +100,9 @@ public class tempMain {
 			for(int j = 0; j< lvl[0].length; j++) {
 				temp = olvl[i][j];
 				
-				if(temp instanceof Wall) {
+				if(temp instanceof entity.Player) {
+					System.out.print("X");
+				}else if(temp instanceof Wall) {
 					System.out.print("■");
 				}else{
 					System.out.print(" ");

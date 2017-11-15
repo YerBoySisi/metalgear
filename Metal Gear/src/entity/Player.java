@@ -1,6 +1,6 @@
 package entity;
 
-public class Player {
+public class Player extends explorer.Thing{
 
 	private String name;
 	private boolean pickedUpguard;
@@ -8,7 +8,8 @@ public class Player {
 	private int r;
 	private int c;
 	
-	public Player(String name) {
+	public Player(int r, int c, String name) {
+		super(r,c);
 		setName(name);
 	}
 	

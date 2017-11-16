@@ -17,6 +17,7 @@ public class Thing {
 		//tempMain.p.setC(c);
 		//tempMain.p.setR(r);
 	
+	
 		tempMain.p.playerMove(r, c);
 	}
 	

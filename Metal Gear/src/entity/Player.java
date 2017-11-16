@@ -23,6 +23,7 @@ public class Player extends explorer.Thing{
 		this.r = r;
 		this.c = c;
 		
+		//explorer.tempMain.updateOlvlPlayer();
 		explorer.tempMain.olvl[r][c] = this;
 	}
 	

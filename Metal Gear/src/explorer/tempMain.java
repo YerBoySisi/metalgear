@@ -23,10 +23,11 @@ public class tempMain {
 		convertLevel();
 		displayOLevel();
 		
-		getInput();
+		playGame();
+		
 	}
 
-	public static void getInput() {
+	public static void playGame() {
 		int psn;
 		int[] convertedDir;
 		
@@ -37,14 +38,13 @@ public class tempMain {
 			while(psn == -1) {
 				psn = "wasd".indexOf(input);
 				input = in.nextLine();
+				
 			}
 			
 			convertedDir = convertDir(psn);
-			
+
 			updateOlvlPlayer();
 			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
-			
-			
 			
 			displayOLevel();
 		}
@@ -93,9 +93,9 @@ public class tempMain {
 				temp = lvl[i][j];
 				
 				if(temp == 0) {
-					olvl[i][j] = new Thing(j,i);
+					olvl[i][j] = new Thing(i,j);
 				}else {
-					olvl[i][j] = new Wall(j,i);
+					olvl[i][j] = new Wall(i,j);
 				}
 				
 			}

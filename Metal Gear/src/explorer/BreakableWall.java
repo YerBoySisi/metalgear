@@ -9,7 +9,7 @@ public class BreakableWall extends Wall {
 	
 
 	public void interact() {
-		ExplorerMain.level[0][1];
+		//ExplorerMain.level[0][1];
 	}
 
 }

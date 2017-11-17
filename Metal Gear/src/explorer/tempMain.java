@@ -60,138 +60,53 @@ public class tempMain {
 		String[][] render = new String[olvl.length][olvl[0].length];
 		Arrays.fill(render, "*");
 		
-		double[] raySlopes = {0,1,2,.5, -1, -2, -.5};
-		
-		boolean hasHit;
-		
-		double r;
-		double c;
-		int count = 0;
-		/*
-		 * have multiple ray casts
+		/* use helper method:
+		 * 	given a green dot, find slope of line between dot and x
+		 * 		check all boxes along the line
 		 * 
-		 * y = 0
-		 * y = x
-		 * y = 2x
-		 * y = x/2
+		 * 		make a helper method that given a line, returns a list of all block on that ling
+		 * 			ex:
+		 * 			
+		 * 			■■■■		■■■■		■■■■	
+		 * 			■X ■		■X ■		■X ■
+		 * 			■  ■  ->    ■**■  ->    ■12■
+		 * 			■ P■		■ *■		■ 3■
+		 *          ■ ■■		■ **        ■ 45
+		 *             P		   *		   6
 		 * 
-		 * */
-		
-		
-		/* WWWW
-		 * Wx W
-		 * W  W
-		 * W WW
-		 * slope = 1
-		 * r = 1
-		 * c = 1
-		 * 
-		 * WWWW
-		 * Wx W
-		 * W *W
-		 * W WW
-		 *has not hit*
-		 *r =2
-		 *c = 2
+		 * 				  (R,C)
+		 *		X coords: (1,1)
+		 *		P coords: (3,2)
+		 *		
+		 *		boxesTouches -> {(1,1), (2,1), (2,2), (3,2)}  -> X: (1,1) P: (3,2)
+		 *			
+		 *			*with that information, you loop through the array until you find a point that is a wall
 		 *
-		 * WWWW
-		 * Wx W
-		 * W  W
-		 * W W*
-		 * coordinates of ray are a WALL ->>> HIT = true;
+		 *  _______________________________________________________________
+		 *			
+		 *			ex2:
+		 * 			
+		 * 			■■■■		■■■■		■■■■	
+		 * 			■X ■		■X*■		■X1■
+		 * 			■  ■P ->    ■ *** ->    ■ 234
+		 * 			■  ■		■  ■		■  ■
+		 *          ■ ■■		■ ■■        ■ ■■
+		 *              		   		   
 		 * 
-		 * _________________________________________________
-		 * WWWW
-		 * Wx W
-		 * W  W
-		 * W WW
-		 * slope = 2
-		 * r = 1
-		 * c = 1
-		 * 
-		 * WWWW
-		 * Wx W
-		 * W  W
-		 * W *W
-		 *HIT*
-		 *r = 3
-		 *c = 2
-		 * 
-		 * 
-		 * c ++
-		 * R += slope;
-		 * 
-		 * _________________________________________________
-		 * WWWW
-		 * Wx W
-		 * W  W
-		 * W WW
-		 * slope = .5
-		 * r = 1
-		 * c = 1
-		 * 
-		 * WWWW
-		 * Wx W
-		 * W *W
-		 * W WW
-		 *r = 1.5 <- round to 2
-		 *c = 2
-		 * 
-		 * WWWW
-		 * Wx W
-		 * W  *
-		 * W WW
-		 *r = 2
-		 *c = 3
-		 *HIT***
+		 * 				  (R,C)
+		 *		X coords: (1,1)
+		 *		P coords: (2,4)
+		 *		
+		 *		boxesTouches -> {(1,1), (1,2), (2,2), (2,3),(2,4)}  -> X: (1,1) P: (2,4)
+		 *			
+		 *			*with that information, you loop through the array until you find a point that is a wall
 		 *
-		 * c ++
-		 * R += slope;
-		 * 
+		 *			line:  
+		 *				y =  
+		 *				
+		 *				
+		 * 		
 		 * */
-		
-		
-		for(double raySlope: raySlopes) {
-			
-			
-			
-			
-			hasHit = false;
-			
-			//ray coordinates start at player position
-			r = p.getR();
-			c = p.getC();
-			
-			//increasing x
-			while(!hasHit) {
-				c++;
-				r+= raySlope;
-				
-				//round r and check hit;
-				
-				if(olvl[(int) Math.round(r)][(int) c] instanceof Wall) {
-					//render wall
-					render[(int) Math.round(r)][(int) c] = "■";
-					
-					//stop rayCast
-					hasHit = true;
-				}else {
-					//render space
-					render[(int) Math.round(r)][(int) c] = " ";
-				
-				
-				}
-			}
-			
-			//decreasing x
-		}
-		
-		
-		//start at player r,c
-		//increase ray distance by 1
-		// if it hits a wall stop rendering at that block
-		
-		return render;
 		
 	}
 	

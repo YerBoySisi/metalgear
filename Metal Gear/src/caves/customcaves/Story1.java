@@ -17,6 +17,8 @@ public class Story1 extends StoryRoom {
 						   		  {"Go on ahead","That business simply doesnt't concern you, if I were you I'd get a move on."}
 								  };
 	private String validkeys = "wdsae";
+	private String input = null;
+	private String temp = "";
 	private boolean inDialogue = false;
 	private int position = 0;
 	
@@ -43,6 +45,15 @@ public class Story1 extends StoryRoom {
 	}
 
 	private void talk() {
-		
+		temp = "";
+		if (input == null) {
+			for (int i = 0; i < dialogue[position].length; i++) {
+				//ask how to change validKeys
+			}
+			setDescription(dialogue[position][0]);
+		} else {
+			input = ExplorerMain.in.nextLine();
+			
+		}
 	}
 }

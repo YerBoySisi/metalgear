@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class tempMain {
-	private static boolean playing;
+	public static boolean playing;
 	
 	private static int[][] lvl;
 	public static Thing[][] olvl;
 	private static Scanner in;
-	private static int currentlvl;
+	public static int currentlvl;
 
 	public static entity.Player p;
 	public static Camera c;
@@ -52,10 +52,6 @@ public class tempMain {
 		while(playing) {
 			
 			//DISPLAY:
-			
-			
-			
-			
 			render = new String[olvl.length][olvl[0].length];
 			for (String[] row: render)
 			    Arrays.fill(row, ".");
@@ -686,18 +682,20 @@ public class tempMain {
 		
 		//blank = 0 
 		//wall = 1
-		//player = 2
+		//breakable wall = 2
+		//IntelFile = 3;
+		//extraction point = 4
 
 		int[][] temp= {
 				{1,1,1,1,1,1,1,1,1,1},
 				{1,2,0,0,0,0,0,0,0,1},
-				{1,0,0,0,0,0,0,0,0,1},
+				{1,0,0,0,0,0,3,0,0,1},
 				{1,0,0,0,0,0,1,0,0,1},
 				{1,0,0,2,0,0,1,0,0,1},
 				{1,0,0,0,0,0,1,0,0,1},
 				{1,0,0,0,0,0,1,0,0,1},
 				{1,0,0,1,1,1,1,0,0,1},
-				{1,0,0,0,0,0,0,0,0,1},
+				{4,0,0,0,0,0,0,0,0,1},
 				{1,1,1,1,1,1,1,1,1,1}
 		};
 		
@@ -751,6 +749,10 @@ public class tempMain {
 					olvl[i][j] = new Thing(i,j);
 				}else if(temp == 2){
 					olvl[i][j] = new BreakableWall(i,j);
+				}else if(temp ==3){
+					olvl[i][j] = new IntelFile(i,j);
+				}else if(temp == 4){
+					olvl[i][j] = new ExtractionPoint(i,j);
 				}else {
 					olvl[i][j] = new Wall(i,j);
 				}

@@ -1,4 +1,9 @@
-package caveExplorer;
+package caves;
+
+import caves.customcaves.SisiSavage;
+import caves.customcaves.SisiSavageRoom;
+import entity.NPC;
+import explorer.ExplorerMain;
 
 public class CaveRoom {
 
@@ -69,7 +74,7 @@ public class CaveRoom {
 
 
 	public void enter() {
-		contents = "X";
+		contents = "P";
 	}
 
 	public void leave() {
@@ -102,12 +107,12 @@ public class CaveRoom {
 	}
 
 	public void interpretInput(String input) {
-		System.err.println("interpretting input "+input);
+		System.out.println("interpretting input "+input);
 		while(!isValid(input)) {
 			printAllowedEntry();
-			input = CaveExplorer.in.nextLine();
+			input = ExplorerMain.in.nextLine();
 		}
-		System.err.println("marked as valid: "+input);
+		System.out.println("marked as valid: "+input);
 		//task: convert user input into a direction
 		//DO NOT USE AN IF STATEMENT
 		//(or, if you must, don't use more than 1)
@@ -120,7 +125,7 @@ public class CaveRoom {
 	 * @return
 	 */
 	public String validKeys() {
-		return "wdsa";
+		return "wdsae";
 	}
 
 	/**
@@ -143,10 +148,10 @@ public class CaveRoom {
 		if(direction < 4) {
 			if(borderingRooms[direction] != null && 
 					doors[direction] != null) {
-				CaveExplorer.currentRoom.leave();
-				CaveExplorer.currentRoom = borderingRooms[direction];
-				CaveExplorer.currentRoom.enter();
-				CaveExplorer.inventory.updateMap();
+				ExplorerMain.currentRoom.leave();
+				ExplorerMain.currentRoom = borderingRooms[direction];
+				ExplorerMain.currentRoom.enter();
+				ExplorerMain.inventory.updateMap();
 			}
 		}else {
 			performAction(direction);
@@ -158,7 +163,13 @@ public class CaveRoom {
 	 * @param direction
 	 */
 	public void performAction(int direction) {
-		System.out.println("That key does nothing.");
+		
+		//5 represents "C" <- addded to valid keys
+		if(direction == 5)
+			ExplorerMain.inventory.subCoffee();
+		else
+			System.out.println("That key does nothing.");
+
 	}
 
 
@@ -166,31 +177,84 @@ public class CaveRoom {
 	 * This will be where your group sets up all the caves 
 	 * and all the connections
 	 */
-	public static void setUpCaves() {
+	public static void setUpCaves(int x, int y) {
 		//ALL OF THIS CODE CAN BE CHANGED
 		//1. Decide how big your caves should be
-		CaveExplorer.caves = new NPCRoom[5][5];
+		ExplorerMain.caves = new CaveRoom[x][y];
 		//2. Populate with caves and a defualt description: hint: when starting, use coordinates (helps debugging)
-		for(int row = 0; row < CaveExplorer.caves.length; row++) {
+		for(int row = 0; row < ExplorerMain.caves.length; row++) {
 			//PLEASE PAY ATTENTION TO THE DIFFERENCE:
-			for(int col = 0; col < CaveExplorer.caves[row].length; col++) {
+			for(int col = 0; col < ExplorerMain.caves[row].length; col++) {
 				//create a "default" cave
-				CaveExplorer.caves[row][col] = 
+				ExplorerMain.caves[row][col] = 
 						new NPCRoom("This cave has coords ("+row+","+col+")");
 			}
 		}
 		//3. Replace default rooms with custom rooms
+
 		//--- WE WILL DO LATER
-		CaveExplorer.npcs = new NPC[1];
-		CaveExplorer.npcs[0] = new NPC();
-		CaveExplorer.npcs[0].setposition(1, 1);
+		
+		
+		
+		ExplorerMain.npcs = new NPC[1];
+
+		ExplorerMain.caves[4][3] = new SisiSavageRoom("What up, it's yer boy Sisi. Talk to the guy for a challenge. Oh yeah, and we're in (4, 3).");
+		ExplorerMain.caves[0][4].setDescription("Teleportation. Pretty cool huh??? You're in (0, 4). By the way, you might be stuck...");
+		ExplorerMain.caves[1][4].setDescription("You're in (1, 4). By the way, you might be stuck...");
+		ExplorerMain.caves[2][4].setDescription("You're in (2, 4). By the way, you might be stuck...");
+		
+		ExplorerMain.npcs = new NPC[2];
+
+		ExplorerMain.npcs[0] = new NPC("Traveller");
+		ExplorerMain.npcs[0].setPosition(1, 1);
+
+		ExplorerMain.npcs[1] = new SisiSavage("Jimmy");
+		ExplorerMain.npcs[1].setPosition(4, 3);
+
 
 		//4. Set your starting room:
-		CaveExplorer.currentRoom = CaveExplorer.caves[0][1];
-		CaveExplorer.currentRoom.enter();
-		//5. Set up dooors
-		CaveRoom[][] c = CaveExplorer.caves;
+		ExplorerMain.currentRoom = ExplorerMain.caves[0][1];
+		ExplorerMain.currentRoom.enter();
+		//5. Set up doors
+		CaveRoom[][] c = ExplorerMain.caves;
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
+
+		
+		c[1][1].setConnection(EAST, c[1][2], new Door());
+		
+		
+		
+		// = new metalGear.BensCafe("Temop");
+		
+		CaveRoom cafe = new caves.customcaves.BensCafe("");//metalGear.BensCafe("temp");
+		
+		//System.out.print(cafe instanceof CaveRoom);
+		
+		c[0][2] = cafe;
+		
+		
+		
+		
+		c[0][1].setConnection(EAST, c[0][2], new Door());
+		
+
+		c[1][1].setConnection(SOUTH, c[2][1], new Door());
+		c[2][1].setConnection(EAST, c[2][2], new Door());
+		c[2][2].setConnection(SOUTH, c[3][2], new Door());
+		c[3][2].setConnection(SOUTH, c[4][2], new Door());
+		c[4][2].setConnection(EAST, c[4][3], new Door());
+		
+		c[0][4].setConnection(SOUTH, c[1][4], new Door());
+		c[1][4].setConnection(SOUTH, c[2][4], new Door());
+
+		CaveRoom sidCasino = new caves.customcaves.SidCasino("Asdasd"); 
+		
+		c[0][0] = sidCasino;
+		
+		c[0][0].setConnection(EAST, c[0][1], new Door());
+		
+		
+		
 		/**
 		 * Special requests:
 		 * moving objects in caves

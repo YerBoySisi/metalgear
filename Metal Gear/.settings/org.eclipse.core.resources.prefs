@@ -1,2 +1,6 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=refs/remotes/origin/developer
 eclipse.preferences.version=1
-encoding//src/metalGear/Mainn.java=UTF-8
+encoding//src/explorer/Inventory.java=UTF-8
+encoding//src/explorer/tempMain.java=UTF-8

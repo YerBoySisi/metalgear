@@ -1,4 +1,7 @@
-package caveExplorer;
+package caves;
+
+import entity.NPC;
+import explorer.ExplorerMain;
 
 public class NPCRoom extends CaveRoom {
 
@@ -6,7 +9,7 @@ public class NPCRoom extends CaveRoom {
 	
 	public NPCRoom(String description) {
 		super(description);
-		presentNPC = null;
+		setPresentNPC(null);
 	}
 	
 	/**
@@ -14,15 +17,15 @@ public class NPCRoom extends CaveRoom {
 	 * @return
 	 */
 	public boolean canEnter() {
-		return presentNPC == null;
+		return getPresentNPC() == null;
 	}
 	
 	public void enterNPC(NPC m) {
-		presentNPC = m;
+		setPresentNPC(m);
 	}
 	
 	public void leaveNPC() {
-		presentNPC = null;
+		setPresentNPC(null);
 	}
 	
 	/**
@@ -32,7 +35,7 @@ public class NPCRoom extends CaveRoom {
 	 * @return
 	 */
 	public boolean containsNPC() {
-		return presentNPC != null;
+		return getPresentNPC() != null;
 	}
 	
 	//The above methods are NEW features to a CaveRoom,
@@ -43,25 +46,25 @@ public class NPCRoom extends CaveRoom {
 	}
 	
 	public void printAllowedEntry() {
-		CaveExplorer.print("You can only enter 'w', 'a', 's' or 'd' to move or"
+		ExplorerMain.print("You can only enter 'w', 'a', 's' or 'd' to move or"
 				+ " you can type 'e' to interact.");
 	}
 	
 	
 	public void performAction(int direction) {
 		if(direction == 4) {
-			if(containsNPC() && presentNPC.isActive()) {
-				presentNPC.interact();
+			if(containsNPC() && getPresentNPC().isActive()) {
+				getPresentNPC().interact();
 			}else {
-				CaveExplorer.print("There is nothing to interact with.");
+				ExplorerMain.print("There is nothing to interact with.");
 			}
 		}else {
-			CaveExplorer.print("That key does nothing.");
+			ExplorerMain.print("That key does nothing.");
 		}
 	}
 	
 	public String getContents() {
-		if(containsNPC() && presentNPC.isActive()) {
+		if(containsNPC() && getPresentNPC().isActive()) {
 			return "M";
 		}else {
 			//return what would be returned otherwise
@@ -70,15 +73,23 @@ public class NPCRoom extends CaveRoom {
 	}
 	
 	public String getDescription() {
-		if(containsNPC() && !presentNPC.isActive()) {
-			return super.getDescription() +"\n"+presentNPC.getInactiveDescription();
+		if(containsNPC() && !getPresentNPC().isActive()) {
+			return super.getDescription() +"\n"+getPresentNPC().getInactiveDescription();
 		}else {
 			String npcDesc = "";
-			if(presentNPC != null) {
-				npcDesc = presentNPC.getActiveDescription();
+			if(getPresentNPC() != null) {
+				npcDesc = getPresentNPC().getActiveDescription();
 			}
 			return super.getDescription() + "\n"+npcDesc;
 		}
+	}
+
+	public NPC getPresentNPC() {
+		return presentNPC;
+	}
+
+	public void setPresentNPC(NPC presentNPC) {
+		this.presentNPC = presentNPC;
 	}
 	
 	

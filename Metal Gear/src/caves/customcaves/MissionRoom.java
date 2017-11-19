@@ -1,17 +1,18 @@
 package caves.customcaves;
 
 import explorer.ExplorerMain;
+import explorer.tempMain;
 
 public class MissionRoom extends caves.CaveRoom{
 
 	public MissionRoom(String description) {
 		super(description);
-		String message = "There's a mission to be done here, press 'e' to start.";
+		String message = "There's a mission to be done here. Press 'b' for mission briefing. Press 'e' to start mission.";
 		setDescription(message);
 	}
 	
 	public String validKeys() {
-		return "wdsae";
+		return "wdsaeb";
 	}
 
 	public void printAllowedEntry() {
@@ -21,6 +22,8 @@ public class MissionRoom extends caves.CaveRoom{
 	public void performAction (int direction) {
 		if (direction==4) {
 			beginMission();
+		}else if(direction==5) {
+			tempMain.brief();
 		}
 		else {
 			System.err.println("Invalid input.");

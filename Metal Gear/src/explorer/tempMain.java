@@ -9,11 +9,14 @@ public class tempMain {
 	private static int[][] lvl;
 	public static Thing[][] olvl;
 	private static Scanner in;
+	private static int currentlvl;
 
 	public static entity.Player p;
 	private static int[] startingPsn = {5,3};
 	
 	public static void main(String[] args) {
+		currentlvl=0;
+		
 		playing = true;
 		
 		in = new Scanner(System.in);
@@ -26,9 +29,8 @@ public class tempMain {
 		
 		displayOLevel();
 		
-		print("\n\nray Cast: ");
-		rayCast();
-		
+		print("\n\n\n");
+		//brief();
 		playGame();
 		
 	}
@@ -38,6 +40,8 @@ public class tempMain {
 		int[] convertedDir;
 		
 		while(playing) {
+			rayCast();
+			
 			String input = in.nextLine();
 			
 			psn = "wasd".indexOf(input);
@@ -53,10 +57,7 @@ public class tempMain {
 
 			updateOlvlPlayer();
 			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
-			
-			//displayOLevel();
-			rayCast();
-			
+
 		}
 	}
 	public static void print(String s) {System.out.println(s);}
@@ -115,6 +116,7 @@ public class tempMain {
 			    if(olvl[u][(int) checkC] instanceof Wall) {
 			    		
 			    		render[u][(int) checkC] = "■";
+			    		olvl[u][(int) checkC].makeDiscovered();
 			    		break;
 			    }else {
 			    		render[u][(int) checkC] = " ";
@@ -124,6 +126,7 @@ public class tempMain {
 				
 				if(olvl[u][(int) checkC] instanceof Wall) {
 			    		render[u][(int) checkC] = "■";
+			    		olvl[u][(int) checkC].makeDiscovered();
 			    		break;
 			    }else {
 			    		render[u][(int) checkC] = " ";
@@ -131,6 +134,7 @@ public class tempMain {
 				
 				if(olvl[u][(int) checkC+1] instanceof Wall) {
 		    			render[u][(int) checkC+1] = "■";
+		    			olvl[u][(int) checkC].makeDiscovered();
 		    			break;
 				}else {
 					render[u][(int) checkC+1] = " ";
@@ -156,6 +160,7 @@ public class tempMain {
 				if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
 				    if(olvl[(int) checkR][u] instanceof Wall) {
 				    		render[(int) checkR][u] = "■";
+				    		olvl[(int) checkR][u].makeDiscovered();
 				    		break;
 				    }else {
 				    		render[(int) checkR][u] = " ";
@@ -164,7 +169,8 @@ public class tempMain {
 				}else {
 					
 					if(olvl[(int) checkR][u] instanceof Wall) {
-				    		render[(int) checkR][u] = "■";		    		
+				    		render[(int) checkR][u] = "■";	
+				    		olvl[(int) checkR][u].makeDiscovered();
 				    		break;
 				    }else {
 				    		render[(int) checkR][u] = " ";
@@ -172,6 +178,7 @@ public class tempMain {
 					
 					if(olvl[(int) checkR+1][u] instanceof Wall) {
 			    			render[(int) checkR+1][u] = "■";
+			    			olvl[(int) checkR][u].makeDiscovered();
 			    			break;
 					}else {
 						render[(int) checkR+1][u] = " ";
@@ -189,6 +196,7 @@ public class tempMain {
 				if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
 				    if(olvl[(int) checkR][u] instanceof Wall) {
 				    		render[(int) checkR][u] = "■";
+				    		olvl[(int) checkR][u].makeDiscovered();
 				    		break;
 				    }else {
 				    		render[(int) checkR][u] = " ";
@@ -197,7 +205,8 @@ public class tempMain {
 				}else {
 					
 					if(olvl[(int) checkR][u] instanceof Wall) {
-				    		render[(int) checkR][u] = "■";		    		
+				    		render[(int) checkR][u] = "■";
+				    		olvl[(int) checkR][u].makeDiscovered();
 				    		break;
 				    }else {
 				    		render[(int) checkR][u] = " ";
@@ -205,6 +214,7 @@ public class tempMain {
 					
 					if(olvl[(int) checkR+1][u] instanceof Wall) {
 			    			render[(int) checkR+1][u] = "■";
+			    			olvl[(int) checkR][u].makeDiscovered();
 			    			break;
 					}else {
 						render[(int) checkR+1][u] = " ";
@@ -224,6 +234,7 @@ public class tempMain {
 			if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
 			    if(olvl[u][(int) checkC] instanceof Wall) {
 			    		render[u][(int) checkC] = "■";
+			    		olvl[u][(int) checkC].makeDiscovered();
 			    		break;
 			    }else {
 			    		render[u][(int) checkC] = " ";
@@ -233,6 +244,7 @@ public class tempMain {
 				
 				if(olvl[u][(int) checkC] instanceof Wall) {
 			    		render[u][(int) checkC] = "■";
+			    		olvl[u][(int) checkC].makeDiscovered();
 			    		break;
 			    }else {
 			    		render[u][(int) checkC] = " ";
@@ -240,6 +252,7 @@ public class tempMain {
 				
 				if(olvl[u][(int) checkC+1] instanceof Wall) {
 		    			render[u][(int) checkC+1] = "■";
+		    			olvl[u][(int) checkC].makeDiscovered();
 		    			break;
 				}else {
 					render[u][(int) checkC+1] = " ";
@@ -261,6 +274,7 @@ public class tempMain {
 			if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
 			    if(olvl[(int) checkR][u] instanceof Wall) {
 			    		render[(int) checkR][u] = "■";
+			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
 			    }else {
 			    		render[(int) checkR][u] = " ";
@@ -269,7 +283,8 @@ public class tempMain {
 			}else {
 				
 				if(olvl[(int) checkR][u] instanceof Wall) {
-			    		render[(int) checkR][u] = "■";		    		
+			    		render[(int) checkR][u] = "■";
+			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
 			    }else {
 			    		render[(int) checkR][u] = " ";
@@ -277,6 +292,7 @@ public class tempMain {
 				
 				if(olvl[(int) checkR+1][u] instanceof Wall) {
 		    			render[(int) checkR+1][u] = "■";
+		    			olvl[(int) checkR][u].makeDiscovered();
 		    			break;
 				}else {
 					render[(int) checkR+1][u] = " ";
@@ -301,6 +317,7 @@ public class tempMain {
 				if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
 				    if(olvl[u][(int) checkC] instanceof Wall) {
 				    		render[u][(int) checkC] = "■";
+				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
 				    }else {
 				    		render[u][(int) checkC] = " ";
@@ -310,6 +327,7 @@ public class tempMain {
 					
 					if(olvl[u][(int) checkC] instanceof Wall) {
 				    		render[u][(int) checkC] = "■";
+				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
 				    }else {
 				    		render[u][(int) checkC] = " ";
@@ -317,6 +335,7 @@ public class tempMain {
 					
 					if(olvl[u][(int) checkC+1] instanceof Wall) {
 			    			render[u][(int) checkC+1] = "■";
+			    			olvl[u][(int) checkC].makeDiscovered();
 			    			break;
 					}else {
 						render[u][(int) checkC+1] = " ";
@@ -334,6 +353,7 @@ public class tempMain {
 				if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
 				    if(olvl[u][(int) checkC] instanceof Wall) {
 				    		render[u][(int) checkC] = "■";
+				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
 				    }else {
 				    		render[u][(int) checkC] = " ";
@@ -343,6 +363,7 @@ public class tempMain {
 					
 					if(olvl[u][(int) checkC] instanceof Wall) {
 				    		render[u][(int) checkC] = "■";
+				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
 				    }else {
 				    		render[u][(int) checkC] = " ";
@@ -374,6 +395,7 @@ public class tempMain {
 			if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
 			    if(olvl[(int) checkR][u] instanceof Wall) {
 			    		render[(int) checkR][u] = "■";
+			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
 			    }else {
 			    		render[(int) checkR][u] = " ";
@@ -382,7 +404,8 @@ public class tempMain {
 			}else {
 				
 				if(olvl[(int) checkR][u] instanceof Wall) {
-			    		render[(int) checkR][u] = "■";		    		
+			    		render[(int) checkR][u] = "■";
+			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
 			    }else {
 			    		render[(int) checkR][u] = " ";
@@ -390,6 +413,7 @@ public class tempMain {
 				
 				if(olvl[(int) checkR+1][u] instanceof Wall) {
 		    			render[(int) checkR+1][u] = "■";
+		    			olvl[(int) checkR][u].makeDiscovered();
 		    			break;
 				}else {
 					render[(int) checkR+1][u] = " ";
@@ -412,6 +436,7 @@ public class tempMain {
 				if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
 				    if(olvl[u][(int) checkC] instanceof Wall) {
 				    		render[u][(int) checkC] = "■";
+				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
 				    }else {
 				    		render[u][(int) checkC] = " ";
@@ -421,6 +446,7 @@ public class tempMain {
 					
 					if(olvl[u][(int) checkC] instanceof Wall) {
 				    		render[u][(int) checkC] = "■";
+				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
 				    }else {
 				    		render[u][(int) checkC] = " ";
@@ -428,6 +454,7 @@ public class tempMain {
 					
 					if(olvl[u][(int) checkC+1] instanceof Wall) {
 			    			render[u][(int) checkC+1] = "■";
+			    			olvl[u][(int) checkC+1].makeDiscovered();
 			    			break;
 					}else {
 						render[u][(int) checkC+1] = " ";
@@ -437,7 +464,7 @@ public class tempMain {
 		
 		//for decreasing row
 		}else {
-			for(int u = p.getC(); u >=0; u-- ) {
+			for(int u = p.getR(); u >=0; u-- ) {
 				checkC = p.getC()-((p.getR()-u)/slope);
 				//print("slop: "+ slope);
 				//print("c/: "+checkC);
@@ -445,6 +472,7 @@ public class tempMain {
 				if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
 				    if(olvl[u][(int) checkC] instanceof Wall) {
 				    		render[u][(int) checkC] = "■";
+				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
 				    }else {
 				    		render[u][(int) checkC] = " ";
@@ -454,6 +482,7 @@ public class tempMain {
 					
 					if(olvl[u][(int) checkC] instanceof Wall) {
 				    		render[u][(int) checkC] = "■";
+				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
 				    }else {
 				    		render[u][(int) checkC] = " ";
@@ -461,6 +490,7 @@ public class tempMain {
 					
 					if(olvl[u][(int) checkC+1] instanceof Wall) {
 			    			render[u][(int) checkC+1] = "■";
+			    			olvl[u][(int) checkC+1].makeDiscovered();
 			    			break;
 					}else {
 						render[u][(int) checkC+1] = " ";
@@ -484,6 +514,7 @@ public class tempMain {
 			if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
 			    if(olvl[(int) checkR][u] instanceof Wall) {
 			    		render[(int) checkR][u] = "■";
+			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
 			    }else {
 			    		render[(int) checkR][u] = " ";
@@ -492,7 +523,8 @@ public class tempMain {
 			}else {
 				
 				if(olvl[(int) checkR][u] instanceof Wall) {
-			    		render[(int) checkR][u] = "■";		    		
+			    		render[(int) checkR][u] = "■";
+			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
 			    }else {
 			    		render[(int) checkR][u] = " ";
@@ -500,6 +532,7 @@ public class tempMain {
 				
 				if(olvl[(int) checkR+1][u] instanceof Wall) {
 		    			render[(int) checkR+1][u] = "■";
+		    			olvl[(int) checkR+1][u].makeDiscovered();
 		    			break;
 				}else {
 					render[(int) checkR+1][u] = " ";
@@ -513,7 +546,7 @@ public class tempMain {
 		
 		String[][] render = new String[olvl.length][olvl[0].length];
 		for (String[] row: render)
-		    Arrays.fill(row, "*");
+		    Arrays.fill(row, ".");
 		
 		//STEP 1: for now, check all lines from x to border
 		int[][] borderCoords = getBorderCoords();
@@ -576,53 +609,6 @@ public class tempMain {
 		displayRender(render);
 		
 		
-		/* use helper method:
-		 * 	given a green dot, find slope of line between dot and x
-		 * 		check all boxes along the line
-		 * 
-		 * 		make a helper method that given a line, returns a list of all block on that ling
-		 * 			ex:
-		 * 			
-		 * 			■■■■		■■■■		■■■■	
-		 * 			■X ■		■X ■		■X ■
-		 * 			■  ■  ->    ■**■  ->    ■12■
-		 * 			■ P■		■ *■		■ 3■
-		 *          ■ ■■		■ **        ■ 45
-		 *             P		   *		   6
-		 * 
-		 * 				  (R,C)
-		 *		X coords: (1,1)
-		 *		P coords: (3,2)
-		 *		
-		 *		boxesTouches -> {(1,1), (2,1), (2,2), (3,2)}  -> X: (1,1) P: (3,2)
-		 *			
-		 *			*with that information, you loop through the array until you find a point that is a wall
-		 *
-		 *  _______________________________________________________________
-		 *			
-		 *			ex2:
-		 * 			
-		 * 			■■■■		■■■■		■■■■	
-		 * 			■X ■		■X*■		■X1■
-		 * 			■  ■P ->    ■ *** ->    ■ 234
-		 * 			■  ■		■  ■		■  ■
-		 *          ■ ■■		■ ■■        ■ ■■
-		 *              		   		   
-		 * 
-		 * 				  (R,C)
-		 *		X coords: (1,1)
-		 *		P coords: (2,4)
-		 *		
-		 *		boxesTouches -> {(1,1), (1,2), (2,2), (2,3),(2,4)}  -> X: (1,1) P: (2,4)
-		 *			
-		 *			*with that information, you loop through the array until you find a point that is a wall
-		 *
-		 *			line:  
-		 *				y =  
-		 *				
-		 *				
-		 * 		
-		 * */
 		
 	}
 	
@@ -657,6 +643,41 @@ public class tempMain {
 				{1,0,0,1,1,1,1,0,0,1},
 				{1,0,0,0,0,0,0,0,0,1},
 				{1,1,1,1,1,1,1,1,1,1}
+		};
+		
+		return temp;
+	}
+	
+	public static int[][] setLevel2() {
+		
+		//blank = 0 
+		//wall = 1
+		//player = 2
+
+		int[][] temp= {
+				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1},
+				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,1,1,0,0,1},
+				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1},
+				{1,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1,0,0,1},
+				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+				{1,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1,0,0,0,0,0,0,1},
+				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1},
+				{1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1},
+				{1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1},
+				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1},
+				{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+				{1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1},
+				{1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1},
+				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1},
+				{1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1},
+				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1},
+				{1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1,0,0,1,1,0,0,1},
+				{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 		};
 		
 		return temp;
@@ -711,20 +732,59 @@ public class tempMain {
 		
 		for(int i = 0; i < render.length; i++) {
 			for(int j = 0; j< render[0].length; j++) {
-				//temp = render[i][j];
-				System.out.print(render[i][j]);
-				/*if(temp == 0) {
-					System.out.print(" ");
-				}else {
+				
+				if(olvl[i][j].getDiscovered()) {
 					System.out.print("■");
-				}*/
+				}else {
+					System.out.print(render[i][j]);
+				}
+				
+				//System.out.print(render[i][j]);
+				
 				
 			}
 			System.out.print("\n");
 		}
 		
 	}
+
+	public static void brief() {
+		
+		if(currentlvl==0) {
+			dialouge("Hey Boss,/ Welocome to the base!/ We just finished the construction of the r&d and intel platforms.//"
+					+ " Our intel team intercepted a tranmission from the soviets,= discussing their plans to build a fusion-based "
+					+ "metal gear in Afganistan./ We need you to investigate.....");
+		}else if(currentlvl == 1) {
+			
+		}else if(currentlvl == 2) {
+			
+		}
+		
+		
+	}
 	
+	public static void dialouge(String s) {
+		String temp = "";
+		for(int i =0; i< s.length(); i++) {
+			temp = s.substring(i, i+1);
+			if(temp.equals("/")) {
+				pause(1000);
+				print("\n");
+			}else if(temp.equals("=")){
+				print("");
+			}else {
+				pause(30);
+				System.out.print(temp);
+			}
+		}
+		print("");
+		pause(2000);
+	}
 	
+	public static void pause(int i) {
+		try {
+			Thread.sleep(i);
+		} catch (InterruptedException e) {e.printStackTrace();}
+	}
 
 }

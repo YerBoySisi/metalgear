@@ -3,8 +3,8 @@ package explorer;
 public class Wall extends Thing{
 	//boolean hasBeenDiscovered;
 	
-	public Wall(int x, int y) {
-		super(x, y);
+	public Wall(int r, int c) {
+		super(r, c);
 		//hasBeenDiscovered = false;
 		// TODO Auto-generated constructor stub
 	}
@@ -18,6 +18,10 @@ public class Wall extends Thing{
 	
 	public void makeDiscovered() {
 		hasBeenDiscovered = true;
+	}
+	
+	public String toString() {
+		return "■";
 	}
 	
 }

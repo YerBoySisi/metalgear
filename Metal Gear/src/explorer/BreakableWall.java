@@ -2,14 +2,21 @@ package explorer;
 
 public class BreakableWall extends Wall {
 
-	public BreakableWall(int x, int y) {
-		super(x, y);
+	public BreakableWall(int r, int c) {
+		super(r, c);
 	}
 	
 	
 
 	public void interact() {
-		//ExplorerMain.level[0][1];
+		tempMain.breakWall(this.r,this.c);
+	}
+	public void makeDiscovered() {
+		hasBeenDiscovered = true;
+	}
+	
+	public String toString() {
+		return "◘";
 	}
 
 }

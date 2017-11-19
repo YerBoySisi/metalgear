@@ -2,8 +2,8 @@ package explorer;
 
 public class Thing {
 	//public void interact;
-	private int c;
-	private int r;
+	protected int c;
+	protected int r;
 	protected boolean hasBeenDiscovered;
 	
 	public Thing(int r, int c) {
@@ -36,6 +36,10 @@ public class Thing {
 
 	public boolean getDiscovered() {
 		return hasBeenDiscovered;
+	}
+	
+	public String toString() {
+		return " ";
 	}
 }
 	

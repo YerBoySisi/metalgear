@@ -7,16 +7,23 @@ public class Player extends explorer.Thing{
 	private boolean objectiveReached;
 	private int r;
 	private int c;
+
 	
 	public Player(int r, int c, String name) {
+		
 		super(r,c);
 		
 		this.r = r;
 		this.c = c;
-		
+
 		
 		
 		setName(name);
+	}
+	
+	public void rayMove(int r, int c) {
+		this.r = r;
+		this.c = c;
 	}
 	
 	public void playerMove(int r, int c) {
@@ -79,5 +86,7 @@ public class Player extends explorer.Thing{
 	public void setC(int c) {
 		this.c = c;
 	}
+
+	
 
 }

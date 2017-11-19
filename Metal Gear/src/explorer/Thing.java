@@ -34,7 +34,7 @@ public class Thing {
 		
 	}
 
-	public boolean getDiscovered() {
+	public boolean isDiscovered() {
 		return hasBeenDiscovered;
 	}
 	

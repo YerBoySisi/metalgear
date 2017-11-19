@@ -12,7 +12,8 @@ public class tempMain {
 	private static int currentlvl;
 
 	public static entity.Player p;
-	private static int[] startingPsn = {5,3};
+	public static Camera c;
+	private static int[] startingPsn = {3,3};
 	
 	public static void main(String[] args) {
 		//print(new Wall(1,1));
@@ -23,9 +24,11 @@ public class tempMain {
 		in = new Scanner(System.in);
 		
 		p = new entity.Player(startingPsn[0],startingPsn[1],"tempPlayerss");
+		c = new Camera(-1,-1);
 		
 		lvl = setLevel1();
 		convertLevel();
+		
 		
 		print("olvl: ");
 		
@@ -39,29 +42,87 @@ public class tempMain {
 
 	public static void playGame() {
 		int psn;
+		int dirFacing;
 		int[] convertedDir;
+		String[][] render;
+		
+		int tempPlayerR;
+		int tempPlayerC;
 		
 		while(playing) {
-			rayCast();
 			
-			String input = in.nextLine();
+			//DISPLAY:
 			
-			psn = "wasd".indexOf(input);
-			while(psn == -1) {
-				psn = "wasd".indexOf(input);
-				input = in.nextLine();
+			
+			
+			
+			render = new String[olvl.length][olvl[0].length];
+			for (String[] row: render)
+			    Arrays.fill(row, ".");
+			
+			render = rayCast(render);
+			
+			if(c.isCameraPlaced()) {
+				//temporarily move player to camer locastion for raycast;
+				tempPlayerR = p.getR();
+				tempPlayerC = p.getC();
+				p.rayMove(c.getR(),c.getC());
+				render = rayCast(render);
+				p.rayMove(tempPlayerR,tempPlayerC);
+				render[c.getR()][c.getC()] = "C";
 				
 			}
 			
+			render[p.getR()][p.getC()] = "X";
 			
+			displayRender(render);
+			
+			
+			
+			
+			
+			//INPUT:
+			
+			if(c.isCameraPlaced()) {
+				psn = getInput("wasd");
+			}else {
+				psn = getInput("wasdc");	
+			}
+			
+			//place camera button pushed
+			if(psn == 4) {
+				print("select direction for camera");
+				dirFacing = getInput("wasd");
+				convertedDir = convertDir(dirFacing);
+				while(!olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].toString().equals(" ")) {
+					print("select direction for camera");
+					dirFacing = getInput("wasd");
+				}
+				//olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]] = c;
+				c.placeCamera(p.getR() + convertedDir[0],p.getC() + convertedDir[1]);
+			}
+			//print("R "+p.getR());
 			convertedDir = convertDir(psn);
 			
-
+			print("convertedPos: " + convertedDir[0] + " " + convertedDir[1]);
 			updateOlvlPlayer();
 			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
-
+			
 		}
 	}
+	
+	public static int getInput(String possibilities) {
+		int psn;
+		String input = in.nextLine();
+		
+		psn = possibilities.indexOf(input);
+		while(psn == -1) {
+			psn = possibilities.indexOf(input);
+			input = in.nextLine();
+		}
+		return psn;
+	}
+	
 	public static void print(String s) {System.out.println(s);}
 	
 	
@@ -293,7 +354,7 @@ public class tempMain {
 			    }
 				
 				if(olvl[(int) checkR+1][u] instanceof Wall) {
-		    			render[(int) checkR+1][u] = olvl[(int) checkR][u].toString();
+		    			render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
 		    			olvl[(int) checkR][u].makeDiscovered();
 		    			break;
 				}else {
@@ -455,7 +516,7 @@ public class tempMain {
 				    }
 					
 					if(olvl[u][(int) checkC+1] instanceof Wall) {
-			    			render[u][(int) checkC+1] = olvl[u][(int) checkC].toString();
+			    			render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
 			    			olvl[u][(int) checkC+1].makeDiscovered();
 			    			break;
 					}else {
@@ -533,7 +594,7 @@ public class tempMain {
 			    }
 				
 				if(olvl[(int) checkR+1][u] instanceof Wall) {
-		    			render[(int) checkR+1][u] = olvl[(int) checkR][u].toString();
+		    			render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
 		    			olvl[(int) checkR+1][u].makeDiscovered();
 		    			break;
 				}else {
@@ -544,11 +605,10 @@ public class tempMain {
 		return render;
 	}
 	
-	public static void rayCast() {
+	public static String[][] rayCast(String[][] render) {
+
 		
-		String[][] render = new String[olvl.length][olvl[0].length];
-		for (String[] row: render)
-		    Arrays.fill(row, ".");
+		
 		
 		//STEP 1: for now, check all lines from x to border
 		int[][] borderCoords = getBorderCoords();
@@ -557,10 +617,7 @@ public class tempMain {
 		//STEP 2: get all slopes
 		double[] slopes = getSlopes(borderCoords);
 			
-		//STEP 3: cast the rays for each of the slopes
-		
-		double checkR;
-		double checkC;
+
 		
 		//different thing for each side
 		for(int i = 0; i < slopes.length; i++) {
@@ -606,13 +663,10 @@ public class tempMain {
 
 			
 		}
-		
-		render[p.getR()][p.getC()] = "X";
-		displayRender(render);
-		
-		
+		return render;
 		
 	}
+	
 	
 
 	
@@ -729,6 +783,7 @@ public class tempMain {
 				//!
 				//◘
 				
+				
 			}
 			System.out.print("\n");
 		}
@@ -743,8 +798,8 @@ public class tempMain {
 		for(int i = 0; i < render.length; i++) {
 			for(int j = 0; j< render[0].length; j++) {
 				
-				if(olvl[i][j].getDiscovered()) {
-					System.out.print(render[i][j]);
+				if(olvl[i][j].isDiscovered()) {
+					System.out.print(olvl[i][j].toString());
 				}else {
 					System.out.print(render[i][j]);
 				}

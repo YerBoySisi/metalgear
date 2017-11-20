@@ -2,23 +2,19 @@ package entity;
 
 public class Player extends explorer.Thing{
 
-	private String name;
-	private boolean pickedUpguard;
+	private boolean pickedUpGuard;
 	private boolean objectiveReached;
 	private int r;
 	private int c;
 
 	
-	public Player(int r, int c, String name) {
+	public Player(int r, int c) {
 		
 		super(r,c);
 		
 		this.r = r;
 		this.c = c;
 
-		
-		
-		setName(name);
 	}
 	
 	public void rayMove(int r, int c) {
@@ -35,14 +31,8 @@ public class Player extends explorer.Thing{
 	}
 	
 	
-	public void setName(String name) {
-		this.name = name;
-		
-	}
 
-	public String getName() {
-		return name;
-	}
+
 
 	public void setPosition(int row, int col) {
 		this.setC(col);
@@ -50,17 +40,13 @@ public class Player extends explorer.Thing{
 		
 	}
 
-	public void act() {
-		
-		
+
+	public boolean isPickedUpGuard() {
+		return pickedUpGuard;
 	}
 
-	public boolean isPickedUpguard() {
-		return pickedUpguard;
-	}
-
-	public void setPickedUpguard(boolean pickedUpguard) {
-		this.pickedUpguard = pickedUpguard;
+	public void setPickedUpGuard(boolean pickedUpGuard) {
+		this.pickedUpGuard = pickedUpGuard;
 	}
 
 	public boolean isObjectiveReached() {

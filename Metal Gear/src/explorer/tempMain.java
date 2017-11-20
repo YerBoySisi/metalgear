@@ -103,6 +103,7 @@ public class tempMain {
 			convertedDir = convertDir(psn);
 			
 			print("convertedPos: " + convertedDir[0] + " " + convertedDir[1]);
+			
 			updateOlvlPlayer();
 			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
 			

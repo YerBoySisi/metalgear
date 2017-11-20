@@ -16,7 +16,7 @@ public class BreakableWall extends Wall {
 	}
 	
 	public String toString() {
-		return "B";
+		return "◘";
 	}
 
 }

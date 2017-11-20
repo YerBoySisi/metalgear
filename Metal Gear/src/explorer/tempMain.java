@@ -23,7 +23,7 @@ public class tempMain {
 		
 		in = new Scanner(System.in);
 		
-		p = new entity.Player(startingPsn[0],startingPsn[1],"tempPlayerss");
+		p = new entity.Player(startingPsn[0],startingPsn[1]);
 		c = new Camera(-1,-1);
 		
 		lvl = setLevel1();

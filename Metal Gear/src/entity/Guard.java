@@ -2,7 +2,11 @@ package entity;
 
 import java.util.Arrays;
 
-public class Guard extends NPC implements Person {
+import explorer.Thing;
+import explorer.Wall;
+import explorer.tempMain;
+
+public class Guard extends Thing {
 	
 	//constants
 	public static final int NORTH = 0;
@@ -19,15 +23,14 @@ public class Guard extends NPC implements Person {
 	private int currentPos;
 	
 	//fields relating to character
-	private String name;
 	private int[][] fieldOfView;
 	private boolean active;
+	private boolean alerted;
 	
 
-	public Guard(String name, int[][] path, int row, int col) {
-
-		super(name);
+	public Guard(int[][] path, int row, int col) {
 		
+		super(row, col);
 		this.currentRow = row;
 		this.currentCol = col;
 		this.path = new int[path.length][2];
@@ -48,37 +51,38 @@ public class Guard extends NPC implements Person {
 
 	}
 
-	public void setName(String name) {
-
-		this.name = name;
-
-	}
-
-	public String getName() {
-		
-		return name;
-		
-	}
-
 	public void act() {
 		
-		if(active) {
-			System.out.println(Arrays.deepToString(path));
-			System.out.println(Arrays.deepToString(fieldOfView));
-			System.out.println(direction);
-			System.out.println(currentRow);
-			System.out.println(currentCol);
-			move(currentPos);
-			setDirection();
-			setFieldOfView();
-			currentPos++;
-			
-			if(currentPos == path.length) {
-				currentPos = 0;
+		if(!alerted) {
+	
+			if(active) {
+				System.out.println(Arrays.deepToString(path));
+				System.out.println(Arrays.deepToString(fieldOfView));
+				System.out.println(direction);
+				System.out.println(currentRow);
+				System.out.println(currentCol);
+				move(currentPos);
+				setDirection();
+				setFieldOfView();
+				currentPos++;
+				
+				if(currentPos == path.length) {
+					currentPos = 0;
+				}
+				
 			}
+		
+		} else {
 			
 		}
 
+	}
+
+	public void setPosition(int row, int col) {
+		
+		currentRow = row;
+		currentCol = col;
+		
 	}
 	
 	public void move(int pos) {
@@ -164,12 +168,65 @@ public class Guard extends NPC implements Person {
 		
 		for(int i = 0; i < fieldOfView.length; i++) {
 			
-			if(fieldOfView[i][0] < 0 || fieldOfView[i][1] < 0) {
+			if(fieldOfView[i][0] < 0 || fieldOfView[i][1] < 0 || tempMain.olvl[fieldOfView[i][0]][fieldOfView[i][1]] instanceof Wall) {
 				fieldOfView[i][0] = currentRow;
 				fieldOfView[i][1] = currentCol;
 			}
 			
 		}
+		
+	}
+	
+	public int[][] getFieldOfView() {
+		
+		return fieldOfView;
+		
+	}
+	
+	public int getRow() {
+		
+		return currentRow;
+		
+	}
+	
+	public int getColumn() {
+		
+		return currentCol;
+		
+	}
+	
+	public int getDirection() {
+		
+		return direction;
+		
+	}
+	
+	public int[] getPosition() {
+		
+		return path[currentPos];
+		
+			
+	}
+	
+	public int[] getNextPosition() {
+		
+		if(currentPos == path.length - 1) {
+			return path[0];
+		}
+		
+		return path[currentPos + 1];
+			
+	}
+	
+	public void alert() {
+		
+		alerted = true;
+		
+	}
+	
+	public boolean isAlerted() {
+		
+		return alerted;
 		
 	}
 

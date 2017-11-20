@@ -84,16 +84,24 @@ public class tempMain {
 			
 			
 			
-			//INPUT:
+//INPUT:
 			
-			if(c.isCameraPlaced()) {
+			//if the camera is placed, and player can drop gaurd
+			if(c.isCameraPlaced() && p.isPickedUpGuard()) {
+				psn = getInput("wasdg");
+			//if the camera is placed, and player cant drop gaurd
+			}else if(c.isCameraPlaced()) {
 				psn = getInput("wasd");
+			//if camera is not placed and player can drop gaurd
+			}else if(p.isPickedUpGuard()){
+				psn = getInput("wasdgc");
+			//if camera is not placed and player cant drop gaurd
 			}else {
-				psn = getInput("wasdc");	
+				psn = getInput("wasdwc");	
 			}
 			
 			//place camera button pushed
-			if(psn == 4) {
+			if(psn == 5) {
 				print("select direction for camera");
 				dirFacing = getInput("wasd");
 				convertedDir = convertDir(dirFacing);
@@ -104,11 +112,29 @@ public class tempMain {
 				//olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]] = c;
 				c.placeCamera(p.getR() + convertedDir[0],p.getC() + convertedDir[1]);
 			}
-			//print("R "+p.getR());
+			
+			
+			
+			//gaurd button pushed
+			if(psn==4) {
+
+				print("select direction for gaurd");
+				dirFacing = getInput("wasd");
+				convertedDir = convertDir(dirFacing);
+				while(!olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].toString().equals(" ")) {
+					print("select direction for gaurd");
+					dirFacing = getInput("wasd");
+				}
+				
+				
+				olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]] = new entity.DeadGaurd(p.getR() + convertedDir[0],p.getC() + convertedDir[1]);
+				print(olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].toString());
+				p.setPickedUpGuard(false);
+			}
+			
+			
 			convertedDir = convertDir(psn);
-			
-			print("convertedPos: " + convertedDir[0] + " " + convertedDir[1]);
-			
+
 			updateOlvlPlayer();
 			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
 			

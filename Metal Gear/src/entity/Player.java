@@ -1,20 +1,25 @@
 package entity;
 
-public class Player extends entity.Thing{
+public class Player extends explorer.Thing{
 
-	private boolean pickedUpGuard;
+	private String name;
+	private boolean pickedUpguard;
 	private boolean objectiveReached;
+	private boolean isCaught = false;
 	private int r;
 	private int c;
 
 	
-	public Player(int r, int c) {
+	public Player(int r, int c, String name) {
 		
 		super(r,c);
 		
 		this.r = r;
 		this.c = c;
 
+		
+		
+		setName(name);
 	}
 	
 	public void rayMove(int r, int c) {
@@ -31,8 +36,14 @@ public class Player extends entity.Thing{
 	}
 	
 	
+	public void setName(String name) {
+		this.name = name;
+		
+	}
 
-
+	public String getName() {
+		return name;
+	}
 
 	public void setPosition(int row, int col) {
 		this.setC(col);
@@ -40,13 +51,17 @@ public class Player extends entity.Thing{
 		
 	}
 
-
-	public boolean isPickedUpGuard() {
-		return pickedUpGuard;
+	public void act() {
+		
+		
 	}
 
-	public void setPickedUpGuard(boolean pickedUpGuard) {
-		this.pickedUpGuard = pickedUpGuard;
+	public boolean isPickedUpguard() {
+		return pickedUpguard;
+	}
+
+	public void setPickedUpguard(boolean pickedUpguard) {
+		this.pickedUpguard = pickedUpguard;
 	}
 
 	public boolean isObjectiveReached() {
@@ -73,6 +88,17 @@ public class Player extends entity.Thing{
 		this.c = c;
 	}
 
-	
+	// pass in the field of view, guard row, and guard column coordinates
+	public boolean seenByGuard (int[][] fov, int gRow, int gCol) {
+		for (int row = 0; row < fov.length; row++) {
+			for (int col = 0; col < fov[row].length; col++) {
+				if (r == row && c == col) {
+					isCaught = true;
+					return isCaught;
+				}
+			}
+		}
+		return isCaught;
+	}
 
 }

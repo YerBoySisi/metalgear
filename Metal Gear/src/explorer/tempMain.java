@@ -53,6 +53,7 @@ public class tempMain {
 			
 			//DISPLAY:
 			render = new String[olvl.length][olvl[0].length];
+			
 			for (String[] row: render)
 			    Arrays.fill(row, ".");
 			
@@ -70,6 +71,7 @@ public class tempMain {
 			}
 			
 			render[p.getR()][p.getC()] = "X";
+			
 			
 			displayRender(render);
 			
@@ -796,7 +798,8 @@ public class tempMain {
 	
 	public static void displayRender(String[][] render) {
 		//int temp = 0;
-		
+		print("olvlr: "+render.length);
+		print("olvlc: "+  render[0].length);
 		for(int i = 0; i < render.length; i++) {
 			for(int j = 0; j< render[0].length; j++) {
 				

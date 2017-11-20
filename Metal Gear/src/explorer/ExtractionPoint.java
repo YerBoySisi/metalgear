@@ -17,9 +17,9 @@ public class ExtractionPoint extends Wall{
 	
 	public String toString() {
 		if(tempMain.p.isObjectiveReached()) {
-			return "◘";
+			return "E";
 		}else {
-			return "◘";
+			return "■";
 		}
 	}
 

@@ -21,7 +21,7 @@ public class Wall extends Thing{
 	}
 	
 	public String toString() {
-		return "■ ";
+		return "■";
 	}
 	
 }

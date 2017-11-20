@@ -1,4 +1,6 @@
-package explorer;
+package entity;
+
+import explorer.tempMain;
 
 public class DeadGaurd extends Thing{
 

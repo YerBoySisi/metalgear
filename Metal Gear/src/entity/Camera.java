@@ -1,5 +1,6 @@
-package explorer;
+package entity;
 
+import explorer.tempMain;
 
 public class Camera extends Thing{
 	private boolean cameraPlaced;

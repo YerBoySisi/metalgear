@@ -2,8 +2,6 @@ package entity;
 
 import java.util.Arrays;
 
-import explorer.Thing;
-import explorer.Wall;
 import explorer.tempMain;
 
 public class Guard extends Thing {

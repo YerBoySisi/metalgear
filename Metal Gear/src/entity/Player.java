@@ -1,6 +1,6 @@
 package entity;
 
-public class Player extends explorer.Thing{
+public class Player extends entity.Thing{
 
 	private boolean pickedUpGuard;
 	private boolean objectiveReached;

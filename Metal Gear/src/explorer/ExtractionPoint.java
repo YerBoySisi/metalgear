@@ -1,5 +1,7 @@
 package explorer;
 
+import entity.Wall;
+
 public class ExtractionPoint extends Wall{
 
 	public ExtractionPoint(int r, int c) {

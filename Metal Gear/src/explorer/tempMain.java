@@ -3,6 +3,11 @@ package explorer;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import entity.BreakableWall;
+import entity.Camera;
+import entity.Thing;
+import entity.Wall;
+
 public class tempMain {
 	public static boolean playing;
 	

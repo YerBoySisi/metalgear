@@ -148,6 +148,7 @@ public class tempMain {
 		psn = possibilities.indexOf(input);
 		while(psn == -1) {
 			psn = possibilities.indexOf(input);
+			print("invalid input");
 			input = in.nextLine();
 		}
 		return psn;
@@ -706,7 +707,7 @@ public class tempMain {
 	
 	
 	public static int[] convertDir(int dir) {
-		int[][] temp = {{-1,0},{0,-1},{1,0},{0,1},{0,0}};
+		int[][] temp = {{-1,0},{0,-1},{1,0},{0,1},{0,0},{0,0}};
 		return temp[dir];
 	}
 	
@@ -830,8 +831,8 @@ public class tempMain {
 	
 	public static void displayRender(String[][] render) {
 		//int temp = 0;
-		print("olvlr: "+render.length);
-		print("olvlc: "+  render[0].length);
+		//print("olvlr: "+render.length);
+		//print("olvlc: "+  render[0].length);
 		for(int i = 0; i < render.length; i++) {
 			for(int j = 0; j< render[0].length; j++) {
 				

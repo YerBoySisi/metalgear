@@ -1,6 +1,6 @@
 package entity;
 
-public class Player extends explorer.Thing{
+public class Player extends Thing{
 
 	private String name;
 	private boolean pickedUpguard;
@@ -10,14 +10,14 @@ public class Player extends explorer.Thing{
 	private int c;
 
 	
-	public Player(int r, int c, String name) {
+	public Player(int r, int c) {
 		
 		super(r,c);
 		
 		this.r = r;
 		this.c = c;
 
-		
+		pickedUpguard = true;
 		
 		setName(name);
 	}
@@ -51,16 +51,12 @@ public class Player extends explorer.Thing{
 		
 	}
 
-	public void act() {
-		
-		
-	}
 
-	public boolean isPickedUpguard() {
+	public boolean isPickedUpGuard() {
 		return pickedUpguard;
 	}
 
-	public void setPickedUpguard(boolean pickedUpguard) {
+	public void setPickedUpGuard(boolean pickedUpguard) {
 		this.pickedUpguard = pickedUpguard;
 	}
 
@@ -99,6 +95,10 @@ public class Player extends explorer.Thing{
 			}
 		}
 		return isCaught;
+	}
+	
+	public String toString() {
+		return "D";
 	}
 
 }

@@ -51,6 +51,7 @@ public class Guard extends Thing {
 
 	public void act() {
 		tempMain.breakWall(currentRow,currentCol);
+		//tempMain.olvl[newRow][newCol] = this
 		if(!alerted) {
 	
 			if(active) {

@@ -225,13 +225,12 @@ public class tempMain {
 
 			//if checkC is an integer:
 			if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
+				render[u][(int) checkC] = olvl[u][(int) checkC].toString();
 			    if(olvl[u][(int) checkC] instanceof Wall) {
 			    		
-			    		render[u][(int) checkC] = olvl[u][(int) checkC].toString();
+			    		
 			    		olvl[u][(int) checkC].makeDiscovered();
 			    		break;
-			    }else {
-			    		render[u][(int) checkC] = " ";
 			    }
 			 //else check the boxes to left and right
 			}else {

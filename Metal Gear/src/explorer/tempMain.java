@@ -25,7 +25,7 @@ public class tempMain {
 
 	public static entity.Player p;
 	public static Camera c;
-	public static Guard g;
+	public static Guard[] g;
 	private static int[] startingPsn = {3,3};
 	
 	public static void main(String[] args) {
@@ -38,6 +38,10 @@ public class tempMain {
 		
 		p = new entity.Player(startingPsn[0],startingPsn[1]);
 		c = new Camera(-1,-1);
+		
+		g = new Guard[1];
+		g[0] = new Guard(new int[][] {UP, UP, DOWN, DOWN}, 5, 6);
+		
 		
 		lvl = setLevel1();
 		convertLevel();
@@ -145,6 +149,10 @@ public class tempMain {
 
 			updateOlvlPlayer();
 			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
+			
+			
+			
+			g[0].act();
 			
 		}
 	}
@@ -737,13 +745,15 @@ public class tempMain {
 				
 				if(temp == 0) {
 					olvl[i][j] = new Thing(i,j);
-				}else if(temp == 2){
+				}else if(temp == 2) {
 					olvl[i][j] = new BreakableWall(i,j);
-				}else if(temp ==3){
+				}else if(temp ==3) {
 					olvl[i][j] = new IntelFile(i,j);
-				}else if(temp == 4){
+				}else if(temp == 4) {
 					olvl[i][j] = new ExtractionPoint(i,j);
-				}else {
+				}else  if(temp == 5){
+					olvl[i][j] = new Guard(new int[][] {UP, UP, DOWN, DOWN}, i, j);
+				} else {
 					olvl[i][j] = new Wall(i,j);
 				}
 				

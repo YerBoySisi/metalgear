@@ -1,10 +1,6 @@
 package caves;
 
-import caves.customcaves.SisiSavage;
-import caves.customcaves.SisiSavageRoom;
 import entity.Guard;
-import entity.NPC;
-import explorer.ExplorerMain;
 
 public class CaveRoom {
 

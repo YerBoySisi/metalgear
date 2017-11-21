@@ -50,7 +50,7 @@ public class Guard extends Thing {
 	}
 
 	public void act() {
-		
+		//tempMain.olvl[newRow][newCol] = this
 		if(!alerted) {
 	
 			if(active) {

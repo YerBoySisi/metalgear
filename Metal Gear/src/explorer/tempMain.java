@@ -40,7 +40,7 @@ public class tempMain {
 		c = new Camera(-1,-1);
 		
 		g = new Guard[1];
-		g[0] = new Guard(new int[][] {UP, UP, DOWN, DOWN}, 5, 6);
+		g[0] = new Guard(new int[][] {UP, UP, DOWN, DOWN}, 5, 5);
 		
 		
 		lvl = setLevel1();
@@ -65,6 +65,8 @@ public class tempMain {
 		
 		int tempPlayerR;
 		int tempPlayerC;
+		
+		//olvl[5][5] = g[0];
 		
 		while(playing) {
 			

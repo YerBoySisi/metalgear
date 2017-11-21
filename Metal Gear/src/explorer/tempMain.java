@@ -5,10 +5,17 @@ import java.util.Scanner;
 
 import entity.BreakableWall;
 import entity.Camera;
+import entity.Guard;
 import entity.Thing;
 import entity.Wall;
 
 public class tempMain {
+	
+	public static final int[] UP = {-1, 0};
+	public static final int[] DOWN = {1, 0};
+	public static final int[] LEFT = {0, -1};
+	public static final int[] RIGHT = {0, 1};
+	
 	public static boolean playing;
 	
 	private static int[][] lvl;
@@ -18,6 +25,7 @@ public class tempMain {
 
 	public static entity.Player p;
 	public static Camera c;
+	public static Guard g;
 	private static int[] startingPsn = {3,3};
 	
 	public static void main(String[] args) {

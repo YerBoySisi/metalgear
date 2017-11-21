@@ -218,20 +218,17 @@ public class tempMain {
 			 //else check the boxes to left and right
 			}else {
 				
+				render[u][(int) checkC] = olvl[u][(int) checkC].toString();
 				if(olvl[u][(int) checkC] instanceof Wall) {
-			    		render[u][(int) checkC] = olvl[u][(int) checkC].toString();
+			    		
 			    		olvl[u][(int) checkC].makeDiscovered();
 			    		break;
-			    }else {
-			    		render[u][(int) checkC] = " ";
 			    }
-				
+				render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
 				if(olvl[u][(int) checkC+1] instanceof Wall) {
-		    			render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
+		    			
 		    			olvl[u][(int) checkC].makeDiscovered();
 		    			break;
-				}else {
-					render[u][(int) checkC+1] = " ";
 				}
 			}
 		
@@ -252,30 +249,25 @@ public class tempMain {
 				
 				//if checkC is an integer:
 				if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
+					render[(int) checkR][u] = olvl[(int) checkR][u].toString();
 				    if(olvl[(int) checkR][u] instanceof Wall) {
-				    		render[(int) checkR][u] = olvl[(int) checkR][u].toString();
+				    		
 				    		olvl[(int) checkR][u].makeDiscovered();
 				    		break;
-				    }else {
-				    		render[(int) checkR][u] = " ";
 				    }
 				 //else check the boxes to left and right
 				}else {
-					
+					render[(int) checkR][u] = olvl[(int) checkR][u].toString();	
 					if(olvl[(int) checkR][u] instanceof Wall) {
-				    		render[(int) checkR][u] = olvl[(int) checkR][u].toString();	
+				    		
 				    		olvl[(int) checkR][u].makeDiscovered();
 				    		break;
-				    }else {
-				    		render[(int) checkR][u] = " ";
 				    }
-					
+					render[(int) checkR+1][u] = olvl[(int) checkR][u].toString();
 					if(olvl[(int) checkR+1][u] instanceof Wall) {
-			    			render[(int) checkR+1][u] = olvl[(int) checkR][u].toString();
+			    			
 			    			olvl[(int) checkR][u].makeDiscovered();
 			    			break;
-					}else {
-						render[(int) checkR+1][u] = " ";
 					}
 				}
 			}
@@ -288,30 +280,25 @@ public class tempMain {
 				
 				//if checkC is an integer:
 				if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
+					render[(int) checkR][u] = olvl[(int) checkR][u].toString();
 				    if(olvl[(int) checkR][u] instanceof Wall) {
-				    		render[(int) checkR][u] = olvl[(int) checkR][u].toString();
+				    		
 				    		olvl[(int) checkR][u].makeDiscovered();
 				    		break;
-				    }else {
-				    		render[(int) checkR][u] = " ";
 				    }
 				 //else check the boxes to left and right
 				}else {
-					
+					render[(int) checkR][u] = olvl[(int) checkR][u].toString();
 					if(olvl[(int) checkR][u] instanceof Wall) {
-				    		render[(int) checkR][u] = olvl[(int) checkR][u].toString();
+				    		
 				    		olvl[(int) checkR][u].makeDiscovered();
 				    		break;
-				    }else {
-				    		render[(int) checkR][u] = " ";
 				    }
-					
+					render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
 					if(olvl[(int) checkR+1][u] instanceof Wall) {
-			    			render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
+			    			
 			    			olvl[(int) checkR][u].makeDiscovered();
 			    			break;
-					}else {
-						render[(int) checkR+1][u] = " ";
 					}
 				}
 			}
@@ -326,30 +313,25 @@ public class tempMain {
 			//print("slope: "+ slope);
 			//if checkC is an integer:
 			if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
+				render[u][(int) checkC] = olvl[u][(int) checkC].toString();
 			    if(olvl[u][(int) checkC] instanceof Wall) {
-			    		render[u][(int) checkC] = olvl[u][(int) checkC].toString();
+			    		
 			    		olvl[u][(int) checkC].makeDiscovered();
 			    		break;
-			    }else {
-			    		render[u][(int) checkC] = " ";
 			    }
 			 //else check the boxes to left and right
 			}else {
-				
+				render[u][(int) checkC] = olvl[u][(int) checkC].toString();
 				if(olvl[u][(int) checkC] instanceof Wall) {
-			    		render[u][(int) checkC] = olvl[u][(int) checkC].toString();
+			    		
 			    		olvl[u][(int) checkC].makeDiscovered();
 			    		break;
-			    }else {
-			    		render[u][(int) checkC] = " ";
 			    }
-				
+				render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
 				if(olvl[u][(int) checkC+1] instanceof Wall) {
-		    			render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
+		    			
 		    			olvl[u][(int) checkC].makeDiscovered();
 		    			break;
-				}else {
-					render[u][(int) checkC+1] = " ";
 				}
 			}
 		}
@@ -366,30 +348,25 @@ public class tempMain {
 			
 			//if checkC is an integer:
 			if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
+				render[(int) checkR][u] = olvl[(int) checkR][u].toString();
 			    if(olvl[(int) checkR][u] instanceof Wall) {
-			    		render[(int) checkR][u] = olvl[(int) checkR][u].toString();
+			    		
 			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
-			    }else {
-			    		render[(int) checkR][u] = " ";
 			    }
 			 //else check the boxes to left and right
 			}else {
-				
+				render[(int) checkR][u] = olvl[(int) checkR][u].toString();
 				if(olvl[(int) checkR][u] instanceof Wall) {
-			    		render[(int) checkR][u] = olvl[(int) checkR][u].toString();
+			    		
 			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
-			    }else {
-			    		render[(int) checkR][u] = " ";
 			    }
-				
+				render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
 				if(olvl[(int) checkR+1][u] instanceof Wall) {
-		    			render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
+		    			
 		    			olvl[(int) checkR][u].makeDiscovered();
 		    			break;
-				}else {
-					render[(int) checkR+1][u] = " ";
 				}
 			}
 			
@@ -409,30 +386,25 @@ public class tempMain {
 				//print("c/: "+checkC);
 				//if checkC is an integer:
 				if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
+					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
 				    if(olvl[u][(int) checkC] instanceof Wall) {
-				    		render[u][(int) checkC] = olvl[u][(int) checkC].toString();
+				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
-				    }else {
-				    		render[u][(int) checkC] = " ";
 				    }
 				 //else check the boxes to left and right
 				}else {
-					
+					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
 					if(olvl[u][(int) checkC] instanceof Wall) {
-				    		render[u][(int) checkC] = olvl[u][(int) checkC].toString();
+				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
-				    }else {
-				    		render[u][(int) checkC] = " ";
 				    }
-					
+					render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
 					if(olvl[u][(int) checkC+1] instanceof Wall) {
-			    			render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
+			    			
 			    			olvl[u][(int) checkC].makeDiscovered();
 			    			break;
-					}else {
-						render[u][(int) checkC+1] = " ";
 					}
 				}
 			}
@@ -445,29 +417,24 @@ public class tempMain {
 				//print("c/: "+checkC);
 				//if checkC is an integer:
 				if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
+					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
 				    if(olvl[u][(int) checkC] instanceof Wall) {
-				    		render[u][(int) checkC] = olvl[u][(int) checkC].toString();
+				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
-				    }else {
-				    		render[u][(int) checkC] = " ";
 				    }
 				 //else check the boxes to left and right
 				}else {
-					
+					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
 					if(olvl[u][(int) checkC] instanceof Wall) {
-				    		render[u][(int) checkC] = olvl[u][(int) checkC].toString();
+				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
-				    }else {
-				    		render[u][(int) checkC] = " ";
 				    }
-					
+					render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
 					if(olvl[u][(int) checkC+1] instanceof Wall) {
-			    			render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
+							olvl[u][(int) checkC+1].makeDiscovered();
 			    			break;
-					}else {
-						render[u][(int) checkC+1] = " ";
 					}
 				}
 			}
@@ -487,30 +454,25 @@ public class tempMain {
 			
 			//if checkC is an integer:
 			if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
+				render[(int) checkR][u] = olvl[(int) checkR][u].toString();
 			    if(olvl[(int) checkR][u] instanceof Wall) {
-			    		render[(int) checkR][u] = olvl[(int) checkR][u].toString();
+			    		
 			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
-			    }else {
-			    		render[(int) checkR][u] = " ";
 			    }
 			 //else check the boxes to left and right
 			}else {
-				
+				render[(int) checkR][u] = olvl[(int) checkR][u].toString();
 				if(olvl[(int) checkR][u] instanceof Wall) {
-			    		render[(int) checkR][u] = olvl[(int) checkR][u].toString();
+			    		
 			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
-			    }else {
-			    		render[(int) checkR][u] = " ";
 			    }
-				
+				render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
 				if(olvl[(int) checkR+1][u] instanceof Wall) {
-		    			render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
+		    			
 		    			olvl[(int) checkR][u].makeDiscovered();
 		    			break;
-				}else {
-					render[(int) checkR+1][u] = " ";
 				}
 			}
 		}
@@ -528,30 +490,25 @@ public class tempMain {
 				//print("c/: "+checkC);
 				//if checkC is an integer:
 				if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
+					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
 				    if(olvl[u][(int) checkC] instanceof Wall) {
-				    		render[u][(int) checkC] = olvl[u][(int) checkC].toString();
+				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
-				    }else {
-				    		render[u][(int) checkC] = " ";
 				    }
 				 //else check the boxes to left and right
 				}else {
-					
+					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
 					if(olvl[u][(int) checkC] instanceof Wall) {
-				    		render[u][(int) checkC] = olvl[u][(int) checkC].toString();
+				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
-				    }else {
-				    		render[u][(int) checkC] = " ";
 				    }
-					
+					render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
 					if(olvl[u][(int) checkC+1] instanceof Wall) {
-			    			render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
+			    			
 			    			olvl[u][(int) checkC+1].makeDiscovered();
 			    			break;
-					}else {
-						render[u][(int) checkC+1] = " ";
 					}
 				}
 			}
@@ -564,30 +521,25 @@ public class tempMain {
 				//print("c/: "+checkC);
 				//if checkC is an integer:
 				if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
+					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
 				    if(olvl[u][(int) checkC] instanceof Wall) {
-				    		render[u][(int) checkC] = olvl[u][(int) checkC].toString();
+				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
-				    }else {
-				    		render[u][(int) checkC] = " ";
 				    }
 				 //else check the boxes to left and right
 				}else {
-					
+					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
 					if(olvl[u][(int) checkC] instanceof Wall) {
-				    		render[u][(int) checkC] = olvl[u][(int) checkC].toString();
+				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
-				    }else {
-				    		render[u][(int) checkC] = " ";
 				    }
-					
+					render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
 					if(olvl[u][(int) checkC+1] instanceof Wall) {
-			    			render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
+			    			
 			    			olvl[u][(int) checkC+1].makeDiscovered();
 			    			break;
-					}else {
-						render[u][(int) checkC+1] = " ";
 					}
 				}
 			}
@@ -606,30 +558,25 @@ public class tempMain {
 			
 			//if checkC is an integer:
 			if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
+				render[(int) checkR][u] = olvl[(int) checkR][u].toString();
 			    if(olvl[(int) checkR][u] instanceof Wall) {
-			    		render[(int) checkR][u] = olvl[(int) checkR][u].toString();
+			    		
 			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
-			    }else {
-			    		render[(int) checkR][u] = " ";
 			    }
 			 //else check the boxes to left and right
 			}else {
-				
+				render[(int) checkR][u] = olvl[(int) checkR][u].toString();
 				if(olvl[(int) checkR][u] instanceof Wall) {
-			    		render[(int) checkR][u] = olvl[(int) checkR][u].toString();
+			    		
 			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
-			    }else {
-			    		render[(int) checkR][u] = " ";
 			    }
-				
+				render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
 				if(olvl[(int) checkR+1][u] instanceof Wall) {
-		    			render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
+		    			
 		    			olvl[(int) checkR+1][u].makeDiscovered();
 		    			break;
-				}else {
-					render[(int) checkR+1][u] = " ";
 				}
 			}
 		}

@@ -17,11 +17,12 @@ public class DeadGaurd extends Thing{
 			tempMain.breakWall(this.r,this.c);//olvl[this.r][this.c] = new Thing(this.r,this.c);
 			this.r = -1;
 			this.c = -1;
+			tempMain.p.setPickedUpGuard(true);
 		}
 	}
 	
 	public String toString() {
-		return "C";
+		return "G";
 	}
 	
 	public void putDownCamera(int r, int c){

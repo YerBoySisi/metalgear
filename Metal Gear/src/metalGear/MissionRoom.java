@@ -8,20 +8,17 @@ public class MissionRoom extends CaveRoom{
 	}
 	
 	public String validKeys() {
-		return "wdsaeb";
+		return "wdsae";
 	}
 
 	public void printAllowedEntry() {
-		System.out.println("You can only enter 'w', 'a', 's' 'd', 'e', or 'b'.");
+		System.out.println("You can only enter 'w', 'a', 's' 'd', or 'e'.");
 	}
 	
 	public void performAction (int direction) {
 		if (direction==4) {
 			beginMission();
-		}else if(direction==5) {
-			tempMain.brief();
-		}
-		else {
+		}else {
 			System.err.println("Invalid input.");
 		}
 	}

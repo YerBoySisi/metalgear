@@ -2,6 +2,7 @@ package caves;
 
 import caves.customcaves.SisiSavage;
 import caves.customcaves.SisiSavageRoom;
+import entity.Guard;
 import entity.NPC;
 import explorer.ExplorerMain;
 
@@ -20,6 +21,10 @@ public class CaveRoom {
 	public static final int EAST = 1;
 	public static final int SOUTH =2;
 	public static final int WEST = 3;
+	public static final int[] UP = {-1, 0};
+	public static final int[] DOWN = {1, 0};
+	public static final int[] LEFT = {0, -1};
+	public static final int[] RIGHT = {0, 1};
 
 
 	public CaveRoom(String description) {
@@ -205,7 +210,7 @@ public class CaveRoom {
 		
 		ExplorerMain.npcs = new NPC[2];
 
-		ExplorerMain.npcs[0] = new NPC("Traveller");
+		ExplorerMain.npcs[0] = new Guard("Patrol", new int[][] {DOWN, DOWN, UP, UP}, 0, 1);
 		ExplorerMain.npcs[0].setPosition(1, 1);
 
 		ExplorerMain.npcs[1] = new SisiSavage("Jimmy");

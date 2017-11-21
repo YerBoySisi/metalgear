@@ -1,4 +1,4 @@
-package explorer;
+package entity;
 
 public class Wall extends Thing{
 	//boolean hasBeenDiscovered;

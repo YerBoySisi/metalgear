@@ -1,22 +1,23 @@
 package entity;
 
-public class Player extends explorer.Thing{
+public class Player extends Thing{
 
 	private String name;
 	private boolean pickedUpguard;
 	private boolean objectiveReached;
+	private boolean isCaught = false;
 	private int r;
 	private int c;
 
 	
-	public Player(int r, int c, String name) {
+	public Player(int r, int c) {
 		
 		super(r,c);
 		
 		this.r = r;
 		this.c = c;
 
-		
+		pickedUpguard = true;
 		
 		setName(name);
 	}
@@ -50,16 +51,12 @@ public class Player extends explorer.Thing{
 		
 	}
 
-	public void act() {
-		
-		
-	}
 
-	public boolean isPickedUpguard() {
+	public boolean isPickedUpGuard() {
 		return pickedUpguard;
 	}
 
-	public void setPickedUpguard(boolean pickedUpguard) {
+	public void setPickedUpGuard(boolean pickedUpguard) {
 		this.pickedUpguard = pickedUpguard;
 	}
 
@@ -87,6 +84,21 @@ public class Player extends explorer.Thing{
 		this.c = c;
 	}
 
+	// pass in the field of view, guard row, and guard column coordinates
+	public boolean seenByGuard (int[][] fov, int gRow, int gCol) {
+		for (int row = 0; row < fov.length; row++) {
+			for (int col = 0; col < fov[row].length; col++) {
+				if (r == row && c == col) {
+					isCaught = true;
+					return isCaught;
+				}
+			}
+		}
+		return isCaught;
+	}
 	
+	public String toString() {
+		return "D";
+	}
 
 }

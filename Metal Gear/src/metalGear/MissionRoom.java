@@ -1,14 +1,12 @@
-package caves.customcaves;
+package metalGear;
 
 import explorer.ExplorerMain;
 import explorer.tempMain;
 
-public class MissionRoom extends caves.CaveRoom{
+public class MissionRoom extends CaveRoom{
 
 	public MissionRoom(String description) {
 		super(description);
-		String message = "There's a mission to be done here. Press 'b' for mission briefing. Press 'e' to start mission.";
-		setDescription(message);
 	}
 	
 	public String validKeys() {

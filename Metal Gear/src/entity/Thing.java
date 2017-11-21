@@ -1,4 +1,6 @@
-package explorer;
+package entity;
+
+import explorer.tempMain;
 
 public class Thing {
 	//public void interact;

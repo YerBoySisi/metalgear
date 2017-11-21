@@ -1,18 +1,14 @@
-package entity;
-
-import caves.CaveRoom;
-import caves.NPCRoom;
-import explorer.ExplorerMain;
+package metalGear;
 
 /**
  * NPC means Non-Playable Character
  * @author Teacher
  *
  */
-public class NPC implements Person {
+public class NPC {
 	
 	//fields relating to navigation
-	private CaveRoom[][] floor;
+	private CaveRoom[][] floor;//where the NPC roams
 	private int currentRow;
 	private int currentCol;
 	private NPCRoom currentRoom;
@@ -21,20 +17,18 @@ public class NPC implements Person {
 	private boolean active;
 	private String activeDescription;
 	private String inactiveDescription;
-	private String name;
 	
 
 	//default constructor
-	public NPC(String name) {
-		this.floor = ExplorerMain.caves;
-		this.activeDescription = "A " + name + " is here. Press 'E' to talk to them.";
-		this.inactiveDescription = "The "+name+" you spoke to earlier is standing here.";
+	public NPC() {
+		this.floor = CaveExplorer.caves;
+		this.activeDescription = "There is a person waiting to talk to you.";
+		this.inactiveDescription = "The person you spoke to earlier is standing here.";
 		//to indicate the NPC doesn't have a position yet, use coordinates -1,-1
 		this.currentCol = -1;
 		this.currentRow = -1;
 		this.currentRoom = null;
 		this.active = true;
-		this.name = name;
 	}
 	/**
 	 * Note: you can make custom constructors later that use different parameters
@@ -42,17 +36,12 @@ public class NPC implements Person {
 	 * public NPC(String description, String inactiveDescription)
 	 *
 	 */
-	
-	
-	public void setActiveDesc(String s) {
-		this.activeDescription = s;
-	}
 
 	public boolean isActive() {
 		return active;
 	}
 
-	public void setPosition(int row, int col) {
+	public void setposition(int row, int col) {
 		if(row >=0 && row < floor.length && col >= 0 &&
 				col < floor[row].length && floor[row][col] instanceof NPCRoom) {
 			//remove the npc from current room
@@ -67,13 +56,14 @@ public class NPC implements Person {
 	}
 	
 	public void interact() {
-		ExplorerMain.print("Hello there traveller, I am an NPC. I don't have much to say, so go away.");
-		String s = ExplorerMain.in.nextLine();
+		CaveExplorer.print("Hi! I'm an NPC!"
+				+ " I say nothing at all until you say 'bye'.");
+		String s = CaveExplorer.in.nextLine();
 		while(!s.equalsIgnoreCase("bye")){
-			ExplorerMain.print("...");
-			s = ExplorerMain.in.nextLine();
+			CaveExplorer.print("...");
+			s = CaveExplorer.in.nextLine();
 		}
-		ExplorerMain.print("Okay, bye.");
+		CaveExplorer.print("Well, that was fun. Later!");
 		active = false;
 	}
 
@@ -87,38 +77,21 @@ public class NPC implements Person {
 	public void act() {
 		if(active) {
 			int[] move = calculateMovement();
-			int newRow = move[0];
-			int newCol = move[1];
-			setPosition(newRow, newCol);
+			int newRow = currentRow + move[0];
+			int newCol = currentCol + move[1];
+			setposition(newRow, newCol);
 		}
 	}
 	
 	
-	public int[] calculateMovement() {
+	/*public int[] calculateMovement() {
 		int[] moves = new int[2];
 		int[][] possibleMoves = {{-1,0},{0,1},{1,0},{0,-1}};
-		int rand = (int)(Math.random()*possibleMoves.length);
+		int rand = (int)(Math.random()*4);
 		moves[0] = possibleMoves[rand][0]+currentRow;
 		moves[1] = possibleMoves[rand][1]+currentCol;
-		while(currentRoom.getDoor(rand) == null ||
-				!(ExplorerMain.caves[moves[0]][moves[1]] instanceof NPCRoom)) {
-			rand = (int)(Math.random()*possibleMoves.length);
-			moves[0] = possibleMoves[rand][0]+currentRow;
-			moves[1] = possibleMoves[rand][1]+currentCol;
-		}
-		return moves;
+		//while()
+		//return null;
 	}
-	
-	public void setName(String name) {
-
-		this.name = name;
-		
-	}
-	
-	public String getName() {
-		
-		return name;
-		
-	}
-
+	 */
 }

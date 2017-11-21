@@ -1,5 +1,7 @@
 package explorer;
 
+import entity.Wall;
+
 public class IntelFile extends Wall{
 
 	public IntelFile(int r, int c) {

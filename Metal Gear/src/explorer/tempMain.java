@@ -3,6 +3,11 @@ package explorer;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import entity.BreakableWall;
+import entity.Camera;
+import entity.Thing;
+import entity.Wall;
+
 public class tempMain {
 	public static boolean playing;
 	
@@ -23,7 +28,7 @@ public class tempMain {
 		
 		in = new Scanner(System.in);
 		
-		p = new entity.Player(startingPsn[0],startingPsn[1],"tempPlayerss");
+		p = new entity.Player(startingPsn[0],startingPsn[1]);
 		c = new Camera(-1,-1);
 		
 		lvl = setLevel1();
@@ -53,6 +58,7 @@ public class tempMain {
 			
 			//DISPLAY:
 			render = new String[olvl.length][olvl[0].length];
+			
 			for (String[] row: render)
 			    Arrays.fill(row, ".");
 			
@@ -71,22 +77,31 @@ public class tempMain {
 			
 			render[p.getR()][p.getC()] = "X";
 			
+			
 			displayRender(render);
 			
 			
 			
 			
 			
-			//INPUT:
+//INPUT:
 			
-			if(c.isCameraPlaced()) {
+			//if the camera is placed, and player can drop gaurd
+			if(c.isCameraPlaced() && p.isPickedUpGuard()) {
+				psn = getInput("wasdg");
+			//if the camera is placed, and player cant drop gaurd
+			}else if(c.isCameraPlaced()) {
 				psn = getInput("wasd");
+			//if camera is not placed and player can drop gaurd
+			}else if(p.isPickedUpGuard()){
+				psn = getInput("wasdgc");
+			//if camera is not placed and player cant drop gaurd
 			}else {
-				psn = getInput("wasdc");	
+				psn = getInput("wasdwc");	
 			}
 			
 			//place camera button pushed
-			if(psn == 4) {
+			if(psn == 5) {
 				print("select direction for camera");
 				dirFacing = getInput("wasd");
 				convertedDir = convertDir(dirFacing);
@@ -97,10 +112,29 @@ public class tempMain {
 				//olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]] = c;
 				c.placeCamera(p.getR() + convertedDir[0],p.getC() + convertedDir[1]);
 			}
-			//print("R "+p.getR());
-			convertedDir = convertDir(psn);
 			
-			print("convertedPos: " + convertedDir[0] + " " + convertedDir[1]);
+			
+			
+			//gaurd button pushed
+			if(psn==4) {
+
+				print("select direction for gaurd");
+				dirFacing = getInput("wasd");
+				convertedDir = convertDir(dirFacing);
+				while(!olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].toString().equals(" ")) {
+					print("select direction for gaurd");
+					dirFacing = getInput("wasd");
+				}
+				
+				
+				olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]] = new entity.DeadGaurd(p.getR() + convertedDir[0],p.getC() + convertedDir[1]);
+				print(olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].toString());
+				p.setPickedUpGuard(false);
+			}
+			
+			
+			convertedDir = convertDir(psn);
+
 			updateOlvlPlayer();
 			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
 			
@@ -114,6 +148,7 @@ public class tempMain {
 		psn = possibilities.indexOf(input);
 		while(psn == -1) {
 			psn = possibilities.indexOf(input);
+			print("invalid input");
 			input = in.nextLine();
 		}
 		return psn;
@@ -672,7 +707,7 @@ public class tempMain {
 	
 	
 	public static int[] convertDir(int dir) {
-		int[][] temp = {{-1,0},{0,-1},{1,0},{0,1},{0,0}};
+		int[][] temp = {{-1,0},{0,-1},{1,0},{0,1},{0,0},{0,0}};
 		return temp[dir];
 	}
 	
@@ -796,7 +831,8 @@ public class tempMain {
 	
 	public static void displayRender(String[][] render) {
 		//int temp = 0;
-		
+		//print("olvlr: "+render.length);
+		//print("olvlc: "+  render[0].length);
 		for(int i = 0; i < render.length; i++) {
 			for(int j = 0; j< render[0].length; j++) {
 				

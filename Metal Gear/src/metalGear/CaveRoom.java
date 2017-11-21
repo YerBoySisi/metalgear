@@ -1,5 +1,7 @@
 package metalGear;
 
+import explorer.tempMain;
+
 public class CaveRoom {
 	
 	private String description;// tells what the room looks like
@@ -103,13 +105,23 @@ public class CaveRoom {
 	
 	public void interpretInput(String input) {
 		while (!isValid(input)) {
-			System.out.println("You can only enter 'w', 'a', 's'. 'd'.");
+			System.out.println("invalid intput");
 			input = CaveExplorer.in.nextLine();
 		}
 		//task: convert user into a direction
 		//DO NOT USE AN IF STATEMENT
-		int direction = "wdsa".indexOf(input);
-		goToRoom(direction);
+		int direction = validKeys().indexOf(input);
+		if(direction > 3) {
+			this.performAction();
+		}else {
+			goToRoom(direction);
+		}
+		
+	}
+
+	private void performAction() {
+		// TODO Auto-generated method stub
+		tempMain.print("You shouldnt be here");
 	}
 
 	private void goToRoom(int direction) {
@@ -167,8 +179,11 @@ public class CaveRoom {
 	}
 
 	private boolean isValid(String input) {
-		String validEntries = "wdsa";
+		String validEntries = this.validKeys();
 		return validEntries.indexOf(input) > -1 && input.length() ==1;
+	}
+	public String validKeys() {
+		return "wads";
 	}
 
 	public String getDescription() {

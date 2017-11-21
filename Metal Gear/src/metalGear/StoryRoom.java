@@ -15,8 +15,10 @@ public class StoryRoom extends CaveRoom{
 		System.out.println("You can only enter 'w', 'a', 's' 'd', or 'e'.");
 	}
 	public void performAction (int direction) {
+		tempMain.print(""+direction);
 		if (direction==4) {
 			tempMain.brief();
+			tempMain.print("asdasd");
 		}else {
 			System.err.println("Invalid input.");
 		}

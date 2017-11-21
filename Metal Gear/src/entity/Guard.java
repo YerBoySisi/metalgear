@@ -50,7 +50,7 @@ public class Guard extends Thing {
 	}
 
 	public void act() {
-		
+		tempMain.breakWall(currentRow,currentCol);
 		if(!alerted) {
 	
 			if(active) {
@@ -73,6 +73,9 @@ public class Guard extends Thing {
 		} else {
 			
 		}
+		
+		
+		tempMain.olvl[currentRow][currentCol] = this;
 
 	}
 

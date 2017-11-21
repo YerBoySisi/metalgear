@@ -86,8 +86,8 @@ public class Player extends Thing{
 
 	// pass in the field of view, guard row, and guard column coordinates
 	public boolean seenByGuard (int[][] fov, int gRow, int gCol) {
-		for (int row = 0; row < fov.length; row++) {
-			for (int col = 0; col < fov[row].length; col++) {
+		for (int row = fov[0][0]; row < fov.length + fov [0][0]; row++) {
+			for (int col = fov[row][0]; col < fov[row].length + fov[row][0]; col++) {
 				if (r == row && c == col) {
 					isCaught = true;
 					return isCaught;

@@ -156,7 +156,7 @@ public class CaveRoom {
 		//3. Replace default rooms with custom rooms
 		
 		CaveExplorer.caves[0][2] = new MissionRoom("First Mission");
-		CaveExplorer.caves[0][1] = new StoryRoom("First Story");
+		CaveExplorer.caves[0][1] = new Story1("First Story");
 		CaveExplorer.caves[0][0] = new HintRoom("Give the player a tip or hint ot somwthing idk");
 		
 		//4. Set your starting room:

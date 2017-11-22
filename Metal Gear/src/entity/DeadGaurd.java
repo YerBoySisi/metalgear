@@ -23,7 +23,7 @@ public class DeadGaurd extends Thing{
 	
 	public String toString() {
 		return "D";
-	}//
+	}
 	
 	public void putDownCamera(int r, int c){
 		

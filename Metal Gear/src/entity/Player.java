@@ -17,7 +17,7 @@ public class Player extends Thing{
 		this.r = r;
 		this.c = c;
 
-		pickedUpguard = true;
+		//pickedUpguard = true;
 		
 		setName(name);
 	}

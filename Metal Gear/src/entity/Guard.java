@@ -19,6 +19,7 @@ public class Guard extends Thing {
 	private int[][] path;
 	private int direction;
 	private int currentPos;
+	private boolean isDead;
 	
 	//fields relating to character
 	private int[][] fieldOfView;
@@ -26,6 +27,16 @@ public class Guard extends Thing {
 	private boolean alerted;
 	
 
+	public void interact() {
+		
+		
+		tempMain.print("asdasdds");
+		active = false;
+		
+		tempMain.p.playerMove(r, c);
+		tempMain.olvl[currentRow][currentCol] = new DeadGaurd(currentRow, currentCol);
+	}
+	
 	public Guard(int[][] path, int row, int col) {
 		
 		super(row, col);
@@ -229,6 +240,18 @@ public class Guard extends Thing {
 	public boolean isAlerted() {
 		
 		return alerted;
+		
+	}
+
+	public boolean isActive() {
+	
+		return active;
+		
+	}
+	
+	public void kill() {
+		
+		active = false;
 		
 	}
 	

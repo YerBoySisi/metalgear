@@ -131,7 +131,7 @@ public class tempMain {
 			
 			//gaurd button pushed
 			if(psn==4) {
-
+				
 				print("select direction for gaurd");
 				dirFacing = getInput("wasd");
 				convertedDir = convertDir(dirFacing);
@@ -140,10 +140,10 @@ public class tempMain {
 					dirFacing = getInput("wasd");
 				}
 				
-				
 				olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]] = new entity.DeadGaurd(p.getR() + convertedDir[0],p.getC() + convertedDir[1]);
 				print(olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].toString());
 				p.setPickedUpGuard(false);
+				
 			}
 			
 			
@@ -151,10 +151,12 @@ public class tempMain {
 
 			updateOlvlPlayer();
 			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
+			print(olvl[4][5].toString());
 			
+			if(g[0].isActive()) {
+				g[0].act();
+			}
 			
-			
-			g[0].act();
 			
 		}
 	}

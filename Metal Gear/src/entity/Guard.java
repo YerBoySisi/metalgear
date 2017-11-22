@@ -159,7 +159,7 @@ public class Guard extends Thing {
 	
 	public void setFieldOfView() {
 		
-		fieldOfView = new int[4][2];
+		fieldOfView = new int[5][2];
 		
 		if(direction == NORTH || direction == SOUTH) {
 			
@@ -187,6 +187,9 @@ public class Guard extends Thing {
 			fieldOfView[3][0] = currentRow - 1;
 		
 		}
+		
+		fieldOfView[4][0] = currentRow;
+		fieldOfView[4][1] = currentCol;
 		
 		for(int i = 0; i < fieldOfView.length; i++) {
 			

@@ -43,7 +43,7 @@ public class tempMain {
 		g[0] = new Guard(new int[][] {UP, UP, DOWN, DOWN}, 5, 5);
 		
 		
-		lvl = setLevel1();
+		lvl = setLevel2();
 		convertLevel();
 		
 		

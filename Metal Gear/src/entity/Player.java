@@ -98,7 +98,7 @@ public class Player extends Thing{
 	}
 	
 	public String toString() {
-		return "D";
+		return "X";
 	}
 
 }

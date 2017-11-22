@@ -101,13 +101,13 @@ public class tempMain {
 //INPUT:
 			
 			//if the camera is placed, and player can drop gaurd
-			if(c.isCameraPlaced() && p.isPickedUpGuard()) {
+			if(c.isCameraPlaced() && p.pickedUpGuard()) {
 				psn = getInput("wasdg");
 			//if the camera is placed, and player cant drop gaurd
 			}else if(c.isCameraPlaced()) {
 				psn = getInput("wasd");
 			//if camera is not placed and player can drop gaurd
-			}else if(p.isPickedUpGuard()){
+			}else if(p.pickedUpGuard()){
 				psn = getInput("wasdgc");
 			//if camera is not placed and player cant drop gaurd
 			}else {
@@ -140,9 +140,8 @@ public class tempMain {
 					dirFacing = getInput("wasd");
 				}
 				
-				olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]] = new entity.DeadGaurd(p.getR() + convertedDir[0],p.getC() + convertedDir[1]);
 				print(olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].toString());
-				p.setPickedUpGuard(false);
+				p.pickUpGuard(false);
 				
 			}
 			

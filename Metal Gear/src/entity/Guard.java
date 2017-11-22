@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.Arrays;
-
 import explorer.tempMain;
 
 public class Guard extends Thing {
@@ -19,23 +17,13 @@ public class Guard extends Thing {
 	private int[][] path;
 	private int direction;
 	private int currentPos;
-	private boolean isDead;
 	
 	//fields relating to character
 	private int[][] fieldOfView;
+	private boolean isAlive;
 	private boolean active;
 	private boolean alerted;
 	
-
-	public void interact() {
-		
-		
-		tempMain.print("asdasdds");
-		active = false;
-		
-		tempMain.p.playerMove(r, c);
-		tempMain.olvl[currentRow][currentCol] = new DeadGaurd(currentRow, currentCol);
-	}
 	
 	public Guard(int[][] path, int row, int col) {
 		
@@ -56,34 +44,55 @@ public class Guard extends Thing {
 		this.currentPos = path.length - 1;
 		setDirection();
 		setFieldOfView();
-		this.active = true;
+		this.isAlive = true;
 
+	}
+	
+	public void interact() {
+		
+		if(isAlive) {
+			tempMain.print("The guard has been killed");
+			kill();
+		} else {
+			
+			if(tempMain.p.pickedUpGuard()) {
+				tempMain.dialouge("Snake, you can't pick up 2 dead gaurds!");
+			}else {
+				tempMain.breakWall(this.currentRow,this.currentCol);
+				this.currentRow = -1;
+				this.currentCol = -1;
+				tempMain.p.pickUpGuard(true);
+			}
+			
+		}
+		
 	}
 
 	public void act() {
 		tempMain.breakWall(currentRow,currentCol);
 		//tempMain.olvl[newRow][newCol] = this
-		if(!alerted) {
+		if(isAlive) {
 	
 			if(active) {
-				System.out.println(Arrays.deepToString(path));
-				System.out.println(Arrays.deepToString(fieldOfView));
-				System.out.println(direction);
-				System.out.println(currentRow);
-				System.out.println(currentCol);
-				move(currentPos);
-				setDirection();
-				setFieldOfView();
-				currentPos++;
 				
-				if(currentPos == path.length) {
-					currentPos = 0;
+				if(!alerted) {
+					move(currentPos);
+					setDirection();
+					setFieldOfView();
+					currentPos++;
+					
+					if(currentPos == path.length) {
+						currentPos = 0;
+					}
+					
+				} else {
+					
 				}
 				
 			}
-		
-		} else {
 			
+			active = !active;
+		
 		}
 		
 		
@@ -245,19 +254,23 @@ public class Guard extends Thing {
 
 	public boolean isActive() {
 	
-		return active;
+		return isAlive;
 		
 	}
 	
 	public void kill() {
 		
-		active = false;
+		isAlive = false;
 		
 	}
 	
 	public String toString() {
 		
-		return "G";
+		if(isAlive) {
+			return "G";
+		} else {
+			return "D";
+		}
 		
 	}
 

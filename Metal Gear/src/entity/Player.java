@@ -3,7 +3,7 @@ package entity;
 public class Player extends Thing{
 
 	private String name;
-	private boolean pickedUpguard;
+	private boolean pickedUpGuard;
 	private boolean objectiveReached;
 	private boolean isCaught = false;
 	private int r;
@@ -52,12 +52,12 @@ public class Player extends Thing{
 	}
 
 
-	public boolean isPickedUpGuard() {
-		return pickedUpguard;
+	public boolean pickedUpGuard() {
+		return pickedUpGuard;
 	}
 
-	public void setPickedUpGuard(boolean pickedUpguard) {
-		this.pickedUpguard = pickedUpguard;
+	public void pickUpGuard(boolean pickedUpGuard) {
+		this.pickedUpGuard = pickedUpGuard;
 	}
 
 	public boolean isObjectiveReached() {

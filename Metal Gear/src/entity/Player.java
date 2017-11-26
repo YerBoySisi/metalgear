@@ -84,17 +84,23 @@ public class Player extends Thing{
 		this.c = c;
 	}
 
-	// pass in the field of view, guard row, and guard column coordinates
-	public boolean seenByGuard (int[][] fov, int gRow, int gCol) {
-		for (int row = fov[0][0]; row < fov.length + fov [0][0]; row++) {
-			for (int col = fov[row][0]; col < fov[row].length + fov[row][0]; col++) {
-				if (r == row && c == col) {
-					isCaught = true;
-					return isCaught;
-				}
+	/**
+	 * Pass in every Guard in the current level every turn (use a for loop), end game when true
+	 * @param g
+	 * @return
+	 */
+	public boolean seenByGuard(Guard g) {
+		
+		for(int i = 0; i < g.getFieldOfView().length; i++) {
+			
+			if(g.getFieldOfView()[i][0] == this.r && g.getFieldOfView()[i][1] == this.c) {
+				isCaught = true;
 			}
+			
 		}
+		
 		return isCaught;
+
 	}
 	
 	public String toString() {

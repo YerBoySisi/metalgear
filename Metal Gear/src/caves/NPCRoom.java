@@ -53,7 +53,7 @@ public class NPCRoom extends CaveRoom {
 	
 	public void performAction(int direction) {
 		if(direction == 4) {
-			if(containsNPC() && getPresentNPC().isActive()) {
+			if(containsNPC() && getPresentNPC().isAlive()) {
 				getPresentNPC().interact();
 			}else {
 				ExplorerMain.print("There is nothing to interact with.");
@@ -64,7 +64,7 @@ public class NPCRoom extends CaveRoom {
 	}
 	
 	public String getContents() {
-		if(containsNPC() && getPresentNPC().isActive()) {
+		if(containsNPC() && getPresentNPC().isAlive()) {
 			return "M";
 		}else {
 			//return what would be returned otherwise
@@ -73,7 +73,7 @@ public class NPCRoom extends CaveRoom {
 	}
 	
 	public String getDescription() {
-		if(containsNPC() && !getPresentNPC().isActive()) {
+		if(containsNPC() && !getPresentNPC().isAlive()) {
 			return super.getDescription() +"\n"+getPresentNPC().getInactiveDescription();
 		}else {
 			String npcDesc = "";

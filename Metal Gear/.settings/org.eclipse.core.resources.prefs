@@ -3,6 +3,7 @@
 >>>>>>>=refs/remotes/origin/developer
 eclipse.preferences.version=1
 encoding//src/entity/BreakableWall.java=UTF-8
+encoding//src/entity/Guard.java=UTF-8
 encoding//src/entity/Wall.java=UTF-8
 encoding//src/explorer/ExtractionPoint.java=UTF-8
 encoding//src/explorer/tempMain.java=UTF-8

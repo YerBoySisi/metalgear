@@ -42,5 +42,26 @@ public class Camera extends Thing{
 	public boolean isCameraPlaced() {
 		return cameraPlaced;
 	}
+	
+	public boolean seenByGuard(Guard g) {
+		
+		for(int i = 0; i < g.getFieldOfView().length; i++) {
+			
+			if(g.getFieldOfView()[i][0] == this.r && g.getFieldOfView()[i][1] == this.c) {
+				return true;
+			}
+			
+		}
+		
+		return false;
+
+	}
+	
+	public void breakCamera() {
+		
+		this.r = -1;
+		this.c = -1;
+		
+	}
 
 }

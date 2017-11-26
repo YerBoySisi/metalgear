@@ -12,7 +12,7 @@ public class SisiSavageRoom extends NPCRoom{
 	
 	public String getContents() {
 		
-		if(containsNPC() && getPresentNPC().isActive()) {
+		if(containsNPC() && getPresentNPC().isAlive()) {
 			return "S";
 		}else 
 			return super.getContents();

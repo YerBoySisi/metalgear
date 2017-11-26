@@ -11,11 +11,6 @@ import entity.Wall;
 
 public class tempMain {
 	
-	public static final int[] UP = {-1, 0};
-	public static final int[] DOWN = {1, 0};
-	public static final int[] LEFT = {0, -1};
-	public static final int[] RIGHT = {0, 1};
-	
 	public static boolean playing;
 	
 	private static int[][] lvl;
@@ -36,16 +31,13 @@ public class tempMain {
 		
 		in = new Scanner(System.in);
 		
-		p = new entity.Player(startingPsn[0],startingPsn[1]);
+		p = new entity.Player(SisiLevel.PLAYERSPAWN[0], SisiLevel.PLAYERSPAWN[1]);
 		c = new Camera(-1,-1);
 		
-		g = new Guard[1];
-		g[0] = new Guard(new int[][] {UP, UP, DOWN, DOWN}, 5, 5);
-		
-		
-		lvl = setLevel2();
+		lvl = SisiLevel.LEVEL;
 		convertLevel();
 		
+		g = SisiLevel.GUARDS;
 		
 		print("olvl: ");
 		
@@ -53,6 +45,11 @@ public class tempMain {
 		
 		print("\n\n\n");
 		//brief();
+		
+		for(int i = 0; i < g.length; i++) {
+			olvl[g[i].getRow()][g[i].getColumn()] = g[i];
+		}
+		
 		playGame();
 		
 	}
@@ -65,8 +62,6 @@ public class tempMain {
 		
 		int tempPlayerR;
 		int tempPlayerC;
-		
-		olvl[5][5] = g[0];
 		
 		while(playing) {
 			
@@ -152,8 +147,12 @@ public class tempMain {
 			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
 			print(olvl[4][5].toString());
 			
-			if(g[0].isActive()) {
-				g[0].act();
+			for(int i = 0; i < g.length; i++) {
+				
+				if(g[i].isAlive()) {
+					g[i].act();
+				}
+				
 			}
 			
 			
@@ -749,12 +748,10 @@ public class tempMain {
 					olvl[i][j] = new Thing(i,j);
 				}else if(temp == 2) {
 					olvl[i][j] = new BreakableWall(i,j);
-				}else if(temp ==3) {
+				}else if(temp == 3) {
 					olvl[i][j] = new IntelFile(i,j);
 				}else if(temp == 4) {
 					olvl[i][j] = new ExtractionPoint(i,j);
-				}else  if(temp == 5){
-					olvl[i][j] = new Guard(new int[][] {UP, UP, DOWN, DOWN}, i, j);
 				} else {
 					olvl[i][j] = new Wall(i,j);
 				}

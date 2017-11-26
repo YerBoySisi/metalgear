@@ -271,7 +271,7 @@ public class Guard extends Thing {
 		
 		for(int i = 0; i < fieldOfView.length; i++) {
 			
-			if(fieldOfView[i][0] < 0 || fieldOfView[i][0] < 1 || tempMain.olvl[fieldOfView[i][0]][fieldOfView[i][1]] instanceof Wall) {
+			if(fieldOfView[i][0] < 0 || fieldOfView[i][0] < 1) {
 				fieldOfView[i][0] = currentRow;
 				fieldOfView[i][1] = currentCol;
 			}

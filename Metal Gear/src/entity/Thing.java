@@ -11,7 +11,7 @@ public class Thing {
 	public Thing(int r, int c) {
 		this.c = c;
 		this.r = r;
-		hasBeenDiscovered = false;
+		hasBeenDiscovered = true;
 	}
 	
 	//Thing by default is a blank space

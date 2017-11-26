@@ -33,11 +33,15 @@ public class tempMain {
 		
 		p = new entity.Player(SisiLevel.PLAYERSPAWN[0], SisiLevel.PLAYERSPAWN[1]);
 		c = new Camera(-1,-1);
+		SisiLevel.createGuards();
+		g = SisiLevel.GUARDS;
 		
 		lvl = SisiLevel.LEVEL;
 		convertLevel();
 		
-		g = SisiLevel.GUARDS;
+		for(int i = 0; i < g.length; i++) {
+			olvl[g[i].getRow()][g[i].getColumn()] = g[i];
+		}
 		
 		print("olvl: ");
 		
@@ -45,10 +49,6 @@ public class tempMain {
 		
 		print("\n\n\n");
 		//brief();
-		
-		for(int i = 0; i < g.length; i++) {
-			olvl[g[i].getRow()][g[i].getColumn()] = g[i];
-		}
 		
 		playGame();
 		

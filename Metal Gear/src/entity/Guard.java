@@ -54,7 +54,6 @@ public class Guard extends Thing {
 		
 		this.currentPos = path.length - 1;
 		setDirection();
-		setFieldOfView();
 		this.isAlive = true;
 
 	}
@@ -113,6 +112,8 @@ public class Guard extends Thing {
 			//If it's active or inactive, set it to the opposite (effectively makes Guard move every OTHER turn)
 			active = !active; 
 		
+		} else {
+			fieldOfView = new int[0][0];
 		}
 		
 		//Place Guard in level map
@@ -270,7 +271,7 @@ public class Guard extends Thing {
 		
 		for(int i = 0; i < fieldOfView.length; i++) {
 			
-			if(tempMain.olvl[0][0] instanceof Wall) {
+			if(fieldOfView[i][0] < 0 || fieldOfView[i][0] < 1 || tempMain.olvl[fieldOfView[i][0]][fieldOfView[i][1]] instanceof Wall) {
 				fieldOfView[i][0] = currentRow;
 				fieldOfView[i][1] = currentCol;
 			}

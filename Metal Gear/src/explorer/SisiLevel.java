@@ -44,7 +44,7 @@ public class SisiLevel {
 									{E,0,B,W,0,0,0,B,0,B,0,0,0,B,0,0,0,0,0,0,B,0,W}, //21
 									{W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W}};//22 
 								   //0 1 2 3 4 5 6 7 8 910111213141516171819202122
-	public SisiLevel() {
+	public static void createGuards() {
 		
 		//guards spawn
 		GUARDS[0] = new Guard(new int[][] {RIGHT, RIGHT, RIGHT, RIGHT, RIGHT, 

@@ -385,7 +385,7 @@ public class Guard extends Thing {
 		if(isAlive) {
 			return ICONS[direction];
 		} else {
-			return "D";
+			return "G";
 		}
 		
 	}

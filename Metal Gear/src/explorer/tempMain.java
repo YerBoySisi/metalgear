@@ -209,6 +209,7 @@ public class tempMain {
 						
 						if(p.seenByGuard(guard)) {
 							deadGuardSeen = true;
+							guard.alert();
 							break;
 						}
 					}
@@ -225,6 +226,7 @@ public class tempMain {
 				}
 				if(c.seenByGuard(guard)) {
 					c.interact();
+					guard.alert();
 					dialouge("Snake... a guard just broke your camera!");
 				}
 				

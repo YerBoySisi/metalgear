@@ -54,6 +54,7 @@ public class Guard extends Thing {
 		
 		this.currentPos = path.length - 1;
 		setDirection();
+		setFieldOfView();
 		this.isAlive = true;
 
 	}
@@ -67,6 +68,7 @@ public class Guard extends Thing {
 		
 		if(isAlive) {
 			tempMain.print("The guard has been killed");
+			this.fieldOfView = new int[0][0];
 			kill();
 		} else {
 			
@@ -74,7 +76,7 @@ public class Guard extends Thing {
 				tempMain.dialouge("Snake, you can't pick up 2 dead gaurds!");
 			} else {
 				tempMain.breakWall(this.currentRow,this.currentCol);
-				//tempMain.print("picking up gard");
+				//tempMain.print("picking up guard");
 				this.currentRow = -1;
 				this.currentCol = -1;
 				tempMain.p.pickUpGuard(true);
@@ -114,8 +116,6 @@ public class Guard extends Thing {
 			//If it's active or inactive, set it to the opposite (effectively makes Guard move every OTHER turn)
 			active = !active; 
 		
-		} else {
-			fieldOfView = new int[0][0];
 		}
 		
 		//Place Guard in level map
@@ -273,7 +273,7 @@ public class Guard extends Thing {
 		
 		for(int i = 0; i < fieldOfView.length; i++) {
 			
-			if(fieldOfView[i][0] < 0 || fieldOfView[i][0] < 1) {
+			if(fieldOfView[i][0] < 0 || fieldOfView[i][1] < 0) {
 				fieldOfView[i][0] = currentRow;
 				fieldOfView[i][1] = currentCol;
 			}

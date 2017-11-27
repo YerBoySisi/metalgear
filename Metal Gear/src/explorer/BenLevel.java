@@ -2,7 +2,7 @@ package explorer;
 
 import entity.Guard;
 
-public class Benevel {
+public class BenLevel {
 	
 	//constants
 	//guard directions

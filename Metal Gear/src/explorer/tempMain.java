@@ -41,12 +41,12 @@ public class tempMain {
 		
 		in = new Scanner(System.in);
 		
-		p = new entity.Player(Benevel.PLAYERSPAWN[0], Benevel.PLAYERSPAWN[1]);
+		p = new entity.Player(BenLevel.PLAYERSPAWN[0], BenLevel.PLAYERSPAWN[1]);
 		c = new Camera(-1,-1);
-		Benevel.createGuards();
-		g = Benevel.GUARDS;
+		BenLevel.createGuards();
+		g = BenLevel.GUARDS;
 		
-		lvl = Benevel.LEVEL;
+		lvl = BenLevel.LEVEL;
 		convertLevel();
 		
 		for(int i = 0; i < g.length; i++) {

@@ -8,6 +8,7 @@ public class IntelFile extends Wall{
 		super(r, c);
 	}
 	
+	//changes extraction point
 	public void interact() {
 		tempMain.p.setObjectiveReached(true);
 		tempMain.breakWall(this.r, this.c);

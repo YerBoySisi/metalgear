@@ -3,12 +3,12 @@ package entity;
 import explorer.tempMain;
 
 public class Camera extends Thing{
-	private boolean cameraPlaced;
+	private boolean cameraPlaced;// keeps track of whether the camera has been placed and thus needs to be rendered
+	
+	//CAMERA: temporarily moves the player to its coordinates for the purposes of rendering
 	
 	public Camera(int r, int c) {
 		super(r, c);
-		
-		
 	}
 	
 	public int getR() {
@@ -18,10 +18,10 @@ public class Camera extends Thing{
 		return this.c;
 	}
 	
+	//breaks on interact
 	public void interact() {
-		
 		cameraPlaced = false;
-		tempMain.breakWall(this.r,this.c);//olvl[this.r][this.c] = new Thing(this.r,this.c);
+		tempMain.breakWall(this.r,this.c);
 		this.r = -1;
 		this.c = -1;
 	}
@@ -30,6 +30,7 @@ public class Camera extends Thing{
 		return "C";
 	}
 	
+	//places camera in olvl
 	public void placeCamera(int r, int c){
 		cameraPlaced = true;
 		
@@ -44,24 +45,17 @@ public class Camera extends Thing{
 	}
 	
 	public boolean seenByGuard(Guard g) {
-		
 		for(int i = 0; i < g.getFieldOfView().length; i++) {
-			
 			if(g.getFieldOfView()[i][0] == this.r && g.getFieldOfView()[i][1] == this.c) {
 				return true;
 			}
-			
 		}
-		
 		return false;
-
 	}
 	
-	public void breakCamera() {
-		
+	public void breakCamera() {	
 		this.r = -1;
-		this.c = -1;
-		
+		this.c = -1;/** **/
 	}
 
 }

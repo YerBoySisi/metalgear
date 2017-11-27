@@ -8,24 +8,58 @@ import entity.Camera;
 import entity.Guard;
 import entity.Thing;
 import entity.Wall;
+import metalGear.CaveExplorer;
 
 public class tempMain {
 	
 	public static boolean playing;
 	
-	private static int[][] lvl;
-	public static Thing[][] olvl;
+	private static int[][] lvl; // level represented by ints
+	public static Thing[][] olvl; // actually level; made of objects
 	private static Scanner in;
-	public static int currentlvl;
-
-	public static entity.Player p;
-	public static Camera c;
-	public static Guard[] g;
-	private static int[] startingPsn = {3,3};
 	
-	public static void main(String[] args) {
-		//print(new Wall(1,1));
-		currentlvl=0;
+
+	public static entity.Player p; // Player is represented by p
+	public static Camera c; // Camera is represented by c
+	public static Guard[] g; // Array of all guards
+	
+	
+	public static void playLevel() {
+		//print("lvl:" + CaveExplorer.currentlvl);
+		if(CaveExplorer.currentlvl == 0) {
+			playBen();
+		}else if(CaveExplorer.currentlvl == 1) {
+			playSisi();
+		}else {
+			print("there is currently no lvl 2");
+		}
+	}
+	
+	
+	
+	public static void playBen() {
+		playing = true;
+		
+		in = new Scanner(System.in);
+		
+		p = new entity.Player(Benevel.PLAYERSPAWN[0], Benevel.PLAYERSPAWN[1]);
+		c = new Camera(-1,-1);
+		Benevel.createGuards();
+		g = Benevel.GUARDS;
+		
+		lvl = Benevel.LEVEL;
+		convertLevel();
+		
+		for(int i = 0; i < g.length; i++) {
+			olvl[g[i].getRow()][g[i].getColumn()] = g[i];
+		}
+		
+		print("\n\n\n");
+		
+		playGame();
+	}
+	
+	public static void playSisi() {
 		
 		playing = true;
 		
@@ -43,16 +77,11 @@ public class tempMain {
 			olvl[g[i].getRow()][g[i].getColumn()] = g[i];
 		}
 		
-		print("olvl: ");
-		
-		displayOLevel();
-		
 		print("\n\n\n");
-		//brief();
 		
 		playGame();
-		
 	}
+	
 
 	public static void playGame() {
 		int psn;
@@ -111,12 +140,14 @@ public class tempMain {
 			
 			//place camera button pushed
 			if(psn == 5) {
-				print("select direction for camera");
+				dialouge("select direction for camera");
 				dirFacing = getInput("wasd");
 				convertedDir = convertDir(dirFacing);
 				while(!olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].toString().equals(" ")) {
-					print("select direction for camera");
+					print("invalid input");
+					dialouge("select direction for camera");
 					dirFacing = getInput("wasd");
+					convertedDir = convertDir(dirFacing);
 				}
 				//olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]] = c;
 				c.placeCamera(p.getR() + convertedDir[0],p.getC() + convertedDir[1]);
@@ -127,15 +158,25 @@ public class tempMain {
 			//gaurd button pushed
 			if(psn==4) {
 				
-				print("select direction for gaurd");
+				dialouge("select direction for gaurd");
 				dirFacing = getInput("wasd");
 				convertedDir = convertDir(dirFacing);
 				while(!olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].toString().equals(" ")) {
-					print("select direction for gaurd");
+					print("invalidd input");
+					dialouge("select direction for gaurd");
 					dirFacing = getInput("wasd");
+					convertedDir = convertDir(dirFacing);
 				}
 				
-				print(olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].toString());
+				//print(olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].toString());
+				//p.placeGuard(p.getR() + convertedDir[0],p.getC() + convertedDir[1]);
+				
+				olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]] = p.getCurrentGuard();
+				p.getCurrentGuard().currentRow = p.getR() + convertedDir[0];
+				p.getCurrentGuard().currentCol = p.getC() + convertedDir[1];
+				
+				
+				p.setCurrentGuard(null);
 				p.pickUpGuard(false);
 				
 			}
@@ -156,13 +197,23 @@ public class tempMain {
 			}
 			
 			
+			//IF PLAYER IS IN GAURD FEILD POF VIEW:
+			//make a double for loop
+				//for each guard
+					//for each set of coords within gaurds FOW
+						//check if player.getR & getC are in
+							//if so -> game over: DISPLAY GAME OVER
+							//RELOAD GAME by calling playLevel
+						
+			
 		}
 	}
 	
+	/** gets user input with input of possible inputs**/
 	public static int getInput(String possibilities) {
+		
 		int psn;
 		String input = in.nextLine();
-		
 		psn = possibilities.indexOf(input);
 		while(psn == -1) {
 			psn = possibilities.indexOf(input);
@@ -172,9 +223,10 @@ public class tempMain {
 		return psn;
 	}
 	
+	/** quick hand for System.out.println**/
 	public static void print(String s) {System.out.println(s);}
 	
-	
+	/** USED FOR RENDERING: Get coordinates of all border walls**/
 	public static int[][] getBorderCoords(){
 		int[][] borderCoords = new int[olvl.length*2+olvl[0].length*2][2];
 		
@@ -200,6 +252,7 @@ public class tempMain {
 		return borderCoords;
 	}
 	
+	/** USED FOR RENDERING: Get slopes of all lines from player to each border coord **/
 	public static double[] getSlopes(int[][] borderCoords) {
 		double[] slopes = new double[borderCoords.length];
 		
@@ -217,6 +270,7 @@ public class tempMain {
 		return slopes;
 	}
 	
+	/** USED FOR RENDERING: RAY CAST**/
 	public static String[][] updateTopSteep(String[][] render,double slope){
 		double checkC;
 		//go row by row, decreasing, to get cols
@@ -253,6 +307,7 @@ public class tempMain {
 		return render;
 	}
 	
+	/** USED FOR RENDERING: RAY CAST**/
 	public static String[][] updateTopShallow(String[][] render, double slope){
 		double checkR;
 		
@@ -322,7 +377,8 @@ public class tempMain {
 		}
 		return render;
 	}
-
+	
+	/** USED FOR RENDERING: RAY CAST**/
 	public static String[][] updateBottomSteep(String[][] render, double slope){
 		double checkC;
 		for(int u = p.getR(); u < olvl.length; u++ ) {
@@ -355,6 +411,7 @@ public class tempMain {
 		return render;
 	}
 	
+	/** USED FOR RENDERING: RAY CAST**/
 	public static String[][] updateBottomShallow(String[][] render, double slope){
 		double checkR;
 		
@@ -391,6 +448,7 @@ public class tempMain {
 		return render;
 	}
 	
+	/** USED FOR RENDERING: RAY CAST**/
 	public static String[][] updateLeftSteep(String[][] render, double slope){
 
 		double checkC;
@@ -430,8 +488,6 @@ public class tempMain {
 		}else {
 			for(int u = p.getC(); u < olvl.length; u++ ) {
 				checkC = p.getC()-((p.getR()-u)/slope);
-				//print("slop: "+ slope);
-				//print("c/: "+checkC);
 				//if checkC is an integer:
 				if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
 					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
@@ -460,6 +516,7 @@ public class tempMain {
 		return render;
 	}
 
+	/** USED FOR RENDERING: RAY CAST**/
 	public static String[][] updateLeftShallow(String[][] render, double slope){
 
 		double checkR;
@@ -496,6 +553,7 @@ public class tempMain {
 		return render;
 	}
 	
+	/** USED FOR RENDERING: RAY CAST**/
 	public static String[][] updateRightSteep(String[][] render, double slope){
 		double checkC;
 		
@@ -565,6 +623,7 @@ public class tempMain {
 		return render;
 	}
 	
+	/** USED FOR RENDERING: RAY CAST**/
 	public static String[][] updateRightShallow(String[][] render, double slope){
 		double checkR;
 		
@@ -600,6 +659,7 @@ public class tempMain {
 		return render;
 	}
 	
+	/** USED FOR RENDERING: Sends ray cast**/
 	public static String[][] rayCast(String[][] render) {
 
 		
@@ -664,19 +724,19 @@ public class tempMain {
 	
 	
 
-	
+	/** USED FOR RENDERING: places empty at players old coord**/
 	public static void updateOlvlPlayer() {
 		olvl[p.getR()][p.getC()] = new Thing(p.getR(),p.getC());
 	}
 	
-	
+	/** USED FOR RENDERING: RAY CAST**/
 	public static int[] convertDir(int dir) {
 		int[][] temp = {{-1,0},{0,-1},{1,0},{0,1},{0,0},{0,0}};
 		return temp[dir];
 	}
 	
 	
-	
+	/** For testing purposes**/
 	public static int[][] setLevel1() {
 		
 		//blank = 0 
@@ -701,6 +761,7 @@ public class tempMain {
 		return temp;
 	}
 	
+	/** Showcase shading**/
 	public static int[][] setLevel2() {
 		
 		//blank = 0 
@@ -736,6 +797,7 @@ public class tempMain {
 		return temp;
 	}
 	
+	/** converts int[][] to thing[][]**/
 	public static void convertLevel() {
 		int temp = 0;
 		
@@ -763,6 +825,7 @@ public class tempMain {
 		
 	}
 	
+	/** Displays without shading**/
 	public static void displayOLevel() {
 		Thing temp;
 		
@@ -779,10 +842,6 @@ public class tempMain {
 				}else{
 					System.out.print(" ");
 				}
-				//System.out.print(olvl[i][j].toString());
-				//•
-				//!
-				//◘
 				
 				
 			}
@@ -790,13 +849,9 @@ public class tempMain {
 		}
 	}
 	
-	
-	
-	
+	/** Displays finaized render**/
 	public static void displayRender(String[][] render) {
-		//int temp = 0;
-		//print("olvlr: "+render.length);
-		//print("olvlc: "+  render[0].length);
+
 		for(int i = 0; i < render.length; i++) {
 			for(int j = 0; j< render[0].length; j++) {
 				
@@ -805,31 +860,30 @@ public class tempMain {
 				}else {
 					System.out.print(render[i][j]);
 				}
-				
-				//System.out.print(render[i][j]);
-				
-				
 			}
 			System.out.print("\n");
 		}
 		
 	}
 
+	/** brief for story room**/
 	public static void brief() {
 		
-		if(currentlvl==0) {
+		if(CaveExplorer.currentlvl==0) {
 			dialouge("Hey Boss,/ Welocome to the base!/ We just finished the construction of the r&d and intel platforms.//"
 					+ " Our intel team intercepted a tranmission from the soviets,= discussing their plans to build a fusion-based "
 					+ "metal gear in Afganistan./ We need you to investigate.....");
-		}else if(currentlvl == 1) {
+		}else if(CaveExplorer.currentlvl == 1) {
+			print("oh sh");
 			
-		}else if(currentlvl == 2) {
-			
+		}else if(CaveExplorer.currentlvl == 2) {
+			print("asd");
 		}
 		
 		
 	}
 	
+	/** slowly prints text**/
 	public static void dialouge(String s) {
 		String temp = "";
 		for(int i =0; i< s.length(); i++) {
@@ -845,16 +899,55 @@ public class tempMain {
 			}
 		}
 		print("");
-		pause(2000);
+		pause(500);
 	}
-	
+	/** for dialouge()**/
 	public static void pause(int i) {
 		try {
 			Thread.sleep(i);
 		} catch (InterruptedException e) {e.printStackTrace();}
 	}
 
+	/** REPLACES OBJECT IN OLVL AT COORDS WITH EMOTY SPACE **/
 	public static void breakWall(int r, int c) {
 		olvl[r][c] = new Thing(r,c);
+		//print("breaking wall at: " + r+ c);
+		//print("player : " + p.getR() + p.getC());
 	}
+	
+	/** For demonstration purposes**/
+	//private static int[] startingPsn = {3,3};
+	
+	
+	/*public static void main(String[] args) {
+		//print(new Wall(1,1));
+		//print("aaaaaaa");
+		
+		
+		playing = true;
+		
+		in = new Scanner(System.in);
+		
+		p = new entity.Player(SisiLevel.PLAYERSPAWN[0], SisiLevel.PLAYERSPAWN[1]);
+		c = new Camera(-1,-1);
+		SisiLevel.createGuards();
+		g = SisiLevel.GUARDS;
+		
+		lvl = SisiLevel.LEVEL;
+		convertLevel();
+		
+		for(int i = 0; i < g.length; i++) {
+			olvl[g[i].getRow()][g[i].getColumn()] = g[i];
+		}
+		
+		print("olvl: ");
+		
+		displayOLevel();
+		
+		print("\n\n\n");
+		//brief();
+		
+		playGame();
+		
+	}*/
 }

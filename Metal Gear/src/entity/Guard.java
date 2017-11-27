@@ -13,8 +13,8 @@ public class Guard extends Thing {
 	public static final String[] ICONS = {"▲", "►", "▼", "◄"}; //Guard front-end icons
 	
 	//fields relating to navigation
-	private int currentRow;
-	private int currentCol;
+	public int currentRow;
+	public int currentCol;
 	private int[][] path; //Every coordinate in which the Guard will go to is stored here
 	private int direction;
 	private int currentPos; //The current index of path
@@ -74,9 +74,11 @@ public class Guard extends Thing {
 				tempMain.dialouge("Snake, you can't pick up 2 dead gaurds!");
 			} else {
 				tempMain.breakWall(this.currentRow,this.currentCol);
+				//tempMain.print("picking up gard");
 				this.currentRow = -1;
 				this.currentCol = -1;
 				tempMain.p.pickUpGuard(true);
+				tempMain.p.setCurrentGuard(this);
 			}
 			
 		}
@@ -383,7 +385,7 @@ public class Guard extends Thing {
 		if(isAlive) {
 			return ICONS[direction];
 		} else {
-			return "G";
+			return "D";
 		}
 		
 	}

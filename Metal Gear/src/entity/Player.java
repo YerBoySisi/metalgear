@@ -8,6 +8,7 @@ public class Player extends Thing{
 	private boolean isCaught = false;
 	private int r;
 	private int c;
+	private Guard currentGuard;
 
 	
 	public Player(int r, int c) {
@@ -18,6 +19,7 @@ public class Player extends Thing{
 		this.c = c;
 
 		//pickedUpguard = true;
+		
 		
 		setName(name);
 	}
@@ -105,6 +107,14 @@ public class Player extends Thing{
 	
 	public String toString() {
 		return "X";
+	}
+
+	public void setCurrentGuard(Guard guard) {
+		this.currentGuard = guard;
+	}
+	
+	public Guard getCurrentGuard() {
+		return this.currentGuard;
 	}
 
 }

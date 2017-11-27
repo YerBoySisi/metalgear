@@ -3,7 +3,6 @@ package entity;
 import explorer.tempMain;
 
 public class Thing {
-	//public void interact;
 	protected int c;
 	protected int r;
 	protected boolean hasBeenDiscovered;
@@ -11,17 +10,12 @@ public class Thing {
 	public Thing(int r, int c) {
 		this.c = c;
 		this.r = r;
-		hasBeenDiscovered = true;
+		hasBeenDiscovered = false;
 	}
 	
-	//Thing by default is a blank space
+	//whenever a plaer moves, interact is called on the object in the olvlv he is moving to
+	//Thing is a default: blank space -> moves player to space
 	public void interact() {
-		//default does nothing;
-		
-		//tempMain.p.setC(c);
-		//tempMain.p.setR(r);
-	
-	
 		tempMain.p.playerMove(r, c);
 	}
 	
@@ -32,6 +26,7 @@ public class Thing {
 		return r;
 	}
 	
+	//spaces should never be discovered
 	public void makeDiscovered() {
 		
 	}

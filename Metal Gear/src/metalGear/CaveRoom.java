@@ -52,7 +52,7 @@ public class CaveRoom {
 			else
 			{
 				doorFound = true;
-				directions = directions + "\n  You are able to go to "+toDirection(i)+" via a "+doors[i].getDescription()+". "+doors[i].getDetails();;
+				//directions = directions + "\n  You are able to go to "+toDirection(i)+" via a "+doors[i].getDescription()+". "+doors[i].getDetails();;
 			}
 			if (!doorFound)
 			{
@@ -110,18 +110,30 @@ public class CaveRoom {
 		}
 		//task: convert user into a direction
 		//DO NOT USE AN IF STATEMENT
+		
 		int direction = validKeys().indexOf(input);
+		System.out.println(input);
 		if(direction > 3) {
 			this.performAction();
+			
 		}else {
 			goToRoom(direction);
 		}
 		
 	}
 
-	private void performAction() {
+	public static void performAction() {
 		// TODO Auto-generated method stub
-		tempMain.print("You shouldnt be here");
+		if(CaveExplorer.currentRoom instanceof StoryRoom) {
+			//tempMain.print("this is a sotry");
+			tempMain.brief();
+		}else if(CaveExplorer.currentRoom instanceof MissionRoom){
+			tempMain.dialouge("Departing to Mission.../");
+			tempMain.playLevel();
+			//CaveExplorer.currentlvl++;
+		}else {
+			tempMain.print("You shouldnt be here");
+		}
 	}
 
 	private void goToRoom(int direction) {
@@ -156,7 +168,7 @@ public class CaveRoom {
 		//3. Replace default rooms with custom rooms
 		
 		CaveExplorer.caves[0][2] = new MissionRoom("First Mission");
-		CaveExplorer.caves[0][1] = new Story1("First Story");
+		CaveExplorer.caves[0][1] = new StoryRoom("First Story");
 		CaveExplorer.caves[0][0] = new HintRoom("Give the player a tip or hint ot somwthing idk");
 		
 		//4. Set your starting room:
@@ -183,7 +195,7 @@ public class CaveRoom {
 		return validEntries.indexOf(input) > -1 && input.length() ==1;
 	}
 	public String validKeys() {
-		return "wads";
+		return "wdsa";
 	}
 
 	public String getDescription() {

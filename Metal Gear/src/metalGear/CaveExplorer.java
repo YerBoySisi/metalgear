@@ -2,6 +2,8 @@ package metalGear;
 
 import java.util.Scanner;
 
+import explorer.tempMain;
+
 public class CaveExplorer {
 
 	public static CaveRoom[][] caves;//every room in the cave
@@ -22,6 +24,15 @@ public class CaveExplorer {
 
 
 	private static void startExploring() {
+		tempMain.dialouge(""
+				+ "███╗   ███╗███████╗████████╗ █████╗ ██╗          ██████╗ ███████╗ █████╗ ██████╗=" + 
+				"████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██║         ██╔════╝ ██╔════╝██╔══██╗██╔══██╗=" + 
+				"██╔████╔██║█████╗     ██║   ███████║██║         ██║  ███╗█████╗  ███████║██████╔╝=" + 
+				"██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║         ██║   ██║██╔══╝  ██╔══██║██╔══██╗=" + 
+				"██║ ╚═╝ ██║███████╗   ██║   ██║  ██║███████╗    ╚██████╔╝███████╗██║  ██║██║  ██║=" + 
+				"╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝     ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝=" + 
+				"                                                                                 ",3);
+		
 		while(playing) {
 			print(inventory.getDescription());
 			print(currentRoom.getDescription());

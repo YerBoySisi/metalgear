@@ -28,13 +28,33 @@ public class tempMain {
 		if(CaveExplorer.currentlvl == 0) {
 			playBen();
 		}else if(CaveExplorer.currentlvl == 1) {
-			playSisi();
+			playSid();
 		}else {
-			print("there is currently no lvl 2");
+			playSisi();
 		}
 	}
 	
-	
+	public static void playSid() {
+		playing = true;
+		
+		in = new Scanner(System.in);
+		
+		p = new entity.Player(SidLevel.PLAYERSPAWN[0], SidLevel.PLAYERSPAWN[1]);
+		c = new Camera(-1,-1);
+		SidLevel.createGuards();
+		g = SidLevel.GUARDS;
+		
+		lvl = SidLevel.LEVEL;
+		convertLevel();
+		
+		for(int i = 0; i < g.length; i++) {
+			olvl[g[i].getRow()][g[i].getColumn()] = g[i];
+		}
+		
+		print("\n\n\n");
+		
+		playGame();
+	}
 	
 	public static void playBen() {
 		playing = true;
@@ -79,6 +99,8 @@ public class tempMain {
 		print("\n\n\n");
 		
 		playGame();
+		
+		dialouge("Snake... We did it!/ Thank you so much for playing our game!!!/ Game by:/Ben, Sisi, Sid");
 	}
 	
 
@@ -258,7 +280,7 @@ public class tempMain {
 	
 	
 	
-	private static void dialouge(String s, int speed) {
+	public static void dialouge(String s, int speed) {
 		String temp = "";
 		for(int i =0; i< s.length(); i++) {
 			temp = s.substring(i, i+1);

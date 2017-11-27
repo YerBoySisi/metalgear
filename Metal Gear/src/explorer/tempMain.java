@@ -192,8 +192,13 @@ public class tempMain {
 			updateOlvlPlayer();
 			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
 			
-			
-			
+			for(Guard guard: g) {
+				
+				if(guard.isAlive()) {
+					guard.setFieldOfView();
+				}
+				
+			}
 			
 			//IF SPOTTED BY GUARDS:
 			

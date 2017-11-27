@@ -54,7 +54,6 @@ public class Guard extends Thing {
 		
 		this.currentPos = path.length - 1;
 		setDirection();
-		setFieldOfView();
 		this.isAlive = true;
 
 	}
@@ -102,7 +101,6 @@ public class Guard extends Thing {
 			if(active) {
 				move(currentPos);
 				setDirection();
-				setFieldOfView();
 				currentPos++; //Sets currentPos to the next position of the path
 				
 				//If at the last position of the path, reset back to the first one
@@ -232,36 +230,47 @@ public class Guard extends Thing {
 			
 			if(direction == NORTH || direction == SOUTH) {
 				
-				for(int i = 0; i < 2; i++) {
-					
-					fieldOfView[0][0] = currentRow + DIRECTIONS[i];
-					fieldOfView[1][0] = fieldOfView[0][0] + DIRECTIONS[i];
-					fieldOfView[2][0] = fieldOfView[1][0];
-					fieldOfView[3][0] = fieldOfView[1][0];
-					fieldOfView[0][1] = currentCol;
-					fieldOfView[1][1] = currentCol;
-					fieldOfView[2][1] = currentCol + 1;
-					fieldOfView[3][1] = currentCol - 1;
+				fieldOfView[0][0] = currentRow + DIRECTIONS[NORTH];
+				fieldOfView[1][0] = fieldOfView[0][0] + DIRECTIONS[NORTH];
+				fieldOfView[2][0] = fieldOfView[1][0];
+				fieldOfView[3][0] = fieldOfView[1][0];
+				fieldOfView[0][1] = currentCol;
+				fieldOfView[1][1] = currentCol;
+				fieldOfView[2][1] = currentCol + 1;
+				fieldOfView[3][1] = currentCol - 1;
 				
-				}
+				fieldOfView[4][0] = currentRow + DIRECTIONS[SOUTH];
+				fieldOfView[5][0] = fieldOfView[4][0] + DIRECTIONS[SOUTH];
+				fieldOfView[6][0] = fieldOfView[5][0];
+				fieldOfView[7][0] = fieldOfView[5][0];
+				fieldOfView[4][1] = currentCol;
+				fieldOfView[5][1] = currentCol;
+				fieldOfView[6][1] = currentCol + 1;
+				fieldOfView[7][1] = currentCol - 1;
 				
 			
 			}
 			
 			if(direction == EAST || direction == WEST) {
 				
-				for(int i = 2; i < 4; i++) {
-					
-					fieldOfView[0][1] = currentCol + DIRECTIONS[i];
-					fieldOfView[1][1] = fieldOfView[0][1] + DIRECTIONS[i];
-					fieldOfView[2][1] = fieldOfView[1][1];
-					fieldOfView[3][1] = fieldOfView[1][1];
-					fieldOfView[0][0] = currentRow;
-					fieldOfView[1][0] = currentRow;
-					fieldOfView[2][0] = currentRow + 1;
-					fieldOfView[3][0] = currentRow - 1;
+				fieldOfView[0][1] = currentCol + DIRECTIONS[EAST];
+				fieldOfView[1][1] = fieldOfView[0][1] + DIRECTIONS[EAST];
+				fieldOfView[2][1] = fieldOfView[1][1];
+				fieldOfView[3][1] = fieldOfView[1][1];
+				fieldOfView[0][0] = currentRow;
+				fieldOfView[1][0] = currentRow;
+				fieldOfView[2][0] = currentRow + 1;
+				fieldOfView[3][0] = currentRow - 1;
 				
-				}
+				fieldOfView[4][1] = currentCol + DIRECTIONS[WEST];
+				fieldOfView[5][1] = fieldOfView[4][1] + DIRECTIONS[WEST];
+				fieldOfView[6][1] = fieldOfView[5][1];
+				fieldOfView[7][1] = fieldOfView[6][1];
+				fieldOfView[4][0] = currentRow;
+				fieldOfView[5][0] = currentRow;
+				fieldOfView[6][0] = currentRow + 1;
+				fieldOfView[7][0] = currentRow - 1;
+				
 			
 			}
 			
@@ -272,9 +281,20 @@ public class Guard extends Thing {
 		
 		for(int i = 0; i < fieldOfView.length; i++) {
 			
-			if(fieldOfView[i][0] < 0 || fieldOfView[i][1] < 0) {
+			if(fieldOfView[i][0] < 0 || fieldOfView[i][1] < 0 || tempMain.olvl[fieldOfView[i][0]][fieldOfView[i][1]] instanceof Wall) {
 				fieldOfView[i][0] = currentRow;
 				fieldOfView[i][1] = currentCol;
+			}
+			
+		}
+		
+		if(facingWall()) {
+			
+			for(int i = 0; i < fieldOfView.length; i++) {
+				
+				fieldOfView[i][0] = currentRow;
+				fieldOfView[i][1] = currentCol;
+				
 			}
 			
 		}
@@ -371,6 +391,26 @@ public class Guard extends Thing {
 	public void kill() {
 		
 		isAlive = false;
+		
+	}
+	
+	public boolean facingWall() {
+		
+		if(direction == NORTH || direction == SOUTH) {
+			
+			if(tempMain.olvl[currentRow + DIRECTIONS[direction]][currentCol] instanceof Wall) {
+				return true;
+			}
+		
+		} else {
+			
+			if(tempMain.olvl[currentRow][currentCol + DIRECTIONS[direction]] instanceof Wall) {
+				return true;
+			}
+			
+		}
+		
+		return false;
 		
 	}
 	

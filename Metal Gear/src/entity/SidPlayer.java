@@ -1,6 +1,6 @@
 package entity;
 
-public class Player extends Thing{
+public class SidPlayer extends BenThing{
 
 	private String name;
 	private boolean pickedUpGuard;
@@ -8,10 +8,10 @@ public class Player extends Thing{
 	private boolean isCaught = false;
 	private int r;
 	private int c;
-	private Guard currentGuard;
+	private SisiGuard currentGuard;
 
 	
-	public Player(int r, int c) {
+	public SidPlayer(int r, int c) {
 		
 		super(r,c);
 		
@@ -34,7 +34,7 @@ public class Player extends Thing{
 		this.c = c;
 		
 		//explorer.tempMain.updateOlvlPlayer();
-		metalGear.tempMain.olvl[r][c] = this;
+		metalGear.BenTempMain.olvl[r][c] = this;
 	}
 	
 	
@@ -91,7 +91,7 @@ public class Player extends Thing{
 	 * @param g
 	 * @return
 	 */
-	public boolean seenByGuard(Guard g) {
+	public boolean seenByGuard(SisiGuard g) {
 		
 		for(int i = 0; i < g.getFieldOfView().length; i++) {
 			
@@ -109,11 +109,11 @@ public class Player extends Thing{
 		return "X";
 	}
 
-	public void setCurrentGuard(Guard guard) {
+	public void setCurrentGuard(SisiGuard guard) {
 		this.currentGuard = guard;
 	}
 	
-	public Guard getCurrentGuard() {
+	public SisiGuard getCurrentGuard() {
 		return this.currentGuard;
 	}
 

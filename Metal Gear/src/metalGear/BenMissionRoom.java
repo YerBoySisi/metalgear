@@ -2,9 +2,9 @@ package metalGear;
 
 import explorer.CaveRoom;
 
-public class MissionRoom extends CaveRoom{
+public class BenMissionRoom extends CaveRoom{
 
-	public MissionRoom(String description) {
+	public BenMissionRoom(String description) {
 		super(description);
 	}
 	

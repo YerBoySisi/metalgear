@@ -2,9 +2,9 @@ package metalGear;
 
 import explorer.CaveRoom;
 
-public class TutorialRoom extends CaveRoom {
+public class SisiTutorialRoom extends CaveRoom {
 
-	public TutorialRoom(String description) {
+	public SisiTutorialRoom(String description) {
 		super(description);
 	}
 	
@@ -18,9 +18,9 @@ public class TutorialRoom extends CaveRoom {
 	
 	/** briefs player**/
 	public void performAction (int direction) {
-		tempMain.print(""+direction);
+		BenTempMain.print(""+direction);
 		if (direction==4) {
-			tempMain.dialouge("Snake... seems you need a refresher on things.../"
+			BenTempMain.dialouge("Snake... seems you need a refresher on things.../"
 					+ "You can walk around each level by using the wasd keys.../="
 					+ "There will be guards represented by arrows in every level/"
 					+ "Guards move every other turn, so take advantage of that/"

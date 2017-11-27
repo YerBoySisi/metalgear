@@ -1,8 +1,8 @@
 package entity;
 
-import metalGear.tempMain;
+import metalGear.BenTempMain;
 
-public class Guard extends Thing {
+public class SisiGuard extends BenThing {
 	
 	//constants
 	public static final int NORTH = 0;
@@ -35,7 +35,7 @@ public class Guard extends Thing {
 	 * @param row
 	 * @param col
 	 */
-	public Guard(int[][] path, int row, int col) {
+	public SisiGuard(int[][] path, int row, int col) {
 		
 		super(row, col);
 		this.currentRow = row;
@@ -66,20 +66,20 @@ public class Guard extends Thing {
 	public void interact() {
 		
 		if(isAlive) {
-			tempMain.print("The guard has been killed");
+			BenTempMain.print("The guard has been killed");
 			this.fieldOfView = new int[0][0];
 			kill();
 		} else {
 			
-			if(tempMain.p.pickedUpGuard()) {
-				tempMain.dialouge("Snake, you can't pick up 2 dead gaurds!");
+			if(BenTempMain.p.pickedUpGuard()) {
+				BenTempMain.dialouge("Snake, you can't pick up 2 dead gaurds!");
 			} else {
-				tempMain.breakWall(this.currentRow,this.currentCol);
+				BenTempMain.breakWall(this.currentRow,this.currentCol);
 				//tempMain.print("picking up guard");
 				this.currentRow = -1;
 				this.currentCol = -1;
-				tempMain.p.pickUpGuard(true);
-				tempMain.p.setCurrentGuard(this);
+				BenTempMain.p.pickUpGuard(true);
+				BenTempMain.p.setCurrentGuard(this);
 			}
 			
 		}
@@ -94,7 +94,7 @@ public class Guard extends Thing {
 	public void act() {
 		
 		//Remove Guard from level map
-		tempMain.breakWall(currentRow,currentCol);
+		BenTempMain.breakWall(currentRow,currentCol);
 		
 		if(isAlive) {
 	
@@ -116,7 +116,7 @@ public class Guard extends Thing {
 		}
 		
 		//Place Guard in level map
-		tempMain.olvl[currentRow][currentCol] = this;
+		BenTempMain.olvl[currentRow][currentCol] = this;
 
 	}
 	
@@ -292,7 +292,7 @@ public class Guard extends Thing {
 		
 			for(int i = 0; i < fieldOfView.length; i++) {
 				
-				if(fieldOfView[i][0] < 0 || fieldOfView[i][1] < 0 || tempMain.olvl[fieldOfView[i][0]][fieldOfView[i][1]] instanceof Wall) {
+				if(fieldOfView[i][0] < 0 || fieldOfView[i][1] < 0 || BenTempMain.olvl[fieldOfView[i][0]][fieldOfView[i][1]] instanceof BenWall) {
 					fieldOfView[i][0] = currentRow;
 					fieldOfView[i][1] = currentCol;
 				}
@@ -400,13 +400,13 @@ public class Guard extends Thing {
 		
 		if(direction == NORTH || direction == SOUTH) {
 			
-			if(tempMain.olvl[currentRow + DIRECTIONS[direction]][currentCol] instanceof Wall) {
+			if(BenTempMain.olvl[currentRow + DIRECTIONS[direction]][currentCol] instanceof BenWall) {
 				return true;
 			}
 		
 		} else {
 			
-			if(tempMain.olvl[currentRow][currentCol + DIRECTIONS[direction]] instanceof Wall) {
+			if(BenTempMain.olvl[currentRow][currentCol + DIRECTIONS[direction]] instanceof BenWall) {
 				return true;
 			}
 			
@@ -423,7 +423,7 @@ public class Guard extends Thing {
 	 * @param g
 	 * @return
 	 */
-	public boolean seenByGuard(Guard g) {
+	public boolean seenByGuard(SisiGuard g) {
 		
 		for(int i = 0; i < g.getFieldOfView().length; i++) {
 			
@@ -442,7 +442,7 @@ public class Guard extends Thing {
 	 */
 	public void remove() {
 		
-		tempMain.breakWall(this.r,this.c);
+		BenTempMain.breakWall(this.r,this.c);
 		this.r = -1;
 		this.c = -1;
 		

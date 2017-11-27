@@ -1,6 +1,6 @@
 package explorer;
 
-import metalGear.tempMain;
+import metalGear.BenTempMain;
 
 public class CheatRoom extends CaveRoom{
 
@@ -18,15 +18,15 @@ public class CheatRoom extends CaveRoom{
 	
 	/** briefs player**/
 	public void performAction (int direction) {
-		tempMain.print(""+direction);
+		BenTempMain.print(""+direction);
 		if (direction==4) {
-			tempMain.dialouge("What's do you need snake");
+			BenTempMain.dialouge("What's do you need snake");
 			String input = CaveExplorer.in.nextLine();
 			if(input.equals("Ben is a god")) {
 				CaveExplorer.currentlvl++;
-				tempMain.dialouge("Can't disagree");
+				BenTempMain.dialouge("Can't disagree");
 			}else {
-				tempMain.dialouge("Don't waste my time");
+				BenTempMain.dialouge("Don't waste my time");
 			}
 		}else {
 			System.err.println("Invalid input.");

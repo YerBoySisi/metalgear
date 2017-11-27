@@ -1,24 +1,21 @@
 package entity;
 
-import metalGear.tempMain;
+public class BenWall extends BenThing{
 
-public class BreakableWall extends Wall {
-
-	public BreakableWall(int r, int c) {
+	public BenWall(int r, int c) {
 		super(r, c);
 	}
-	
-	
 
 	public void interact() {
-		tempMain.breakWall(this.r,this.c);
+		//interacting with a wall does nothing: leave blank
 	}
+	
 	public void makeDiscovered() {
 		hasBeenDiscovered = true;
 	}
 	
 	public String toString() {
-		return "◘";
+		return "■";
 	}
-
+	
 }

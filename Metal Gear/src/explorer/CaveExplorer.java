@@ -2,7 +2,7 @@ package explorer;
 
 import java.util.Scanner;
 
-import metalGear.tempMain;
+import metalGear.BenTempMain;
 
 public class CaveExplorer {
 
@@ -24,7 +24,7 @@ public class CaveExplorer {
 
 
 	private static void startExploring() {
-		 tempMain.dialouge(""
+		 BenTempMain.dialouge(""
 + "███╗   ███╗███████╗████████╗ █████╗ ██╗          ██████╗ ███████╗ █████╗ ██████╗="  
 + "████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██║         ██╔════╝ ██╔════╝██╔══██╗██╔══██╗=" 
 + "██╔████╔██║█████╗     ██║   ███████║██║         ██║  ███╗█████╗  ███████║██████╔╝="

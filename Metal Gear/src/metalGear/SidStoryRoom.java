@@ -2,9 +2,9 @@ package metalGear;
 
 import explorer.CaveRoom;
 
-public class StoryRoom extends CaveRoom{
+public class SidStoryRoom extends CaveRoom{
 
-	public StoryRoom(String description) {
+	public SidStoryRoom(String description) {
 		super(description);
 	}
 	public String validKeys() {
@@ -17,9 +17,9 @@ public class StoryRoom extends CaveRoom{
 	
 	/** briefs player**/
 	public void performAction (int direction) {
-		tempMain.print(""+direction);
+		BenTempMain.print(""+direction);
 		if (direction==4) {
-			tempMain.brief();
+			BenTempMain.brief();
 		}else {
 			System.err.println("Invalid input.");
 		}

@@ -1,9 +1,9 @@
 package explorer;
 
-import metalGear.MissionRoom;
-import metalGear.StoryRoom;
-import metalGear.TutorialRoom;
-import metalGear.tempMain;
+import metalGear.BenMissionRoom;
+import metalGear.SidStoryRoom;
+import metalGear.SisiTutorialRoom;
+import metalGear.BenTempMain;
 
 public class CaveRoom {
 	
@@ -127,24 +127,24 @@ public class CaveRoom {
 
 	public static void performAction() {
 		// TODO Auto-generated method stub
-		if(CaveExplorer.currentRoom instanceof StoryRoom) {
+		if(CaveExplorer.currentRoom instanceof SidStoryRoom) {
 			//tempMain.print("this is a sotry");
-			tempMain.brief();
-		}else if(CaveExplorer.currentRoom instanceof MissionRoom){
-			tempMain.dialouge("Departing to Mission.../");
-			tempMain.playLevel();
+			BenTempMain.brief();
+		}else if(CaveExplorer.currentRoom instanceof BenMissionRoom){
+			BenTempMain.dialouge("Departing to Mission.../");
+			BenTempMain.playLevel();
 			//CaveExplorer.currentlvl++;
 		}else if(CaveExplorer.currentRoom instanceof CheatRoom){
-			tempMain.dialouge("What's do you need Snake?");
+			BenTempMain.dialouge("What's do you need Snake?");
 			String input = CaveExplorer.in.nextLine();
 			if(input.equals("Ben is a god")) {
 				CaveExplorer.currentlvl++;
-				tempMain.dialouge("Can't disagree");
+				BenTempMain.dialouge("Can't disagree");
 			}else {
-				tempMain.dialouge("Don't waste my time");
+				BenTempMain.dialouge("Don't waste my time");
 			}
-		}else if(CaveExplorer.currentRoom instanceof TutorialRoom){
-			tempMain.dialouge("Snake... seems you need a refresher on things.../"
+		}else if(CaveExplorer.currentRoom instanceof SisiTutorialRoom){
+			BenTempMain.dialouge("Snake... seems you need a refresher on things.../"
 					+ "You can walk around each level by using the 'wasd' keys.../="
 					+ "There will be guards (▲) in every level/"
 					+ "You can kill them by walking up to them while you are behind them/"
@@ -156,7 +156,7 @@ public class CaveRoom {
 					+ "Use 'c' to place a camera./="
 					+ "Now lets get you back out there.../");
 		}else {
-			tempMain.print("You shouldnt be here");
+			BenTempMain.print("You shouldnt be here");
 		}
 	}
 
@@ -191,9 +191,9 @@ public class CaveRoom {
 		}
 		//3. Replace default rooms with custom rooms
 		
-		CaveExplorer.caves[0][2] = new MissionRoom("Mission Room");
-		CaveExplorer.caves[0][1] = new StoryRoom("Story Room");
-		CaveExplorer.caves[0][0] = new TutorialRoom("Tutorial Room");
+		CaveExplorer.caves[0][2] = new BenMissionRoom("Mission Room");
+		CaveExplorer.caves[0][1] = new SidStoryRoom("Story Room");
+		CaveExplorer.caves[0][0] = new SisiTutorialRoom("Tutorial Room");
 		CaveExplorer.caves[2][2] = new CheatRoom("Cheat Room");
 		
 		//4. Set your starting room:

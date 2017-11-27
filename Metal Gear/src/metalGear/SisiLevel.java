@@ -1,6 +1,6 @@
 package metalGear;
 
-import entity.Guard;
+import entity.SisiGuard;
 
 public class SisiLevel {
 	
@@ -18,7 +18,7 @@ public class SisiLevel {
 	public static int E = 4;
 	
 	public static final int[] PLAYERSPAWN = {21, 1};
-	public static final Guard[] GUARDS = new Guard[7];
+	public static final SisiGuard[] GUARDS = new SisiGuard[7];
 
 	public static int[][] LEVEL = { {W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W,W}, //0
 									{E,0,B,0,B,0,0,B,0,0,W,0,0,0,0,0,B,0,0,0,0,B,W}, //1
@@ -47,35 +47,35 @@ public class SisiLevel {
 	public static void createGuards() {
 		
 		//guards spawn
-		GUARDS[0] = new Guard(new int[][] {RIGHT, RIGHT, RIGHT, RIGHT, RIGHT, 
+		GUARDS[0] = new SisiGuard(new int[][] {RIGHT, RIGHT, RIGHT, RIGHT, RIGHT, 
 										   DOWN, DOWN, DOWN, DOWN, DOWN, DOWN,
 										   LEFT, LEFT, LEFT, LEFT, LEFT, LEFT,
 										   UP, UP, UP, UP, UP, UP}, 8, 9);
 		
-		GUARDS[1] = new Guard(new int[][] {UP, UP, UP, 
+		GUARDS[1] = new SisiGuard(new int[][] {UP, UP, UP, 
 										   DOWN, DOWN, DOWN, DOWN, 
 										   RIGHT, RIGHT, RIGHT, 
 										   DOWN, DOWN,
 										   UP, UP,
 										   LEFT, LEFT, LEFT, UP}, 18, 1);
 		
-		GUARDS[2] = new Guard(new int[][] {DOWN, DOWN, DOWN, 
+		GUARDS[2] = new SisiGuard(new int[][] {DOWN, DOWN, DOWN, 
 										   UP, UP, UP}, 16, 16);
 		
-		GUARDS[3] = new Guard(new int[][] {DOWN, LEFT, DOWN, LEFT, DOWN, LEFT, DOWN, LEFT,
+		GUARDS[3] = new SisiGuard(new int[][] {DOWN, LEFT, DOWN, LEFT, DOWN, LEFT, DOWN, LEFT,
 										   RIGHT, UP, RIGHT, UP, RIGHT, UP, RIGHT, UP}, 1, 5);
 		
-		GUARDS[4] = new Guard(new int[][] {UP, UP, UP, UP,
+		GUARDS[4] = new SisiGuard(new int[][] {UP, UP, UP, UP,
 										   RIGHT, RIGHT, RIGHT, RIGHT, RIGHT, RIGHT, RIGHT,
 										   LEFT, LEFT, LEFT, LEFT, LEFT, LEFT, LEFT,
 										   DOWN, DOWN, DOWN, DOWN}, 11, 3);
 		
-		GUARDS[5] = new Guard(new int[][] {DOWN, DOWN, DOWN, 
+		GUARDS[5] = new SisiGuard(new int[][] {DOWN, DOWN, DOWN, 
 										   RIGHT, RIGHT, 
 										   UP, UP, UP,
 										   LEFT, LEFT}, 12, 18);
 		
-		GUARDS[6] = new Guard(new int[][] {DOWN, DOWN, 
+		GUARDS[6] = new SisiGuard(new int[][] {DOWN, DOWN, 
 										   RIGHT, RIGHT,
 										   UP, UP, 
 										   RIGHT, RIGHT, RIGHT, RIGHT,

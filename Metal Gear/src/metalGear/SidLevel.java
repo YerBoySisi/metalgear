@@ -1,6 +1,6 @@
 package metalGear;
 
-import entity.Guard;
+import entity.SisiGuard;
 
 public class SidLevel {
 
@@ -18,7 +18,7 @@ public class SidLevel {
 		public static int E = 4;
 		
 		public static final int[] PLAYERSPAWN = {1, 1};
-		public static final Guard[] GUARDS = new Guard[3];
+		public static final SisiGuard[] GUARDS = new SisiGuard[3];
 
 		public static int[][] LEVEL = { {W,W,W,W,W,W,W,W,W,W,W},
 										{W,0,W,0,0,0,0,0,0,0,W},
@@ -36,11 +36,11 @@ public class SidLevel {
 		public static void createGuards() {
 			
 			//guards spawn
-			GUARDS[0] = new Guard(new int[][] {RIGHT,RIGHT,RIGHT,RIGHT,DOWN,DOWN,UP,UP,LEFT,LEFT,LEFT}, 1, 5);
+			GUARDS[0] = new SisiGuard(new int[][] {RIGHT,RIGHT,RIGHT,RIGHT,DOWN,DOWN,UP,UP,LEFT,LEFT,LEFT}, 1, 5);
 			
-			GUARDS[1] = new Guard(new int[][] {RIGHT,DOWN,LEFT,UP}, 8, 7);
+			GUARDS[1] = new SisiGuard(new int[][] {RIGHT,DOWN,LEFT,UP}, 8, 7);
 			
-			GUARDS[2] = new Guard(new int[][] {RIGHT,RIGHT,RIGHT,LEFT,LEFT,LEFT}, 7, 1);
+			GUARDS[2] = new SisiGuard(new int[][] {RIGHT,RIGHT,RIGHT,LEFT,LEFT,LEFT}, 7, 1);
 			
 			
 			

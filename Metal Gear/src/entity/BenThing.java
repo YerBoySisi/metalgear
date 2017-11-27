@@ -1,13 +1,13 @@
 package entity;
 
-import metalGear.tempMain;
+import metalGear.BenTempMain;
 
-public class Thing {
+public class BenThing {
 	protected int c;
 	protected int r;
 	protected boolean hasBeenDiscovered;
 	
-	public Thing(int r, int c) {
+	public BenThing(int r, int c) {
 		this.c = c;
 		this.r = r;
 		hasBeenDiscovered = false;
@@ -16,7 +16,7 @@ public class Thing {
 	//whenever a plaer moves, interact is called on the object in the olvlv he is moving to
 	//Thing is a default: blank space -> moves player to space
 	public void interact() {
-		tempMain.p.playerMove(r, c);
+		BenTempMain.p.playerMove(r, c);
 	}
 	
 	public int getC() {

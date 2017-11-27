@@ -3,25 +3,25 @@ package metalGear;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import entity.BreakableWall;
-import entity.Camera;
-import entity.Guard;
-import entity.Thing;
-import entity.Wall;
+import entity.BenBreakableWall;
+import entity.BenCamera;
+import entity.SisiGuard;
+import entity.BenThing;
+import entity.BenWall;
 import explorer.CaveExplorer;
 
-public class tempMain {
+public class BenTempMain {
 	
 	public static boolean playing;
 	
 	private static int[][] lvl; // level represented by ints
-	public static Thing[][] olvl; // actually level; made of objects
+	public static BenThing[][] olvl; // actually level; made of objects
 	private static Scanner in;
 	
 
-	public static entity.Player p; // Player is represented by p
-	public static Camera c; // Camera is represented by c
-	public static Guard[] g; // Array of all guards
+	public static entity.SidPlayer p; // Player is represented by p
+	public static BenCamera c; // Camera is represented by c
+	public static SisiGuard[] g; // Array of all guards
 	
 	
 	public static void playLevel() {
@@ -39,8 +39,8 @@ public class tempMain {
 		
 		in = new Scanner(System.in);
 		
-		p = new entity.Player(SidLevel.PLAYERSPAWN[0], SidLevel.PLAYERSPAWN[1]);
-		c = new Camera(-1,-1);
+		p = new entity.SidPlayer(SidLevel.PLAYERSPAWN[0], SidLevel.PLAYERSPAWN[1]);
+		c = new BenCamera(-1,-1);
 		SidLevel.createGuards();
 		g = SidLevel.GUARDS;
 		
@@ -61,8 +61,8 @@ public class tempMain {
 		
 		in = new Scanner(System.in);
 		
-		p = new entity.Player(BenLevel.PLAYERSPAWN[0], BenLevel.PLAYERSPAWN[1]);
-		c = new Camera(-1,-1);
+		p = new entity.SidPlayer(BenLevel.PLAYERSPAWN[0], BenLevel.PLAYERSPAWN[1]);
+		c = new BenCamera(-1,-1);
 		BenLevel.createGuards();
 		g = BenLevel.GUARDS;
 		
@@ -84,8 +84,8 @@ public class tempMain {
 		
 		in = new Scanner(System.in);
 		
-		p = new entity.Player(SisiLevel.PLAYERSPAWN[0], SisiLevel.PLAYERSPAWN[1]);
-		c = new Camera(-1,-1);
+		p = new entity.SidPlayer(SisiLevel.PLAYERSPAWN[0], SisiLevel.PLAYERSPAWN[1]);
+		c = new BenCamera(-1,-1);
 		SisiLevel.createGuards();
 		g = SisiLevel.GUARDS;
 		
@@ -214,7 +214,7 @@ public class tempMain {
 			updateOlvlPlayer();
 			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
 			
-			for(Guard guard: g) {
+			for(SisiGuard guard: g) {
 				
 				if(guard.isAlive()) {
 					guard.setFieldOfView();
@@ -224,12 +224,12 @@ public class tempMain {
 			
 			//IF SPOTTED BY GUARDS:
 			
-			for(Guard guard: g) {
+			for(SisiGuard guard: g) {
 				
 				int tempPR = p.getR();
 				int tempPC = p.getC();
 				
-				for(Guard gg: g) {
+				for(SisiGuard gg: g) {
 					if(!gg.isAlive()) {
 						if(gg.seenByGuard(guard)) {
 							gg.remove();
@@ -357,7 +357,7 @@ public class tempMain {
 			//if checkC is an integer:
 			if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
 				render[u][(int) checkC] = olvl[u][(int) checkC].toString();
-			    if(olvl[u][(int) checkC] instanceof Wall) {
+			    if(olvl[u][(int) checkC] instanceof BenWall) {
 			    		
 			    		
 			    		olvl[u][(int) checkC].makeDiscovered();
@@ -367,13 +367,13 @@ public class tempMain {
 			}else {
 				
 				render[u][(int) checkC] = olvl[u][(int) checkC].toString();
-				if(olvl[u][(int) checkC] instanceof Wall) {
+				if(olvl[u][(int) checkC] instanceof BenWall) {
 			    		
 			    		olvl[u][(int) checkC].makeDiscovered();
 			    		break;
 			    }
 				render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
-				if(olvl[u][(int) checkC+1] instanceof Wall) {
+				if(olvl[u][(int) checkC+1] instanceof BenWall) {
 		    			
 		    			olvl[u][(int) checkC].makeDiscovered();
 		    			break;
@@ -399,7 +399,7 @@ public class tempMain {
 				//if checkC is an integer:
 				if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
 					render[(int) checkR][u] = olvl[(int) checkR][u].toString();
-				    if(olvl[(int) checkR][u] instanceof Wall) {
+				    if(olvl[(int) checkR][u] instanceof BenWall) {
 				    		
 				    		olvl[(int) checkR][u].makeDiscovered();
 				    		break;
@@ -407,13 +407,13 @@ public class tempMain {
 				 //else check the boxes to left and right
 				}else {
 					render[(int) checkR][u] = olvl[(int) checkR][u].toString();	
-					if(olvl[(int) checkR][u] instanceof Wall) {
+					if(olvl[(int) checkR][u] instanceof BenWall) {
 				    		
 				    		olvl[(int) checkR][u].makeDiscovered();
 				    		break;
 				    }
 					render[(int) checkR+1][u] = olvl[(int) checkR][u].toString();
-					if(olvl[(int) checkR+1][u] instanceof Wall) {
+					if(olvl[(int) checkR+1][u] instanceof BenWall) {
 			    			
 			    			olvl[(int) checkR][u].makeDiscovered();
 			    			break;
@@ -430,7 +430,7 @@ public class tempMain {
 				//if checkC is an integer:
 				if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
 					render[(int) checkR][u] = olvl[(int) checkR][u].toString();
-				    if(olvl[(int) checkR][u] instanceof Wall) {
+				    if(olvl[(int) checkR][u] instanceof BenWall) {
 				    		
 				    		olvl[(int) checkR][u].makeDiscovered();
 				    		break;
@@ -438,13 +438,13 @@ public class tempMain {
 				 //else check the boxes to left and right
 				}else {
 					render[(int) checkR][u] = olvl[(int) checkR][u].toString();
-					if(olvl[(int) checkR][u] instanceof Wall) {
+					if(olvl[(int) checkR][u] instanceof BenWall) {
 				    		
 				    		olvl[(int) checkR][u].makeDiscovered();
 				    		break;
 				    }
 					render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
-					if(olvl[(int) checkR+1][u] instanceof Wall) {
+					if(olvl[(int) checkR+1][u] instanceof BenWall) {
 			    			
 			    			olvl[(int) checkR][u].makeDiscovered();
 			    			break;
@@ -464,7 +464,7 @@ public class tempMain {
 			//if checkC is an integer:
 			if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
 				render[u][(int) checkC] = olvl[u][(int) checkC].toString();
-			    if(olvl[u][(int) checkC] instanceof Wall) {
+			    if(olvl[u][(int) checkC] instanceof BenWall) {
 			    		
 			    		olvl[u][(int) checkC].makeDiscovered();
 			    		break;
@@ -472,13 +472,13 @@ public class tempMain {
 			 //else check the boxes to left and right
 			}else {
 				render[u][(int) checkC] = olvl[u][(int) checkC].toString();
-				if(olvl[u][(int) checkC] instanceof Wall) {
+				if(olvl[u][(int) checkC] instanceof BenWall) {
 			    		
 			    		olvl[u][(int) checkC].makeDiscovered();
 			    		break;
 			    }
 				render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
-				if(olvl[u][(int) checkC+1] instanceof Wall) {
+				if(olvl[u][(int) checkC+1] instanceof BenWall) {
 		    			
 		    			olvl[u][(int) checkC].makeDiscovered();
 		    			break;
@@ -500,7 +500,7 @@ public class tempMain {
 			//if checkC is an integer:
 			if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
 				render[(int) checkR][u] = olvl[(int) checkR][u].toString();
-			    if(olvl[(int) checkR][u] instanceof Wall) {
+			    if(olvl[(int) checkR][u] instanceof BenWall) {
 			    		
 			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
@@ -508,13 +508,13 @@ public class tempMain {
 			 //else check the boxes to left and right
 			}else {
 				render[(int) checkR][u] = olvl[(int) checkR][u].toString();
-				if(olvl[(int) checkR][u] instanceof Wall) {
+				if(olvl[(int) checkR][u] instanceof BenWall) {
 			    		
 			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
 			    }
 				render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
-				if(olvl[(int) checkR+1][u] instanceof Wall) {
+				if(olvl[(int) checkR+1][u] instanceof BenWall) {
 		    			
 		    			olvl[(int) checkR][u].makeDiscovered();
 		    			break;
@@ -539,7 +539,7 @@ public class tempMain {
 				//if checkC is an integer:
 				if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
 					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
-				    if(olvl[u][(int) checkC] instanceof Wall) {
+				    if(olvl[u][(int) checkC] instanceof BenWall) {
 				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
@@ -547,13 +547,13 @@ public class tempMain {
 				 //else check the boxes to left and right
 				}else {
 					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
-					if(olvl[u][(int) checkC] instanceof Wall) {
+					if(olvl[u][(int) checkC] instanceof BenWall) {
 				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
 				    }
 					render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
-					if(olvl[u][(int) checkC+1] instanceof Wall) {
+					if(olvl[u][(int) checkC+1] instanceof BenWall) {
 			    			
 			    			olvl[u][(int) checkC].makeDiscovered();
 			    			break;
@@ -568,7 +568,7 @@ public class tempMain {
 				//if checkC is an integer:
 				if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
 					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
-				    if(olvl[u][(int) checkC] instanceof Wall) {
+				    if(olvl[u][(int) checkC] instanceof BenWall) {
 				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
@@ -576,13 +576,13 @@ public class tempMain {
 				 //else check the boxes to left and right
 				}else {
 					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
-					if(olvl[u][(int) checkC] instanceof Wall) {
+					if(olvl[u][(int) checkC] instanceof BenWall) {
 				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
 				    }
 					render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
-					if(olvl[u][(int) checkC+1] instanceof Wall) {
+					if(olvl[u][(int) checkC+1] instanceof BenWall) {
 							olvl[u][(int) checkC+1].makeDiscovered();
 			    			break;
 					}
@@ -606,7 +606,7 @@ public class tempMain {
 			//if checkC is an integer:
 			if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
 				render[(int) checkR][u] = olvl[(int) checkR][u].toString();
-			    if(olvl[(int) checkR][u] instanceof Wall) {
+			    if(olvl[(int) checkR][u] instanceof BenWall) {
 			    		
 			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
@@ -614,13 +614,13 @@ public class tempMain {
 			 //else check the boxes to left and right
 			}else {
 				render[(int) checkR][u] = olvl[(int) checkR][u].toString();
-				if(olvl[(int) checkR][u] instanceof Wall) {
+				if(olvl[(int) checkR][u] instanceof BenWall) {
 			    		
 			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
 			    }
 				render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
-				if(olvl[(int) checkR+1][u] instanceof Wall) {
+				if(olvl[(int) checkR+1][u] instanceof BenWall) {
 		    			
 		    			olvl[(int) checkR][u].makeDiscovered();
 		    			break;
@@ -643,7 +643,7 @@ public class tempMain {
 				//if checkC is an integer:
 				if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
 					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
-				    if(olvl[u][(int) checkC] instanceof Wall) {
+				    if(olvl[u][(int) checkC] instanceof BenWall) {
 				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
@@ -651,13 +651,13 @@ public class tempMain {
 				 //else check the boxes to left and right
 				}else {
 					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
-					if(olvl[u][(int) checkC] instanceof Wall) {
+					if(olvl[u][(int) checkC] instanceof BenWall) {
 				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
 				    }
 					render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
-					if(olvl[u][(int) checkC+1] instanceof Wall) {
+					if(olvl[u][(int) checkC+1] instanceof BenWall) {
 			    			
 			    			olvl[u][(int) checkC+1].makeDiscovered();
 			    			break;
@@ -674,7 +674,7 @@ public class tempMain {
 				//if checkC is an integer:
 				if ((checkC == Math.floor(checkC)) && !Double.isInfinite(checkC)) {
 					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
-				    if(olvl[u][(int) checkC] instanceof Wall) {
+				    if(olvl[u][(int) checkC] instanceof BenWall) {
 				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
@@ -682,13 +682,13 @@ public class tempMain {
 				 //else check the boxes to left and right
 				}else {
 					render[u][(int) checkC] = olvl[u][(int) checkC].toString();
-					if(olvl[u][(int) checkC] instanceof Wall) {
+					if(olvl[u][(int) checkC] instanceof BenWall) {
 				    		
 				    		olvl[u][(int) checkC].makeDiscovered();
 				    		break;
 				    }
 					render[u][(int) checkC+1] = olvl[u][(int) checkC+1].toString();
-					if(olvl[u][(int) checkC+1] instanceof Wall) {
+					if(olvl[u][(int) checkC+1] instanceof BenWall) {
 			    			
 			    			olvl[u][(int) checkC+1].makeDiscovered();
 			    			break;
@@ -712,7 +712,7 @@ public class tempMain {
 			//if checkC is an integer:
 			if ((checkR == Math.floor(checkR)) && !Double.isInfinite(checkR)) {
 				render[(int) checkR][u] = olvl[(int) checkR][u].toString();
-			    if(olvl[(int) checkR][u] instanceof Wall) {
+			    if(olvl[(int) checkR][u] instanceof BenWall) {
 			    		
 			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
@@ -720,13 +720,13 @@ public class tempMain {
 			 //else check the boxes to left and right
 			}else {
 				render[(int) checkR][u] = olvl[(int) checkR][u].toString();
-				if(olvl[(int) checkR][u] instanceof Wall) {
+				if(olvl[(int) checkR][u] instanceof BenWall) {
 			    		
 			    		olvl[(int) checkR][u].makeDiscovered();
 			    		break;
 			    }
 				render[(int) checkR+1][u] = olvl[(int) checkR+1][u].toString();
-				if(olvl[(int) checkR+1][u] instanceof Wall) {
+				if(olvl[(int) checkR+1][u] instanceof BenWall) {
 		    			
 		    			olvl[(int) checkR+1][u].makeDiscovered();
 		    			break;
@@ -803,7 +803,7 @@ public class tempMain {
 
 	/** USED FOR RENDERING: places empty at players old coord**/
 	public static void updateOlvlPlayer() {
-		olvl[p.getR()][p.getC()] = new Thing(p.getR(),p.getC());
+		olvl[p.getR()][p.getC()] = new BenThing(p.getR(),p.getC());
 	}
 	
 	/** USED FOR RENDERING: RAY CAST**/
@@ -878,22 +878,22 @@ public class tempMain {
 	public static void convertLevel() {
 		int temp = 0;
 		
-		olvl = new Thing[lvl.length][lvl[0].length];
+		olvl = new BenThing[lvl.length][lvl[0].length];
 		for(int i = 0; i < lvl.length; i++) {
 			for(int j = 0; j< lvl[0].length; j++) {
 				temp = lvl[i][j];
 				
 				if(temp == 0) {
-					olvl[i][j] = new Thing(i,j);
+					olvl[i][j] = new BenThing(i,j);
 				}else if(temp == 2) {
-					olvl[i][j] = new BreakableWall(i,j);
+					olvl[i][j] = new BenBreakableWall(i,j);
 				}else if(temp == 3) {
-					olvl[i][j] = new IntelFile(i,j);
+					olvl[i][j] = new BenIntelFile(i,j);
 					olvl[i][j].makeDiscovered();
 				}else if(temp == 4) {
-					olvl[i][j] = new ExtractionPoint(i,j);
+					olvl[i][j] = new BenExtractionPoint(i,j);
 				} else {
-					olvl[i][j] = new Wall(i,j);
+					olvl[i][j] = new BenWall(i,j);
 				}
 				
 			}
@@ -905,17 +905,17 @@ public class tempMain {
 	
 	/** Displays without shading**/
 	public static void displayOLevel() {
-		Thing temp;
+		BenThing temp;
 		
 		for(int i = 0; i < lvl.length; i++) {
 			for(int j = 0; j< lvl[0].length; j++) {
 				temp = olvl[i][j];
 				
-				if(temp instanceof entity.Player) {
+				if(temp instanceof entity.SidPlayer) {
 					System.out.print("X");
-				}else if(temp instanceof BreakableWall) {
+				}else if(temp instanceof BenBreakableWall) {
 					System.out.print("◘");
-				}else if(temp instanceof Wall) {
+				}else if(temp instanceof BenWall) {
 					System.out.print("■");
 				}else{
 					System.out.print(" ");
@@ -998,7 +998,7 @@ public class tempMain {
 
 	/** REPLACES OBJECT IN OLVL AT COORDS WITH EMOTY SPACE **/
 	public static void breakWall(int r, int c) {
-		olvl[r][c] = new Thing(r,c);
+		olvl[r][c] = new BenThing(r,c);
 		//print("breaking wall at: " + r+ c);
 		//print("player : " + p.getR() + p.getC());
 	}

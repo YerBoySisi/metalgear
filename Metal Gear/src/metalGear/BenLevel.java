@@ -1,6 +1,6 @@
 package metalGear;
 
-import entity.Guard;
+import entity.SisiGuard;
 
 public class BenLevel {
 	
@@ -18,7 +18,7 @@ public class BenLevel {
 	public static int E = 4;
 	
 	public static final int[] PLAYERSPAWN = {1, 1};
-	public static final Guard[] GUARDS = new Guard[3];
+	public static final SisiGuard[] GUARDS = new SisiGuard[3];
 
 	public static int[][] LEVEL = { 
 			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -37,11 +37,11 @@ public class BenLevel {
 	public static void createGuards() {
 		
 		//guards spawn
-		GUARDS[0] = new Guard(new int[][] {DOWN,DOWN,DOWN,LEFT, LEFT, RIGHT, RIGHT, UP, UP, UP}, 1, 4);
+		GUARDS[0] = new SisiGuard(new int[][] {DOWN,DOWN,DOWN,LEFT, LEFT, RIGHT, RIGHT, UP, UP, UP}, 1, 4);
 		
-		GUARDS[1] = new Guard(new int[][] {LEFT,UP,UP,RIGHT,RIGHT,RIGHT,DOWN,DOWN,DOWN,LEFT,LEFT,UP}, 4, 9);
+		GUARDS[1] = new SisiGuard(new int[][] {LEFT,UP,UP,RIGHT,RIGHT,RIGHT,DOWN,DOWN,DOWN,LEFT,LEFT,UP}, 4, 9);
 		
-		GUARDS[2] = new Guard(new int[][] {UP,LEFT,DOWN,RIGHT}, 8, 5);
+		GUARDS[2] = new SisiGuard(new int[][] {UP,LEFT,DOWN,RIGHT}, 8, 5);
 		
 		
 	}

@@ -936,10 +936,20 @@ public class tempMain {
 					+ " Our intel team intercepted a tranmission from the soviets,= discussing their plans to build a fusion-based "
 					+ "metal gear in Afganistan./ We need you to investigate.....");
 		}else if(CaveExplorer.currentlvl == 1) {
-			print("oh sh");
+			dialouge("Research into the intel files you just retrieved shows that not only is there bieng a metal gear being built/"
+					+ "but the soviets are making big strides in advanced nuclear warfare. We will not stand for this./"
+					+ "Luckily, they love keeping all their info in one package, so confiscating that should do the trick./"
+					+ "You know what to do. Good luck.");
 			
 		}else if(CaveExplorer.currentlvl == 2) {
-			print("asd");
+			dialouge("With those codes compromised, you probably saved millions of lives. Thank you for what you've done so far, snake.../"
+					+ "Just do this last thing for us, and you'll be free to go./"
+					+ "It's the same thing as before, just locate the startup codes for that dangerous metal gear./"
+					+ "Something as powerful as that would be a huge pain in our necks, and cost the lives of many innocent civilians./"
+					+ "It's all on you, soldier. Thank you.");
+		}else if(CaveExplorer.currentlvl == 3) {
+			dialouge("We appreciate all you've done, Snake./"
+					+ "You're free to go. Have a good one.");
 		}
 		
 		

@@ -131,6 +131,27 @@ public class CaveRoom {
 			tempMain.dialouge("Departing to Mission.../");
 			tempMain.playLevel();
 			//CaveExplorer.currentlvl++;
+		}else if(CaveExplorer.currentRoom instanceof CheatRoom){
+			tempMain.dialouge("What's do you need Snake?");
+			String input = CaveExplorer.in.nextLine();
+			if(input.equals("Ben is a god")) {
+				CaveExplorer.currentlvl++;
+				tempMain.dialouge("Can't disagree");
+			}else {
+				tempMain.dialouge("Don't waste my time");
+			}
+		}else if(CaveExplorer.currentRoom instanceof TutorialRoom){
+			tempMain.dialouge("Snake... seems you need a refresher on things.../"
+					+ "You can walk around each level by using the 'wasd' keys.../="
+					+ "There will be guards (▲) in every level/"
+					+ "You can kill them by walking up to them while you are behind them/"
+					+ "Make sure you dont get spotted though or else its GAME OVER.../="
+					+ "Dead guards look like 'D'/"
+					+ "You can pick up by walking into them"
+					+ "Put down a picked up gaurd with 'g'...="
+					+ "Cameras allow you to see more of a level./"
+					+ "Use 'c' to place a camera./="
+					+ "Now lets get you back out there.../");
 		}else {
 			tempMain.print("You shouldnt be here");
 		}
@@ -167,9 +188,10 @@ public class CaveRoom {
 		}
 		//3. Replace default rooms with custom rooms
 		
-		CaveExplorer.caves[0][2] = new MissionRoom("First Mission");
-		CaveExplorer.caves[0][1] = new StoryRoom("First Story");
-		CaveExplorer.caves[0][0] = new HintRoom("Give the player a tip or hint ot somwthing idk");
+		CaveExplorer.caves[0][2] = new MissionRoom("Mission Room");
+		CaveExplorer.caves[0][1] = new StoryRoom("Story Room");
+		CaveExplorer.caves[0][0] = new TutorialRoom("Tutorial Room");
+		CaveExplorer.caves[2][2] = new CheatRoom("Cheat Room");
 		
 		//4. Set your starting room:
 		CaveExplorer.currentRoom = CaveExplorer.caves[1][1];

@@ -20,10 +20,9 @@ public class StoryRoom extends CaveRoom{
 		tempMain.print(""+direction);
 		if (direction==4) {
 			tempMain.brief();
-			tempMain.print("asdasd");
 		}else {
 			System.err.println("Invalid input.");
 		}
 	}
-//	/tempMain.brief();
+
 }

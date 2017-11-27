@@ -93,6 +93,16 @@ public class tempMain {
 		
 		while(playing) {
 			
+			//GUARDS:
+			for(int i = 0; i < g.length; i++) {
+				
+				if(g[i].isAlive()) {
+					g[i].act();
+				}
+				
+			}
+			
+			
 			//DISPLAY:
 			render = new String[olvl.length][olvl[0].length];
 			
@@ -181,24 +191,43 @@ public class tempMain {
 
 			updateOlvlPlayer();
 			olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].interact();
-			print(olvl[4][5].toString());
 			
-			for(int i = 0; i < g.length; i++) {
-				
-				if(g[i].isAlive()) {
-					g[i].act();
-				}
-				
-			}
+			
+			
 			
 			//IF SPOTTED BY GUARDS:
 			
 			for(Guard guard: g) {
+				boolean deadGuardSeen=false;
+				
+				int tempPR = p.getR();
+				int tempPC = p.getC();
+				
+				for(Guard gg: g) {
+					if(!gg.isAlive()) {
+						p.rayMove(gg.getR(),gg.getC());
+						
+						if(p.seenByGuard(guard)) {
+							deadGuardSeen = true;
+							break;
+						}
+					}
+				}
+				p.rayMove(tempPR,tempPC);
 				
 				if(p.seenByGuard(guard)) {
 					gameOver();
+					break;
 				}
-				//The broken Camera thing would go here
+				
+				if(deadGuardSeen) {
+					dialouge("Snake... a guard just saw a dead body!");
+				}
+				if(c.seenByGuard(guard)) {
+					c.interact();
+					dialouge("Snake... a guard just broke your camera!");
+				}
+				
 			}
 			
 			
@@ -213,12 +242,35 @@ public class tempMain {
 				+ "██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝="
 				+ "██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗="
 				+ "╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║="
-				+ "╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝";
-		dialouge(gameOverSTR);
+				+ "╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝"
+				+ "/...Hit enter to restart the mission";
+		dialouge(gameOverSTR,3);
 		String input = in.nextLine(); 
 		playLevel();
 	}
 	
+	
+	
+	private static void dialouge(String s, int speed) {
+		String temp = "";
+		for(int i =0; i< s.length(); i++) {
+			temp = s.substring(i, i+1);
+			if(temp.equals("/")) {
+				pause(1000);
+				print("\n");
+			}else if(temp.equals("=")){
+				print("");
+			}else {
+				pause(speed);
+				System.out.print(temp);
+			}
+		}
+		print("");
+		pause(500);
+	}
+
+
+
 	/** gets user input with input of possible inputs**/
 	public static int getInput(String possibilities) {
 		
@@ -814,6 +866,7 @@ public class tempMain {
 					olvl[i][j] = new BreakableWall(i,j);
 				}else if(temp == 3) {
 					olvl[i][j] = new IntelFile(i,j);
+					olvl[i][j].makeDiscovered();
 				}else if(temp == 4) {
 					olvl[i][j] = new ExtractionPoint(i,j);
 				} else {

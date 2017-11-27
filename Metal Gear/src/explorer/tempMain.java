@@ -25,7 +25,6 @@ public class tempMain {
 	
 	
 	public static void playLevel() {
-		//print("lvl:" + CaveExplorer.currentlvl);
 		if(CaveExplorer.currentlvl == 0) {
 			playBen();
 		}else if(CaveExplorer.currentlvl == 1) {
@@ -103,7 +102,7 @@ public class tempMain {
 			render = rayCast(render);
 			
 			if(c.isCameraPlaced()) {
-				//temporarily move player to camer locastion for raycast;
+				//temporarily move player to camera location for raycast;
 				tempPlayerR = p.getR();
 				tempPlayerC = p.getC();
 				p.rayMove(c.getR(),c.getC());
@@ -149,7 +148,6 @@ public class tempMain {
 					dirFacing = getInput("wasd");
 					convertedDir = convertDir(dirFacing);
 				}
-				//olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]] = c;
 				c.placeCamera(p.getR() + convertedDir[0],p.getC() + convertedDir[1]);
 			}
 			
@@ -167,10 +165,7 @@ public class tempMain {
 					dirFacing = getInput("wasd");
 					convertedDir = convertDir(dirFacing);
 				}
-				
-				//print(olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]].toString());
-				//p.placeGuard(p.getR() + convertedDir[0],p.getC() + convertedDir[1]);
-				
+
 				olvl[p.getR() + convertedDir[0]][p.getC() + convertedDir[1]] = p.getCurrentGuard();
 				p.getCurrentGuard().currentRow = p.getR() + convertedDir[0];
 				p.getCurrentGuard().currentCol = p.getC() + convertedDir[1];
@@ -196,17 +191,30 @@ public class tempMain {
 				
 			}
 			
+			//IF SPOTTED BY GUARDS:
 			
-			//IF PLAYER IS IN GAURD FEILD POF VIEW:
-			//make a double for loop
-				//for each guard
-					//for each set of coords within gaurds FOW
-						//check if player.getR & getC are in
-							//if so -> game over: DISPLAY GAME OVER
-							//RELOAD GAME by calling playLevel
-						
+			for(Guard guard: g) {
+				if(p.seenByGuard(guard)) {
+					gameOver();
+				}	
+			}
+			
+			
 			
 		}
+	}
+	
+	public static void gameOver() {
+		String gameOverSTR = ""
+				+ " ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ ="
+				+ "██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗="
+				+ "██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝="
+				+ "██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗="
+				+ "╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║="
+				+ "╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝";
+		dialouge(gameOverSTR);
+		String input = in.nextLine(); 
+		playLevel();
 	}
 	
 	/** gets user input with input of possible inputs**/
@@ -245,7 +253,6 @@ public class tempMain {
 			for(int j = 0; j < olvl.length; j++) {
 				borderCoords[tempCount][0] = j;
 				borderCoords[tempCount][1] = i;
-				//System.out.println(j + " " + i);
 				tempCount++;
 			}
 		}
@@ -255,17 +262,10 @@ public class tempMain {
 	/** USED FOR RENDERING: Get slopes of all lines from player to each border coord **/
 	public static double[] getSlopes(int[][] borderCoords) {
 		double[] slopes = new double[borderCoords.length];
-		
-		//print("pRow"+p.getR());
-		//print("pCol"+p.getC());
-		
-		for(int i = 0; i < borderCoords.length; i++) {
-			//m = y/x
-			//print(borderCoords[i][0] + " ghgu" + borderCoords[i][1]);
-			
+
+		for(int i = 0; i < borderCoords.length; i++) {			
 			slopes[i] = (double) (borderCoords[i][0]-p.getR())/ (double) (borderCoords[i][1]-p.getC());
-			
-			//System.out.println(slopes[i]);
+
 		}
 		return slopes;
 	}

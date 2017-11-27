@@ -1,4 +1,4 @@
-package metalGear;
+package explorer;
 
 public class Inventory {
 

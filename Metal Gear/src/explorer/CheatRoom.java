@@ -1,6 +1,6 @@
-package metalGear;
+package explorer;
 
-import explorer.tempMain;
+import metalGear.tempMain;
 
 public class CheatRoom extends CaveRoom{
 

@@ -1,4 +1,4 @@
-package explorer;
+package metalGear;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -8,7 +8,7 @@ import entity.Camera;
 import entity.Guard;
 import entity.Thing;
 import entity.Wall;
-import metalGear.CaveExplorer;
+import explorer.CaveExplorer;
 
 public class tempMain {
 	
@@ -225,19 +225,16 @@ public class tempMain {
 			//IF SPOTTED BY GUARDS:
 			
 			for(Guard guard: g) {
-				boolean deadGuardSeen=false;
 				
 				int tempPR = p.getR();
 				int tempPC = p.getC();
 				
 				for(Guard gg: g) {
 					if(!gg.isAlive()) {
-						p.rayMove(gg.getR(),gg.getC());
-						
-						if(p.seenByGuard(guard)) {
-							deadGuardSeen = true;
+						if(gg.seenByGuard(guard)) {
+							gg.remove();
 							guard.alert();
-							break;
+							dialouge("Snake... a guard just saw a dead body!");
 						}
 					}
 				}
@@ -248,9 +245,6 @@ public class tempMain {
 					break;
 				}
 				
-				if(deadGuardSeen) {
-					dialouge("Snake... a guard just saw a dead body!");
-				}
 				if(c.seenByGuard(guard)) {
 					c.interact();
 					guard.alert();
@@ -267,14 +261,13 @@ public class tempMain {
 	public static void gameOver() {
 		String gameOverSTR = ""
 				+ " ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ ="
-				+ "██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗="
-				+ "██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝="
-				+ "██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗="
-				+ "╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║="
-				+ "╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝"
+				+ "██╔�?�?�?�?�? ██╔�?�?██╗████╗ ████║██╔�?�?�?�?�?    ██╔�?�?�?██╗██║   ██║██╔�?�?�?�?�?██╔�?�?██╗="
+				+ "██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔�?="
+				+ "██║   ██║██╔�?�?██║██║╚██╔�?██║██╔�?�?�?      ██║   ██║╚██╗ ██╔�?██╔�?�?�?  ██╔�?�?██╗="
+				+ "╚██████╔�?██║  ██║██║ ╚�?�? ██║███████╗    ╚██████╔�? ╚████╔�? ███████╗██║  ██║="
+				+ "╚�?�?�?�?�?�? ╚�?�?  ╚�?�?╚�?�?     ╚�?�?╚�?�?�?�?�?�?�?     ╚�?�?�?�?�?�?   ╚�?�?�?�?  ╚�?�?�?�?�?�?�?╚�?�?  ╚�?�?"
 				+ "/...Hit enter to restart the mission";
 		dialouge(gameOverSTR,3);
-		String input = in.nextLine(); 
 		playLevel();
 	}
 	

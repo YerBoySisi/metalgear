@@ -34,7 +34,7 @@ public class Player extends Thing{
 		this.c = c;
 		
 		//explorer.tempMain.updateOlvlPlayer();
-		explorer.tempMain.olvl[r][c] = this;
+		metalGear.tempMain.olvl[r][c] = this;
 	}
 	
 	

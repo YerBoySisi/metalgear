@@ -1,6 +1,9 @@
-package metalGear;
+package explorer;
 
-import explorer.tempMain;
+import metalGear.MissionRoom;
+import metalGear.StoryRoom;
+import metalGear.TutorialRoom;
+import metalGear.tempMain;
 
 public class CaveRoom {
 	

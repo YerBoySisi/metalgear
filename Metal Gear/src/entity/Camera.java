@@ -1,6 +1,6 @@
 package entity;
 
-import explorer.tempMain;
+import metalGear.tempMain;
 
 public class Camera extends Thing{
 	private boolean cameraPlaced;// keeps track of whether the camera has been placed and thus needs to be rendered

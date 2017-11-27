@@ -1,5 +1,6 @@
 package metalGear;
 
+import explorer.CaveRoom;
 
 public class MissionRoom extends CaveRoom{
 

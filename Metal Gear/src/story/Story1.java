@@ -1,4 +1,6 @@
-package metalGear;
+package story;
+
+import metalGear.StoryRoom;
 
 public class Story1 extends StoryRoom {
 

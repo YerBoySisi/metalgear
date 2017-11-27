@@ -1,6 +1,6 @@
 package entity;
 
-import explorer.tempMain;
+import metalGear.tempMain;
 
 public class Guard extends Thing {
 	
@@ -279,15 +279,6 @@ public class Guard extends Thing {
 			
 		}
 		
-		for(int i = 0; i < fieldOfView.length; i++) {
-			
-			if(fieldOfView[i][0] < 0 || fieldOfView[i][1] < 0 || tempMain.olvl[fieldOfView[i][0]][fieldOfView[i][1]] instanceof Wall) {
-				fieldOfView[i][0] = currentRow;
-				fieldOfView[i][1] = currentCol;
-			}
-			
-		}
-		
 		if(facingWall()) {
 			
 			for(int i = 0; i < fieldOfView.length; i++) {
@@ -297,6 +288,17 @@ public class Guard extends Thing {
 				
 			}
 			
+		} else {
+		
+			for(int i = 0; i < fieldOfView.length; i++) {
+				
+				if(fieldOfView[i][0] < 0 || fieldOfView[i][1] < 0 || tempMain.olvl[fieldOfView[i][0]][fieldOfView[i][1]] instanceof Wall) {
+					fieldOfView[i][0] = currentRow;
+					fieldOfView[i][1] = currentCol;
+				}
+				
+			}
+		
 		}
 		
 	}
@@ -411,6 +413,38 @@ public class Guard extends Thing {
 		}
 		
 		return false;
+		
+	}
+	
+	/**
+	 * Pass in each Guard
+	 * If a dead guard is within any Guard's FOV, this returns true
+	 * When true, remove the guard from the map
+	 * @param g
+	 * @return
+	 */
+	public boolean seenByGuard(Guard g) {
+		
+		for(int i = 0; i < g.getFieldOfView().length; i++) {
+			
+			if(g.getFieldOfView()[i][0] == this.r && g.getFieldOfView()[i][1] == this.c) {
+				return true;
+			}
+			
+		}
+		
+		return false;
+		
+	}
+	
+	/**
+	 * Removes Guard from map
+	 */
+	public void remove() {
+		
+		tempMain.breakWall(this.r,this.c);
+		this.r = -1;
+		this.c = -1;
 		
 	}
 	

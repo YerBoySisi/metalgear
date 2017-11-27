@@ -1,7 +1,7 @@
-package explorer;
+package metalGear;
 
 import entity.Wall;
-import metalGear.CaveExplorer;
+import explorer.CaveExplorer;
 
 public class ExtractionPoint extends Wall{
 

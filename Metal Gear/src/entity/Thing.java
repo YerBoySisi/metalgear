@@ -1,6 +1,6 @@
 package entity;
 
-import explorer.tempMain;
+import metalGear.tempMain;
 
 public class Thing {
 	protected int c;

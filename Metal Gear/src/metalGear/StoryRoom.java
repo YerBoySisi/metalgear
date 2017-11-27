@@ -1,6 +1,6 @@
 package metalGear;
 
-import explorer.tempMain;
+import explorer.CaveRoom;
 
 public class StoryRoom extends CaveRoom{
 

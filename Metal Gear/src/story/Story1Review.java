@@ -1,12 +1,14 @@
-package metalGear;
+package story;
 
-public class Story2Review extends StoryRoom {
+import metalGear.StoryRoom;
 
-	public Story2Review(String description) {
+public class Story1Review extends StoryRoom {
+
+	public Story1Review(String description) {
 		super(description);
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public static void dialouge(String s) {
 		String temp = "";
 		for(int i =0; i< s.length(); i++) {
@@ -46,10 +48,11 @@ public class Story2Review extends StoryRoom {
 	
 	public void performAction(int dir) {
 		if (dir == 4) {
-			dialouge("That was a close one, but without this intel package they'll be unable to do anything as devastating and stupid./"
-					+ "All thats left is to infiltrate the Soviet base and 'borrow' to start codes for the metal gear./"
-					+ "Sounds like a walk in the park right?/"
-					+ "Proceed.");
+			dialouge("Good stuff, soldier. These intel files will allow us to halt the assembly of the metal gear./"
+					+ "However, a new threat has emerged that needs to be handled ASAP./"
+					+ "Please proceed to the next briefing when you are ready.");
 		}
 	}
 }
+
+

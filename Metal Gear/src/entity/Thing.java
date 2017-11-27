@@ -10,7 +10,7 @@ public class Thing {
 	public Thing(int r, int c) {
 		this.c = c;
 		this.r = r;
-		hasBeenDiscovered = false;
+		hasBeenDiscovered = true;
 	}
 	
 	//whenever a plaer moves, interact is called on the object in the olvlv he is moving to

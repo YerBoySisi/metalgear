@@ -100,11 +100,10 @@ public class Guard extends Thing {
 		if(isAlive) {
 	
 			if(active) {
-				
 				move(currentPos);
 				setDirection();
 				setFieldOfView();
-				currentPos++; //Sets currentPos to the next position of the Guard
+				currentPos++; //Sets currentPos to the next position of the path
 				
 				//If at the last position of the path, reset back to the first one
 				if(currentPos == path.length) {

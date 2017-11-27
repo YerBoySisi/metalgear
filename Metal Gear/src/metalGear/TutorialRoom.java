@@ -22,18 +22,18 @@ public class TutorialRoom extends CaveRoom {
 		if (direction==4) {
 			tempMain.dialouge("Snake... seems you need a refresher on things.../"
 					+ "You can walk around each level by using the wasd keys.../="
-					+ "There will be guards (▲) in every level/"
+					+ "There will be guards represented by arrows in every level/"
 					+ "Guards move every other turn, so take advantage of that/"
 					+ "Their field of view is right in front of them, /"
 					+ "2 spaces forward, and to the left and right of 2 spaces forward/"
-					+ "hen a Guard sees a camera or a dead body, they'll get rid of it and be alerted/"
+					+ "When a Guard sees a camera or a dead body, they'll get rid of it and be alerted/"
 					+ "You can kill guards by walking up to them while you are behind them/"
 					+ "Make sure you dont get spotted though or else its GAME OVER.../="
-					+ "Dead guards look like 'D'/"
-					+ "You can pick a dead guard up by walking into them"
-					+ "Put down a picked up gaurd with 'g'...="
+					+ "Dead guards look like: 'D'/"
+					+ "You can pick a dead guard up by walking into them./"
+					+ "Put down a picked up guard with the 'g' key...="
 					+ "Cameras allow you to see more of a level./"
-					+ "Use 'c' to place a camera./="
+					+ "Use the 'c' key to place a camera./="
 					+ "Now lets get you back out there...");
 			
 			

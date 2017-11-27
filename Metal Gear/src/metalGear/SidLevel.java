@@ -20,7 +20,7 @@ public class SidLevel {
 		public static final int[] PLAYERSPAWN = {1, 1};
 		public static final SisiGuard[] GUARDS = new SisiGuard[3];
 
-		public static int[][] LEVEL = { {W,W,W,W,W,W,W,W,W,W,W},
+		public static int[][] LEVEL = { {W,E,W,W,W,W,W,W,W,W,W},
 										{W,0,W,0,0,0,0,0,0,0,W},
 										{W,B,W,W,0,0,0,0,0,0,W},
 										{W,0,W,0,0,W,B,W,W,0,W},
@@ -30,7 +30,7 @@ public class SidLevel {
 										{W,0,0,0,0,0,0,0,0,0,W},
 										{W,0,0,0,W,0,0,0,0,0,W},
 										{W,0,W,0,B,W,W,0,0,0,W},
-										{W,0,W,0,W,0,0,0,0,E,W},
+										{W,0,W,0,W,0,0,0,0,I,W},
 										{W,0,0,0,0,0,B,W,0,0,W},
 										{W,W,W,W,W,W,W,W,W,W,W}};
 		public static void createGuards() {

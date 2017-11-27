@@ -194,9 +194,11 @@ public class tempMain {
 			//IF SPOTTED BY GUARDS:
 			
 			for(Guard guard: g) {
+				
 				if(p.seenByGuard(guard)) {
 					gameOver();
-				}	
+				}
+				//The broken Camera thing would go here
 			}
 			
 			

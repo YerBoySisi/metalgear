@@ -44,6 +44,13 @@ public class Camera extends Thing{
 		return cameraPlaced;
 	}
 	
+	/**
+	 * Pass in each Guard
+	 * If camera is within any Guard's FOV, this returns true
+	 * When true, remove the camera from the map
+	 * @param g
+	 * @return
+	 */
 	public boolean seenByGuard(Guard g) {
 		for(int i = 0; i < g.getFieldOfView().length; i++) {
 			if(g.getFieldOfView()[i][0] == this.r && g.getFieldOfView()[i][1] == this.c) {
@@ -51,11 +58,6 @@ public class Camera extends Thing{
 			}
 		}
 		return false;
-	}
-	
-	public void breakCamera() {	
-		this.r = -1;
-		this.c = -1;/** **/
 	}
 
 }

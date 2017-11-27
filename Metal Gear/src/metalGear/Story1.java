@@ -1,7 +1,5 @@
 package metalGear;
 
-import explorer.tempMain;
-
 public class Story1 extends StoryRoom {
 
 	public Story1(String description) {
@@ -48,9 +46,15 @@ public class Story1 extends StoryRoom {
 	
 	public void performAction(int dir) {
 		if (dir == 4) {
-			dialouge("Hey Boss,/ Welocome to the base!/ We just finished the construction of the r&d and intel platforms.//"
+			dialouge("Hey Boss,/ Welcome to the base!/ We just finished the construction of the r&d and intel platforms.//"
 					+ " Our intel team intercepted a tranmission from the soviets,= discussing their plans to build a fusion-based "
-					+ "metal gear in Afganistan./ We need you to investigate.....");
+					+ "metal gear in Afganistan./ We need you to investigate..../"
+					+ "TUTORIAL:/"
+					+ "Use WASD to move around. Your vision is limited,so move around to reveal your surroundings./"
+					+ "You can place down a camera to keep a section of the map in view. Press c and then a direction with WASD to place one down. (only one can be placed at a time.)/"
+					+ "Watch out for guards! If they catch you, it's game over./"
+					+ "If you manage to sneak up on a guard, you can assassinate and place his dead body somewhere else./"
+					+ "Good luck!");
 		}
 	}
 }
